@@ -1,10 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SocialNetwork.Logic.ILogic;
+using SocialNetwork.Models;
 using System;
 
 namespace SocialNetwork.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUserLogic _userLogic;
+
+        public AccountController(IUserLogic userLogic)
+        {
+            _userLogic = userLogic;
+        }
+
         public IActionResult Login()
         {
             return View();
@@ -15,16 +25,38 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
-        public IActionResult LoginUser()
+        public IActionResult VerifyUser(User user)
         {
-            throw new NotImplementedException();
+            if (_userLogic.VerifyUser(user) == 1)
+            {
+                user = _userLogic.GetUser(user);
+                HttpContext.Session.SetInt32("Id", user.Id);
+                return RedirectToAction("Home", "Home");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
-        public IActionResult RegisterUser()
+        [HttpPost]
+        public IActionResult RegisterUser(User user)
         {
-            throw new NotImplementedException();
+                _userLogic.RegisterUser(user);
+                return RedirectToAction("Login", "Account");
         }
 
+        [HttpPost]
+        public JsonResult DoesUserNameExist(User user)
+        {
+            if (_userLogic.CheckDublicate(user) >= 1)
+            {
+                return Json(user == null);
+            }
+            return Json(user != null);
+        }
+
+        [HttpPost]
         public IActionResult LogoutUser()
         {
             throw new NotImplementedException();

@@ -1,14 +1,24 @@
-﻿
+﻿@model SocialNetwork.ViewModels.LoginViewModel
+
 @{
     ViewData["Title"] = "Login";
 }
 
 <h2>Login</h2>
 
-<form method="post" action="@Url.Action("LoginUser", "Account")">
-    <input type="text" name="Username" placeholder="Username"><br />
-    <input type="password" name="Password" placeholder="Password"><br />
-    <input type="submit" value="Submit">
-</form> 
+<form asp-action="VerifyUser">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input asp-for="Username" placeholder="Username" /><br />
+    <span asp-validation-for="Username"></span><br />
+    <input asp-for="Password" placeholder="Password" /><br />
+    <span asp-validation-for="Password"></span><br />
+    <input type="submit" value="Create" class="btn btn-default" />
+</form>
 
-<a href="@Url.Action("Register", "Account")">Register</a>
+<div>
+    <a asp-action="Register">Register</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
