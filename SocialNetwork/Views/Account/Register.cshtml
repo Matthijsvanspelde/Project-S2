@@ -3,27 +3,26 @@
 @{
     ViewData["Title"] = "Register";
 }
-
-<h2>Register</h2>
-<form asp-action="RegisterUser" >
-    <div asp-validation-summary="ModelOnly"></div>
-    <input asp-for="Username" placeholder="Username"/><br />
-    <span asp-validation-for="Username"></span><br />
-    <input asp-for="Password" placeholder="Password"/><br />
-    <span asp-validation-for="Password"></span><br />
-    <input asp-for="Firstname" placeholder="Firstname"/><br />
-    <span asp-validation-for="Firstname"></span><br />
-    <input asp-for="Lastname" placeholder="Lastname"/><br />
-    <span asp-validation-for="Lastname"></span><br />
-    <input asp-for="Birthdate" placeholder="Birthdate"/><br />
-    <span asp-validation-for="Birthdate"></span><br />
-    <input type="submit" value="Create"/>
-</form>
-
-<div>
-    <a asp-action="Login">Login</a>
+<div class="form-container">
+    <h2>Register</h2>
+    <form asp-action="RegisterUser">
+        <div asp-validation-summary="ModelOnly"></div>
+        <span asp-validation-for="Username"></span><br />
+        <input asp-for="Username" placeholder="Username" /><br />
+        <span asp-validation-for="Password"></span><br />
+        <input asp-for="Password" placeholder="Password" /><br />
+        <span asp-validation-for="Firstname"></span><br />
+        <input asp-for="Firstname" placeholder="Firstname" /><br />
+        <span asp-validation-for="Lastname"></span><br />
+        <input asp-for="Lastname" placeholder="Lastname" /><br />
+        <span asp-validation-for="Birthdate"></span><br />
+        <input asp-for="Birthdate" placeholder="Birthdate" /><br />
+        <input type="submit" value="Create" />
+    </form>
+    <div>
+        <a asp-action="Login">Login</a>
+    </div>
 </div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

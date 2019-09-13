@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
+using SocialNetwork.ViewModels;
 using System;
 
 namespace SocialNetwork.Controllers
@@ -17,7 +18,11 @@ namespace SocialNetwork.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            LoginViewModel loginViewModel = new LoginViewModel()
+            {
+                ErrorMessage = "",
+            };
+            return View(loginViewModel);
         }
 
         public IActionResult Register()
@@ -27,6 +32,10 @@ namespace SocialNetwork.Controllers
 
         public IActionResult VerifyUser(User user)
         {
+            LoginViewModel loginViewModel = new LoginViewModel()
+            {
+                ErrorMessage = "",
+            };
             if (_userLogic.VerifyUser(user) == 1)
             {
                 user = _userLogic.GetUser(user);
@@ -35,7 +44,8 @@ namespace SocialNetwork.Controllers
             }
             else
             {
-                return RedirectToAction("Login", "Account");
+                loginViewModel.ErrorMessage = "Username and password combination is not valid!";
+                return View("Login", loginViewModel);
             }
         }
 
@@ -57,9 +67,10 @@ namespace SocialNetwork.Controllers
         }
 
         [HttpPost]
-        public IActionResult LogoutUser()
+        public IActionResult Logout()
         {
-            throw new NotImplementedException();
+            HttpContext.Session.Clear();
+            return RedirectToAction("Home", "Account");
         }
     }
 }

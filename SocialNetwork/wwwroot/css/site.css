@@ -1,1 +1,14 @@
-﻿
+﻿body {
+    font-family: Arial;
+    background-color: #e8e8e8;
+    margin: 0;
+}
+
+.form-container {
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    background-color: white;
+    width: 300px;
+    padding: 6px;
+    margin: 12px auto;
+}
