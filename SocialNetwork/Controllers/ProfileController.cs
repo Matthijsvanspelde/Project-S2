@@ -18,33 +18,55 @@ namespace SocialNetwork.Controllers
 
         public IActionResult Overview(User user)
         {
-            user.Id = (int)HttpContext.Session.GetInt32("Id");
-            _userLogic.GetUserDetails(user);
-            ProfileViewModel profileViewModel = new ProfileViewModel()
+            if (HttpContext.Session.GetInt32("Id") == null)
             {
-                Firstname = user.Firstname,
-                Middlename = user.Middlename,
-                Lastname = user.Lastname,
-                Birthday = user.Birthdate,
-                Country = user.Country,
-                City = user.City
-            };
-            return View(profileViewModel);
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                user.Id = (int)HttpContext.Session.GetInt32("Id");
+                _userLogic.GetUserDetails(user);
+                ProfileViewModel profileViewModel = new ProfileViewModel()
+                {
+                    Firstname = user.Firstname,
+                    Middlename = user.Middlename,
+                    Lastname = user.Lastname,
+                    Birthdate = user.Birthdate,
+                    Country = user.Country,
+                    City = user.City
+                };
+                return View(profileViewModel);
+            }            
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(User user)
         {
-            return View();
+            if (HttpContext.Session.GetInt32("Id") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                user.Id = (int)HttpContext.Session.GetInt32("Id");
+                _userLogic.GetUserDetails(user);
+                ProfileViewModel profileViewModel = new ProfileViewModel()
+                {
+                    Firstname = user.Firstname,
+                    Middlename = user.Middlename,
+                    Lastname = user.Lastname,
+                    Birthdate = user.Birthdate,
+                    Country = user.Country,
+                    City = user.City
+                };
+                return View(profileViewModel);
+            }            
         }
 
-        public IActionResult EditProfile()
+        public IActionResult EditProfile(User user)
         {
-            throw new NotImplementedException();
-        }
-
-        public IActionResult GetProfileDetails()
-        {
-            throw new NotImplementedException();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            _userLogic.EditProfileDetails(user);
+            return RedirectToAction("Overview", "Profile");
         }
 
         public IActionResult GetProfileDFriends()

@@ -6,8 +6,8 @@
 <partial name="_Menu">
     <div class="form-container">
         <h2>Edit</h2>
-
-        <form asp-action="Edit">
+        
+        <form asp-action="EditProfile">
             <div asp-validation-summary="ModelOnly"></div>
 
             <input asp-for="Firstname" placeholder="Firstname" class="inputField"/><br />
@@ -19,8 +19,8 @@
             <input asp-for="Lastname" placeholder="Lastname" class="inputField"/><br />
             <span asp-validation-for="Lastname"></span><br />
 
-            <input asp-for="Birthday" class="inputField"/><br />
-            <span asp-validation-for="Birthday"></span><br />
+            <input asp-for="Birthdate" class="inputField"/><br />
+            <span asp-validation-for="Birthdate"></span><br />
 
             <input asp-for="Country" placeholder="Country" class="inputField"/><br />
             <span asp-validation-for="Country"></span><br />

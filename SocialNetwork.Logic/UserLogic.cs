@@ -1,6 +1,7 @@
 ﻿using SocialNetwork.DAL.IRepositories;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
+using System.Collections.Generic;
 
 namespace SocialNetwork.Logic
 {
@@ -26,6 +27,16 @@ namespace SocialNetwork.Logic
         public User GetUserDetails(User user)
         {
             return _userRepository.GetUserDetails(user);
+        }
+
+        public User EditProfileDetails(User user)
+        {
+            return _userRepository.EditProfileDetails(user);
+        }
+
+        public IEnumerable<User> GetSearchResult(string Searchterm)
+        {
+            return _userRepository.GetSearchResult(Searchterm);
         }
 
         public int CheckDublicate(User user)

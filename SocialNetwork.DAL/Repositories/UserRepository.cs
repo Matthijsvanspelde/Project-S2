@@ -1,6 +1,7 @@
 ﻿using SocialNetwork.DAL.IContexts;
 using SocialNetwork.DAL.IRepositories;
 using SocialNetwork.Models;
+using System.Collections.Generic;
 
 namespace SocialNetwork.DAL.Repositories
 {
@@ -26,6 +27,16 @@ namespace SocialNetwork.DAL.Repositories
         public User GetUserDetails(User user)
         {
             return _IUserContext.GetUserDetails(user);
+        }
+
+        public User EditProfileDetails(User user)
+        {
+            return _IUserContext.EditProfileDetails(user);
+        }
+
+        public IEnumerable<User> GetSearchResult(string Searchterm)
+        {
+            return _IUserContext.GetSearchResult(Searchterm);
         }
 
         public int CheckDublicate(User user)

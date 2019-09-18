@@ -1,0 +1,29 @@
+﻿@model SocialNetwork.ViewModels.SearchViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
+<partial name="_Menu">
+    <div class="content-wrapper">
+        <h2>Search Friends</h2>
+        <form method="get" action="@Url.Action("GetSearchedUsers", "Friends")">
+            <span>@Model.SearchError</span><br />
+            <input name="Searchterm" placeholder="Name" class="searchField" />
+            <input type="submit" value="Search" class="searchButton" />
+        </form>
+
+
+        @foreach (var item in @Model.SearchResult)
+        {
+            <div class="userportret">
+            @item.Firstname
+            @item.Middlename
+            @item.Lastname
+            </div>
+        }
+    </div>
+
+    
+    
+
+

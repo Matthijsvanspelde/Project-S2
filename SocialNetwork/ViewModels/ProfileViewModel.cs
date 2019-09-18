@@ -17,12 +17,16 @@ namespace SocialNetwork.ViewModels
         public string Lastname { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime Birthday { get; set; }
+        public DateTime Birthdate { get; set; }
 
         //List van maken?
+        [Required]
+        [RegularExpression("^[a-zA-Z ]*$")]
         public string Country { get; set; }
 
         //List van maken?
+        [Required]
+        [RegularExpression("^[a-zA-Z ]*$")]
         public string City { get; set; }
     }
 }

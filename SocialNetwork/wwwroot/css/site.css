@@ -7,7 +7,6 @@
 
 .form-container {
     border: 1px solid #cccccc;
-    border-radius: 3px;
     background-color: white;
     width: 300px;
     padding: 6px;
@@ -17,7 +16,6 @@
 .inputField {
     width: 293px;
     height: 26px;
-    border-radius: 3px;
     border: 1px solid #cccccc;
     padding: 2px;
 }
@@ -25,7 +23,6 @@
 .inputButton {
     width: 100%;
     height: 26px;
-    border-radius: 3px;
     border: 1px solid #cccccc;
     margin: 4px 0 0 0;
     cursor: pointer;
@@ -33,7 +30,6 @@
 
 .basic-container {
     border: 1px solid #cccccc;
-    border-radius: 1px;
     background-color: white;
     padding: 4px;
     width: 280px;
@@ -41,6 +37,7 @@
     margin: 4px;
     overflow: hidden;
     float: left;
+    font-size: 14px;
 }
 
 .content-wrapper {
@@ -80,5 +77,31 @@
 .profile-left-wrapper {
     float: left;
     width: 300px;
-    float: left;
+}
+
+.searchField {
+    width: 400px;
+    height: 26px;
+    border: 1px solid #cccccc;
+    padding: 2px;
+    margin-right: -4px;
+}
+
+.searchButton {
+    width: 64px;
+    height: 32px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: none;
+    cursor: pointer;
+}
+
+.userportret {
+    border: 1px solid #cccccc;
+    background-color: white;
+    padding: 2px;
+    width: 400px;
+    height: 100px;
+    margin: 8px 0 8px 0;
 }
