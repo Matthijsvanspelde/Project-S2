@@ -1,0 +1,39 @@
+﻿@model SocialNetwork.ViewModels.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Profile";
+}
+<partial name="_Menu">
+    <div class="content-wrapper">
+        
+
+        <div class="profile-left-wrapper">
+            <div class="basic-container">
+                <div class="username-display">
+                    <p>
+                        @Html.DisplayFor(model => model.Firstname)
+                        @Html.DisplayFor(model => model.Middlename)
+                        @Html.DisplayFor(model => model.Lastname)
+                    </p>
+                </div>
+                <p>Birthday: @Html.DisplayFor(model => model.Birthday)</p>
+                <p>Country: @Html.DisplayFor(model => model.Country)</p>
+                <p>City: @Html.DisplayFor(model => model.City)</p>
+                <div>
+                    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ })
+                </div>
+            </div>
+
+            <div class="Friend-container">
+                <h2>FRIENDS</h2>
+            </div>
+        </div>
+
+        @for (int i = 0; i < 4; i++)
+        {
+        <div class="Post-container">
+            <h2>POSTS</h2>
+        </div>
+        }
+        
+    </div>

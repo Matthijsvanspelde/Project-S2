@@ -15,6 +15,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection = connection;
         }
 
+        //User Authentication
         public User RegisterUser(User user)
         {
             _connection.SqlConnection.Open();
@@ -23,8 +24,11 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@Username", user.Username);
             sqlCommand.Parameters.AddWithValue("@Password", user.Password);
             sqlCommand.Parameters.AddWithValue("@Firstname", user.Firstname);
+            sqlCommand.Parameters.AddWithValue("@Middlename", user.Middlename);
             sqlCommand.Parameters.AddWithValue("@Lastname", user.Lastname);
             sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
+            sqlCommand.Parameters.AddWithValue("@Country", "Unknown");
+            sqlCommand.Parameters.AddWithValue("@City", "Unknown");
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
             return user;
@@ -59,11 +63,10 @@ namespace SocialNetwork.DAL.Contexts
             return UserCount;
         }
 
-
-        public User GetUser(User user)
+        public User GetSessionId(User user)
         {
             _connection.SqlConnection.Open();
-            SqlCommand sqlCmd = new SqlCommand("GetUser", _connection.SqlConnection);
+            SqlCommand sqlCmd = new SqlCommand("GetSessionId", _connection.SqlConnection);
             sqlCmd.CommandType = CommandType.StoredProcedure;
             sqlCmd.Parameters.AddWithValue("@Username", user.Username);
             sqlCmd.ExecuteNonQuery();
@@ -72,8 +75,30 @@ namespace SocialNetwork.DAL.Contexts
                 while (reader.Read())
                 {
                     user.Id = reader.GetInt32(0);
-                    user.Firstname = reader.GetString(1);
-                    user.Lastname = reader.GetString(1);
+                }
+            }
+            _connection.SqlConnection.Close();
+            return user;
+        }
+
+        //User Profile
+        public User GetUserDetails(User user)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCmd = new SqlCommand("GetUserDetails", _connection.SqlConnection);
+            sqlCmd.CommandType = CommandType.StoredProcedure;
+            sqlCmd.Parameters.AddWithValue("@Id", user.Id);
+            sqlCmd.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    user.Firstname = reader.GetString(0);
+                    user.Middlename = reader.GetString(1);
+                    user.Lastname = reader.GetString(2);
+                    user.Birthdate = reader.GetDateTime(3);
+                    user.Country = reader.GetString(4);
+                    user.City = reader.GetString(5);
                 }
             }
             _connection.SqlConnection.Close();

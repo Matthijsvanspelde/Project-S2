@@ -38,9 +38,9 @@ namespace SocialNetwork.Controllers
             };
             if (_userLogic.VerifyUser(user) == 1)
             {
-                user = _userLogic.GetUser(user);
+                user = _userLogic.GetSessionId(user);
                 HttpContext.Session.SetInt32("Id", user.Id);
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("Timeline", "Home");
             }
             else
             {
@@ -52,8 +52,12 @@ namespace SocialNetwork.Controllers
         [HttpPost]
         public IActionResult RegisterUser(User user)
         {
-                _userLogic.RegisterUser(user);
-                return RedirectToAction("Login", "Account");
+            if (user.Middlename == null)
+            {
+                user.Middlename = "";
+            }           
+            _userLogic.RegisterUser(user);
+            return RedirectToAction("Login", "Account");
         }
 
         [HttpPost]
@@ -65,12 +69,11 @@ namespace SocialNetwork.Controllers
             }
             return Json(user != null);
         }
-
-        [HttpPost]
+        
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
-            return RedirectToAction("Home", "Account");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

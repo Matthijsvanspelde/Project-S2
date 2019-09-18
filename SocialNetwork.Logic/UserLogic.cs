@@ -18,9 +18,14 @@ namespace SocialNetwork.Logic
             return _userRepository.RegisterUser(user);
         }
 
-        public User GetUser(User user)
+        public User GetSessionId(User user)
         {
-            return _userRepository.GetUser(user);
+            return _userRepository.GetSessionId(user);
+        }
+
+        public User GetUserDetails(User user)
+        {
+            return _userRepository.GetUserDetails(user);
         }
 
         public int CheckDublicate(User user)

@@ -19,6 +19,8 @@ namespace SocialNetwork.ViewModels
         [Required]
         [RegularExpression("^[a-zA-Z ]*$")]
         public string Lastname { get; set; }
+        [RegularExpression("^[a-zA-Z ]*$")]
+        public string Middlename { get; set; }
         public DateTime Birthdate { get; set; }
     }
 }

@@ -1,0 +1,36 @@
+﻿@model SocialNetwork.ViewModels.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<partial name="_Menu">
+    <div class="form-container">
+        <h2>Edit</h2>
+
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <input asp-for="Firstname" placeholder="Firstname" class="inputField"/><br />
+            <span asp-validation-for="Firstname"></span><br />
+
+            <input asp-for="Middlename" placeholder="Middlename" class="inputField"/><br />
+            <span asp-validation-for="Middlename"></span><br />
+
+            <input asp-for="Lastname" placeholder="Lastname" class="inputField"/><br />
+            <span asp-validation-for="Lastname"></span><br />
+
+            <input asp-for="Birthday" class="inputField"/><br />
+            <span asp-validation-for="Birthday"></span><br />
+
+            <input asp-for="Country" placeholder="Country" class="inputField"/><br />
+            <span asp-validation-for="Country"></span><br />
+
+            <input asp-for="City" placeholder="City" class="inputField"/><br />
+            <span asp-validation-for="City"></span>
+
+            <input type="submit" value="Save" class="inputButton"/>
+        </form>
+        </div>
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

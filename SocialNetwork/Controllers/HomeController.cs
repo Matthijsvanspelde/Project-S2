@@ -15,8 +15,8 @@ namespace SocialNetwork.Controllers
             _userLogic = userLogic;
         }
 
-        public IActionResult Home(User user)
-        {
+        public IActionResult Timeline(User user)
+        {            
             if (HttpContext.Session.GetInt32("Id") == null)
             {
                 return RedirectToAction("Login", "Account");
@@ -24,8 +24,7 @@ namespace SocialNetwork.Controllers
             else
             {
                 return View();
-            }
-            
+            }            
         }
     }
 }

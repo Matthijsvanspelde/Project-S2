@@ -6,6 +6,5 @@ namespace SocialNetwork.Models
     {
         public string Country { get; set; }
         public string City { get; set; }
-        public string Bio { get; set; }
     }
 }

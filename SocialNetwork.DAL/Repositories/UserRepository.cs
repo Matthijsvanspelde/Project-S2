@@ -18,9 +18,14 @@ namespace SocialNetwork.DAL.Repositories
             return _IUserContext.RegisterUser(user);
         }
 
-        public User GetUser(User user)
+        public User GetSessionId(User user)
         {
-            return _IUserContext.GetUser(user);
+            return _IUserContext.GetSessionId(user);
+        }
+
+        public User GetUserDetails(User user)
+        {
+            return _IUserContext.GetUserDetails(user);
         }
 
         public int CheckDublicate(User user)
