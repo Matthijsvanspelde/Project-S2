@@ -138,9 +138,10 @@ namespace SocialNetwork.DAL.Contexts
                 {
                     var user = new User
                     {
-                        Firstname = reader.GetString(0),
-                        Middlename = reader.GetString(1),
-                        Lastname = reader.GetString(2)
+                        Id = reader.GetInt32(0),
+                        Firstname = reader.GetString(1),
+                        Middlename = reader.GetString(2),
+                        Lastname = reader.GetString(3)
                     };
                     SearchResult.Add(user);
                 }

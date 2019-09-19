@@ -6,20 +6,21 @@
 <partial name="_Menu">
     <div class="content-wrapper">
         <h2>Search Friends</h2>
-        <form method="get" action="@Url.Action("GetSearchedUsers", "Friends")">
+        <form method="get" action="@Url.Action("GetSearchedUsers", "Search")">
             <span>@Model.SearchError</span><br />
             <input name="Searchterm" placeholder="Name" class="searchField" />
             <input type="submit" value="Search" class="searchButton" />
         </form>
 
-
         @foreach (var item in @Model.SearchResult)
         {
-            <div class="userportret">
-            @item.Firstname
-            @item.Middlename
-            @item.Lastname
-            </div>
+        <div class="userportret">
+            <a asp-controller="Search" asp-action="Profile" asp-route-id="@item.Id" class="username">
+                @item.Firstname                
+                @item.Middlename
+                @item.Lastname
+            </a>
+        </div>
         }
     </div>
 

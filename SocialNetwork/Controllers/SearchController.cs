@@ -10,11 +10,11 @@ using SocialNetwork.ViewModels;
 
 namespace SocialNetwork.Controllers
 {
-    public class FriendsController : Controller
+    public class SearchController : Controller
     {
         private readonly IUserLogic _userLogic;
 
-        public FriendsController(IUserLogic userLogic)
+        public SearchController(IUserLogic userLogic)
         {
             _userLogic = userLogic;
         }
@@ -34,6 +34,11 @@ namespace SocialNetwork.Controllers
                 };
                 return View(searchViewModel);
             }
+        }
+
+        public IActionResult Profile()
+        {
+            return View();
         }
 
         public IActionResult GetSearchedUsers(string Searchterm)

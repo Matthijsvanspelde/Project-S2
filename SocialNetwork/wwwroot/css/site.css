@@ -105,3 +105,15 @@
     height: 100px;
     margin: 8px 0 8px 0;
 }
+
+.username {
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+}
+
+.username:hover {
+    font-size: 14px;
+    text-decoration: none;
+    color: #878787;
+}
