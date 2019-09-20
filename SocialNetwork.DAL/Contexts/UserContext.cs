@@ -30,6 +30,7 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
             sqlCommand.Parameters.AddWithValue("@Country", "Unknown");
             sqlCommand.Parameters.AddWithValue("@City", "Unknown");
+            sqlCommand.Parameters.AddWithValue("@Biography", "Nothing yet");
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
             return user;
@@ -94,12 +95,14 @@ namespace SocialNetwork.DAL.Contexts
             {
                 while (reader.Read())
                 {
-                    user.Firstname = reader.GetString(0);
-                    user.Middlename = reader.GetString(1);
-                    user.Lastname = reader.GetString(2);
-                    user.Birthdate = reader.GetDateTime(3);
-                    user.Country = reader.GetString(4);
-                    user.City = reader.GetString(5);
+                    user.Id = reader.GetInt32(0);
+                    user.Firstname = reader.GetString(1);
+                    user.Middlename = reader.GetString(2);
+                    user.Lastname = reader.GetString(3);
+                    user.Birthdate = reader.GetDateTime(4);
+                    user.Country = reader.GetString(5);
+                    user.City = reader.GetString(6);
+                    user.Biography = reader.GetString(7);
                 }
             }
             _connection.SqlConnection.Close();
@@ -118,6 +121,7 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
             sqlCommand.Parameters.AddWithValue("@Country", user.Country);
             sqlCommand.Parameters.AddWithValue("@City", user.City);
+            sqlCommand.Parameters.AddWithValue("@Biography", user.Biography);
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
             return user;

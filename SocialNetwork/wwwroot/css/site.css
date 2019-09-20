@@ -13,11 +13,38 @@
     margin: 12px auto;
 }
 
+.edit-container {
+    border: 1px solid #cccccc;
+    background-color: white;
+    width: 680px;
+    padding: 6px;
+    margin: 12px auto;
+}
+
+.bioField {
+    width: 366px;
+    padding: 2px;
+    height: 126px;
+    border: 1px solid #cccccc;
+    float: right;
+    resize: none;
+}
+
 .inputField {
     width: 293px;
     height: 26px;
     border: 1px solid #cccccc;
     padding: 2px;
+}
+
+.editLeftSide {
+    float: left;
+    width: 293px;
+}
+
+.editRightSide {
+    float: right;
+    width: 366px;
 }
 
 .inputButton {
@@ -39,6 +66,9 @@
     float: left;
     font-size: 14px;
 }
+    .basic-container p {
+        line-height: 6px;
+    }
 
 .content-wrapper {
     overflow: hidden;
@@ -47,17 +77,16 @@
 }
 
 .username-display {
-    font-size: 22px;
     text-align: center;
-    height: 30px;
-    margin: -20px -10px 20px -10px;
-    border-bottom: 1px solid #cccccc;
+    font-size: 18px;
+    height: 26px;
 }
 
 .Post-container {
-    background-color: #808080;
+    background-color: white;
+    border: 1px solid #cccccc;
     float: right;
-    width: 464px;
+    width: 462px;
     height: 400px;
     margin: 4px;
     overflow: hidden;
@@ -65,7 +94,8 @@
 }
 
 .Friend-container {
-    background-color: #808080;
+    background-color: white;
+    border: 1px solid #cccccc;
     float: left;
     width: 280px;
     height: 200px;
@@ -117,3 +147,14 @@
     text-decoration: none;
     color: #878787;
 }
+
+.profileaction a{
+    color: blue;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.profileaction a:hover {
+    color: #8d8dff;
+}
+

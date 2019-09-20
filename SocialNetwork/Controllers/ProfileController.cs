@@ -28,12 +28,14 @@ namespace SocialNetwork.Controllers
                 _userLogic.GetUserDetails(user);
                 ProfileViewModel profileViewModel = new ProfileViewModel()
                 {
+                    Id = user.Id,
                     Firstname = user.Firstname,
                     Middlename = user.Middlename,
                     Lastname = user.Lastname,
                     Birthdate = user.Birthdate,
                     Country = user.Country,
-                    City = user.City
+                    City = user.City,
+                    Biography = user.Biography
                 };
                 return View(profileViewModel);
             }            
@@ -47,7 +49,7 @@ namespace SocialNetwork.Controllers
             }
             else
             {
-                user.Id = (int)HttpContext.Session.GetInt32("Id");
+                user.Id = (int)HttpContext.Session.GetInt32("Id");               
                 _userLogic.GetUserDetails(user);
                 ProfileViewModel profileViewModel = new ProfileViewModel()
                 {
@@ -56,22 +58,41 @@ namespace SocialNetwork.Controllers
                     Lastname = user.Lastname,
                     Birthdate = user.Birthdate,
                     Country = user.Country,
-                    City = user.City
-                };
+                    City = user.City,
+                    Biography = user.Biography
+                };                
                 return View(profileViewModel);
             }            
         }
 
         public IActionResult EditProfile(User user)
         {
-            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            if (user.Middlename == null)
+            {
+                user.Middlename = "";
+            }
+            user.Id = (int)HttpContext.Session.GetInt32("Id");            
             _userLogic.EditProfileDetails(user);
             return RedirectToAction("Overview", "Profile");
         }
 
-        public IActionResult GetProfileDFriends()
+        public IActionResult SearchedProfile(int Id)
         {
-            throw new NotImplementedException();
+            User user = new User();
+            user.Id = Id;
+            _userLogic.GetUserDetails(user);  
+            ProfileViewModel profileViewModel = new ProfileViewModel()
+            {
+                Id = user.Id,
+                Firstname = user.Firstname,
+                Middlename = user.Middlename,
+                Lastname = user.Lastname,
+                Birthdate = user.Birthdate,
+                Country = user.Country,
+                City = user.City,
+                Biography = user.Biography
+            };
+            return View("Overview", profileViewModel);
         }
 
         public IActionResult GetProfilePosts()

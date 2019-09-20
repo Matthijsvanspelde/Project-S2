@@ -5,6 +5,7 @@ namespace SocialNetwork.ViewModels
 {
     public class ProfileViewModel
     {
+        public int Id { get; set; }
         [Required]
         [RegularExpression("^[a-zA-Z ]*$")]
         public string Firstname { get; set; }
@@ -28,5 +29,10 @@ namespace SocialNetwork.ViewModels
         [Required]
         [RegularExpression("^[a-zA-Z ]*$")]
         public string City { get; set; }
+
+        [Required]
+        [MinLength(10)]
+        [MaxLength(300)]       
+        public string Biography { get; set; }
     }
 }

@@ -1,11 +1,12 @@
 ﻿@model SocialNetwork.ViewModels.ProfileViewModel
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "Profile";
 }
 <partial name="_Menu">
     <div class="content-wrapper">
-        
+
 
         <div class="profile-left-wrapper">
             <div class="basic-container">
@@ -19,21 +20,29 @@
                 <p>Birthday: @Html.DisplayFor(model => model.Birthdate)</p>
                 <p>Country: @Html.DisplayFor(model => model.Country)</p>
                 <p>City: @Html.DisplayFor(model => model.City)</p>
-                <div>
-                    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ })
+                <p style="line-height: 16px;">About @Html.DisplayFor(model => model.Firstname): @Html.DisplayFor(model => model.Biography)</p>
+                <div class="profileaction">
+                    @if (Model.Id == Context.Session.GetInt32("Id"))
+                    {
+                        @Html.ActionLink("Edit profile", "Edit", new { /* id = Model.PrimaryKey */ })<br />
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Add as friend", "", new { /* id = Model.PrimaryKey */ })<br />
+                    }
                 </div>
             </div>
 
             <div class="Friend-container">
-                <h2>FRIENDS</h2>
+                <h2>FRIENDS PLACEHOLDER</h2>
             </div>
         </div>
 
         @for (int i = 0; i < 4; i++)
         {
-        <div class="Post-container">
-            <h2>POSTS</h2>
-        </div>
+            <div class="Post-container">
+                <h2>POST PLACEHOLDER</h2>
+            </div>
         }
-        
+
     </div>

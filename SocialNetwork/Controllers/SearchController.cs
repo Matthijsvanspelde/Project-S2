@@ -59,6 +59,6 @@ namespace SocialNetwork.Controllers
                 searchViewModel.SearchError = "About " + ResultCount + " matching result(s).";
                 return View("Search", searchViewModel);
             }                     
-        }   
+        }      
     }
 }

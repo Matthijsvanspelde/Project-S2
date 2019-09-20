@@ -4,31 +4,36 @@
     ViewData["Title"] = "Edit";
 }
 <partial name="_Menu">
-    <div class="form-container">
-        <h2>Edit</h2>
-        
+    <div class="edit-container">
+        <h2>Edit profile details</h2>
         <form asp-action="EditProfile">
-            <div asp-validation-summary="ModelOnly"></div>
+            <div class="editLeftSide">
+                <div asp-validation-summary="ModelOnly"></div>
 
-            <input asp-for="Firstname" placeholder="Firstname" class="inputField"/><br />
-            <span asp-validation-for="Firstname"></span><br />
+                <input asp-for="Firstname" placeholder="Firstname" class="inputField" /><br />
+                <span asp-validation-for="Firstname"></span><br />
 
-            <input asp-for="Middlename" placeholder="Middlename" class="inputField"/><br />
-            <span asp-validation-for="Middlename"></span><br />
+                <input asp-for="Middlename" placeholder="Middlename" class="inputField" /><br />
+                <span asp-validation-for="Middlename"></span><br />
 
-            <input asp-for="Lastname" placeholder="Lastname" class="inputField"/><br />
-            <span asp-validation-for="Lastname"></span><br />
+                <input asp-for="Lastname" placeholder="Lastname" class="inputField" /><br />
+                <span asp-validation-for="Lastname"></span><br />
 
-            <input asp-for="Birthdate" class="inputField"/><br />
-            <span asp-validation-for="Birthdate"></span><br />
+                <input asp-for="Birthdate" class="inputField" /><br />
+                <span asp-validation-for="Birthdate"></span><br />
 
-            <input asp-for="Country" placeholder="Country" class="inputField"/><br />
-            <span asp-validation-for="Country"></span><br />
+                <input asp-for="Country" placeholder="Country" class="inputField" /><br />
+                <span asp-validation-for="Country"></span><br />
 
-            <input asp-for="City" placeholder="City" class="inputField"/><br />
-            <span asp-validation-for="City"></span>
-
-            <input type="submit" value="Save" class="inputButton"/>
+                <input asp-for="City" placeholder="City" class="inputField" /><br />
+                <span asp-validation-for="City"></span>
+            </div>
+            <div class="editRightSide">
+                <textarea asp-for="Biography" class="bioField" placeholder="Tell something about yourself..."></textarea><br />
+                <span asp-validation-for="Biography"></span>
+            </div>
+            
+            <input type="submit" value="Save" class="inputButton" />
         </form>
         </div>
         @section Scripts {

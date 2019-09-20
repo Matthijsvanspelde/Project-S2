@@ -16,4 +16,10 @@
     <ProjectReference Include="..\SocialNetwork.Logic\SocialNetwork.Logic.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Profile\Overview.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>
