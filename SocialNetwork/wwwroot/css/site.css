@@ -30,6 +30,14 @@
     resize: none;
 }
 
+.postField {
+    width: 474px;
+    padding: 2px;
+    height: 126px;
+    border: 1px solid #cccccc;
+    resize: none;
+}
+
 .inputField {
     width: 293px;
     height: 26px;
@@ -55,106 +63,18 @@
     cursor: pointer;
 }
 
-.basic-container {
-    border: 1px solid #cccccc;
-    background-color: white;
-    padding: 4px;
-    width: 280px;
-    height: 300px;
-    margin: 4px;
-    overflow: hidden;
-    float: left;
-    font-size: 14px;
-}
-    .basic-container p {
-        line-height: 6px;
-    }
-
 .content-wrapper {
     overflow: hidden;
     width: 780px;
     margin: auto;    
 }
 
-.username-display {
-    text-align: center;
-    font-size: 18px;
-    height: 26px;
-}
 
-.Post-container {
-    background-color: white;
-    border: 1px solid #cccccc;
-    float: right;
-    width: 462px;
-    height: 400px;
-    margin: 4px;
-    overflow: hidden;
-    padding: 4px;
-}
 
-.Friend-container {
-    background-color: white;
-    border: 1px solid #cccccc;
-    float: left;
-    width: 280px;
-    height: 200px;
-    margin: 4px;
-    overflow: hidden;
-    padding: 4px;
-}
-
-.profile-left-wrapper {
-    float: left;
-    width: 300px;
-}
-
-.searchField {
-    width: 400px;
-    height: 26px;
-    border: 1px solid #cccccc;
-    padding: 2px;
-    margin-right: -4px;
-}
-
-.searchButton {
-    width: 64px;
-    height: 32px;
-    border-bottom: 1px solid #cccccc;
-    border-top: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
-    border-left: none;
-    cursor: pointer;
-}
-
-.userportret {
+.post-form {
     border: 1px solid #cccccc;
     background-color: white;
-    padding: 2px;
-    width: 400px;
-    height: 100px;
-    margin: 8px 0 8px 0;
+    width: 480px;
+    padding: 6px;
+    margin: 12px auto;
 }
-
-.username {
-    font-size: 14px;
-    text-decoration: none;
-    color: black;
-}
-
-.username:hover {
-    font-size: 14px;
-    text-decoration: none;
-    color: #878787;
-}
-
-.profileaction a{
-    color: blue;
-    font-size: 13px;
-    text-decoration: none;
-}
-
-.profileaction a:hover {
-    color: #8d8dff;
-}
-

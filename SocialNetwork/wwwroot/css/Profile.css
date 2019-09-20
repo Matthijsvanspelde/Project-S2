@@ -1,0 +1,77 @@
+﻿.basic-container {
+    border: 1px solid #cccccc;
+    background-color: white;
+    padding: 4px;
+    width: 280px;
+    height: 300px;
+    margin: 4px;
+    overflow: hidden;
+    float: left;
+    font-size: 14px;
+}
+
+    .basic-container p {
+        line-height: 6px;
+    }
+
+.post-container {
+    background-color: white;
+    border: 1px solid #cccccc;
+    float: right;
+    width: 462px;
+    height: 400px;
+    margin: 4px;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.newpost {
+    float: right;
+    width: 464px;
+    text-align: center;
+    margin: 4px;
+    padding: 4px;
+}
+
+    .newpost a {
+        color: blue;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+        .newpost a:hover {
+            color: #8d8dff;
+            cursor: pointer;
+        }
+
+.profileaction a {
+    color: blue;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+    .profileaction a:hover {
+        color: #8d8dff;
+    }
+
+.Friend-container {
+    background-color: white;
+    border: 1px solid #cccccc;
+    float: left;
+    width: 280px;
+    height: 200px;
+    margin: 4px;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.profile-left-wrapper {
+    float: left;
+    width: 300px;
+}
+
+.username-display {
+    text-align: center;
+    font-size: 18px;
+    height: 26px;
+}

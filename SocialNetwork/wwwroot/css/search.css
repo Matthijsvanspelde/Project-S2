@@ -1,0 +1,38 @@
+﻿.searchField {
+    width: 400px;
+    height: 26px;
+    border: 1px solid #cccccc;
+    padding: 2px;
+    margin-right: -4px;
+}
+
+.searchButton {
+    width: 64px;
+    height: 32px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: none;
+    cursor: pointer;
+}
+
+.userportret {
+    border: 1px solid #cccccc;
+    background-color: white;
+    padding: 2px;
+    width: 400px;
+    height: 100px;
+    margin: 8px 0 8px 0;
+}
+
+.username {
+    font-size: 14px;
+    text-decoration: none;
+    color: black;
+}
+
+    .username:hover {
+        font-size: 14px;
+        text-decoration: none;
+        color: #878787;
+    }

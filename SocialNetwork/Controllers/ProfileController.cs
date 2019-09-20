@@ -65,6 +65,11 @@ namespace SocialNetwork.Controllers
             }            
         }
 
+        public IActionResult Post()
+        {
+            return View();
+        }
+
         public IActionResult EditProfile(User user)
         {
             if (user.Middlename == null)

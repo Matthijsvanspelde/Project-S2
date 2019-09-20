@@ -24,11 +24,11 @@
                 <div class="profileaction">
                     @if (Model.Id == Context.Session.GetInt32("Id"))
                     {
-                        @Html.ActionLink("Edit profile", "Edit", new { /* id = Model.PrimaryKey */ })<br />
+                        @Html.ActionLink("Edit profile", "Edit")<br />
                     }
                     else
                     {
-                        @Html.ActionLink("Add as friend", "", new { /* id = Model.PrimaryKey */ })<br />
+                        @Html.ActionLink("Add as friend", "")<br />
                     }
                 </div>
             </div>
@@ -38,11 +38,17 @@
             </div>
         </div>
 
+        @if (Model.Id == Context.Session.GetInt32("Id"))
+        {
+        <div class="newpost">
+            @Html.ActionLink("New post", "Post")<br />
+        </div>
+        }
         @for (int i = 0; i < 4; i++)
         {
-            <div class="Post-container">
-                <h2>POST PLACEHOLDER</h2>
-            </div>
+        <div class="post-container">
+            <h2>POST PLACEHOLDER</h2>
+        </div>
         }
 
     </div>
