@@ -13,10 +13,12 @@ namespace SocialNetwork.Controllers
     public class SearchController : Controller
     {
         private readonly IUserLogic _userLogic;
+        private readonly IPostLogic _postLogic;
 
-        public SearchController(IUserLogic userLogic)
+        public SearchController(IUserLogic userLogic, IPostLogic postLogic)
         {
             _userLogic = userLogic;
+            _postLogic = postLogic;
         }
 
         public IActionResult Search()
@@ -53,7 +55,9 @@ namespace SocialNetwork.Controllers
             else
             {
                 searchViewModel.SearchResult = new List<User>();
-                
+
+                User user = new User();
+
                 searchViewModel.SearchResult.AddRange(_userLogic.GetSearchResult(Searchterm));
                 var ResultCount = searchViewModel.SearchResult.Count();
                 searchViewModel.SearchError = "About " + ResultCount + " matching result(s).";

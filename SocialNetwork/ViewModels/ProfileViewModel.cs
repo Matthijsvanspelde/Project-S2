@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SocialNetwork.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SocialNetwork.ViewModels
@@ -34,5 +36,7 @@ namespace SocialNetwork.ViewModels
         [MinLength(10)]
         [MaxLength(300)]       
         public string Biography { get; set; }
+
+        public List<Post> Posts { get; set; }
     }
 }

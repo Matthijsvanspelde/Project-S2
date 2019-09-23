@@ -4,16 +4,19 @@ using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
 using SocialNetwork.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace SocialNetwork.Controllers
 {
     public class ProfileController : Controller
     {
         private readonly IUserLogic _userLogic;
+        private readonly IPostLogic _postLogic;
 
-        public ProfileController(IUserLogic userLogic)
+        public ProfileController(IUserLogic userLogic, IPostLogic postLogic)
         {
             _userLogic = userLogic;
+            _postLogic = postLogic;
         }
 
         public IActionResult Overview(User user)
@@ -23,7 +26,7 @@ namespace SocialNetwork.Controllers
                 return RedirectToAction("Login", "Account");
             }
             else
-            {
+            {               
                 user.Id = (int)HttpContext.Session.GetInt32("Id");
                 _userLogic.GetUserDetails(user);
                 ProfileViewModel profileViewModel = new ProfileViewModel()
@@ -37,6 +40,8 @@ namespace SocialNetwork.Controllers
                     City = user.City,
                     Biography = user.Biography
                 };
+                profileViewModel.Posts = new List<Post>();
+                profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
                 return View(profileViewModel);
             }            
         }
@@ -97,12 +102,17 @@ namespace SocialNetwork.Controllers
                 City = user.City,
                 Biography = user.Biography
             };
+            profileViewModel.Posts = new List<Post>();
+            profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
             return View("Overview", profileViewModel);
         }
 
-        public IActionResult GetProfilePosts()
+        public IActionResult SetPost(Post post, User user)
         {
-            throw new NotImplementedException();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            post.Posted = DateTime.Now;
+            _postLogic.SetPost(post, user);
+            return RedirectToAction("Overview", "Profile");
         }
     }
 }

@@ -3,27 +3,17 @@
     background-color: white;
     padding: 4px;
     width: 280px;
-    height: 300px;
+    height: 280px;
     margin: 4px;
     overflow: hidden;
     float: left;
     font-size: 14px;
+
 }
 
     .basic-container p {
-        line-height: 6px;
+        line-height: 2px;
     }
-
-.post-container {
-    background-color: white;
-    border: 1px solid #cccccc;
-    float: right;
-    width: 462px;
-    height: 400px;
-    margin: 4px;
-    overflow: hidden;
-    padding: 4px;
-}
 
 .newpost {
     float: right;
@@ -74,4 +64,43 @@
     text-align: center;
     font-size: 18px;
     height: 26px;
+}
+
+.post-container {
+    background-color: white;
+    border: 1px solid #cccccc;
+    float: right;
+    width: 470px;
+    min-height: 200px;
+    margin: 4px;
+    position: relative;
+    word-wrap: break-word;
+}
+
+.postheader {
+    width: 462px;
+    height: 40px;
+    padding: 4px;
+}
+
+.posttime {
+    font-size: 11px;
+    color: #7c7c7c;
+}
+
+.likecontainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 4px;
+    font-size: 14px;
+}
+
+.postmessage {
+    padding: 4px;
+    font-size: 14px;
+}
+
+.posttitle {
+    font-size: 24px;
 }
