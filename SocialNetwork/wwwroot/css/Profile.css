@@ -4,11 +4,10 @@
     padding: 4px;
     width: 280px;
     height: 280px;
-    margin: 4px;
+    margin: 6px 4px 4px 4px;
     overflow: hidden;
     float: left;
     font-size: 14px;
-
 }
 
     .basic-container p {
@@ -19,7 +18,7 @@
     float: right;
     width: 464px;
     text-align: center;
-    margin: 4px;
+    margin: 6px 4px 4px 4px;
     padding: 4px;
 }
 
@@ -72,7 +71,7 @@
     float: right;
     width: 470px;
     min-height: 200px;
-    margin: 4px;
+    margin: 6px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
 }

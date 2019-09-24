@@ -55,6 +55,9 @@ namespace SocialNetwork
             services.AddScoped<IPostContext, PostContext>();
             services.AddScoped<IPostRepository, PostRepository>();
             services.AddScoped<IPostLogic, PostLogic>();
+            services.AddScoped<IFriendRequestContext, FriendRequestContext>();
+            services.AddScoped<IFriendRequestRepository, FriendRequestRepository>();
+            services.AddScoped<IFriendRequestLogic, FriendRequestLogic>();
         }
 
 

@@ -9,9 +9,9 @@ namespace SocialNetwork.Logic
     {
         private readonly IPostRepository _postRepository;
 
-        public PostLogic(IPostRepository userRepository)
+        public PostLogic(IPostRepository postRepository)
         {
-            _postRepository = userRepository;
+            _postRepository = postRepository;
         }
 
         public Post SetPost(Post post, User user)

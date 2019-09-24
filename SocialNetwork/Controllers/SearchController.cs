@@ -38,11 +38,6 @@ namespace SocialNetwork.Controllers
             }
         }
 
-        public IActionResult Profile()
-        {
-            return View();
-        }
-
         public IActionResult GetSearchedUsers(string Searchterm)
         {
             SearchViewModel searchViewModel = new SearchViewModel();

@@ -15,6 +15,7 @@
                         @Html.DisplayFor(model => model.Firstname)
                         @Html.DisplayFor(model => model.Middlename)
                         @Html.DisplayFor(model => model.Lastname)
+                        
                     </p>
                 </div>
                 <p>Birthday: @Html.DisplayFor(model => model.Birthdate)</p>
@@ -28,7 +29,14 @@
                     }
                     else
                     {
-                        @Html.ActionLink("Add as friend", "")<br />
+                        if (Model.Added == false)
+                        {
+                            <a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Add to friends</a>
+                        }
+                        else
+                        {
+                            <a style="color: #808080;">Awaiting Friend Request</a>
+                        }
                     }
                 </div>
             </div>
