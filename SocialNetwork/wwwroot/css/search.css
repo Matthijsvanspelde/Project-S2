@@ -1,38 +1,43 @@
 ﻿.searchField {
-    width: 400px;
-    height: 26px;
-    border: 1px solid #cccccc;
+    width: 430px;
+    height: 32px;
+    border: 1px solid #bcc5de;
     padding: 2px;
     margin-right: -4px;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 .searchButton {
-    width: 64px;
-    height: 32px;
-    border-bottom: 1px solid #cccccc;
-    border-top: 1px solid #cccccc;
-    border-right: 1px solid #cccccc;
+    width: 72px;
+    height: 38px;
+    border-bottom: 1px solid #bcc5de;
+    border-top: 1px solid #bcc5de;
+    border-right: 1px solid #bcc5de;
     border-left: none;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
     cursor: pointer;
 }
 
 .userportret {
-    border: 1px solid #cccccc;
+    border: 1px solid #bcc5de;
+    border-radius: 3px;
     background-color: white;
-    padding: 2px;
-    width: 400px;
-    height: 100px;
+    padding: 4px;
+    width: 426px;
+    height: 120px;
     margin: 8px 0 8px 0;
 }
 
 .username {
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: none;
     color: black;
 }
 
     .username:hover {
-        font-size: 14px;
+        font-size: 16px;
         text-decoration: none;
         color: #878787;
     }

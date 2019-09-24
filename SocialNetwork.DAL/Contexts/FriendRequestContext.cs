@@ -2,6 +2,7 @@
 using SocialNetwork.DAL.App_data;
 using SocialNetwork.DAL.IContexts;
 using SocialNetwork.Models;
+using System.Collections.Generic;
 using System.Data;
 
 namespace SocialNetwork.DAL.Contexts
@@ -41,6 +42,32 @@ namespace SocialNetwork.DAL.Contexts
             int RequestCount = (int)returnParameter.Value;
             _connection.SqlConnection.Close();
             return RequestCount;
+        }
+
+        public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("GetFriendRequests", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RevieverId);
+            var Requests = new List<FriendRequest>();
+            sqlCommand.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var request = new FriendRequest
+                    {
+                        Firstname = reader.GetString(0),
+                        Middlename = reader.GetString(1),
+                        Lastname = reader.GetString(2),
+                        Recieved = reader.GetDateTime(3),
+                    };
+                    Requests.Add(request);
+                }
+            }
+            _connection.SqlConnection.Close();
+            return Requests;
         }
     }
 }

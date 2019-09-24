@@ -1,0 +1,22 @@
+﻿.notification-container {
+    border: 1px solid #bcc5de;
+    border-radius: 3px;
+    background-color: white;
+    width: 761px;
+    padding: 4px;
+    margin: 6px 4px 4px 4px;
+}
+
+.friendRequest-container {
+    border: 1px solid #bcc5de;
+    border-radius: 3px;
+    background-color: white;
+    width: 400px;
+    padding: 2px;
+    margin: 6px 4px 4px 4px;
+}
+
+.recievedTime {
+    font-size: 11px;
+    color: #7c7c7c;
+}

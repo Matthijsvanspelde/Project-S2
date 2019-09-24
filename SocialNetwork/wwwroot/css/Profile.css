@@ -1,13 +1,14 @@
 ﻿.basic-container {
-    border: 1px solid #cccccc;
+    border: 1px solid #bcc5de;
+    border-radius: 3px;
     background-color: white;
     padding: 4px;
-    width: 280px;
-    height: 280px;
+    width: 310px;
+    height: 370px;
     margin: 6px 4px 4px 4px;
     overflow: hidden;
     float: left;
-    font-size: 14px;
+    font-size: 16px;
 }
 
     .basic-container p {
@@ -16,7 +17,7 @@
 
 .newpost {
     float: right;
-    width: 464px;
+    width: 500px;
     text-align: center;
     margin: 6px 4px 4px 4px;
     padding: 4px;
@@ -45,10 +46,11 @@
 
 .Friend-container {
     background-color: white;
-    border: 1px solid #cccccc;
+    border: 1px solid #bcc5de;
+    border-radius: 3px;
     float: left;
-    width: 280px;
-    height: 200px;
+    width: 310px;
+    height: 240px;
     margin: 4px;
     overflow: hidden;
     padding: 4px;
@@ -67,9 +69,10 @@
 
 .post-container {
     background-color: white;
-    border: 1px solid #cccccc;
+    border: 1px solid #bcc5de;
+    border-radius: 3px;
     float: right;
-    width: 470px;
+    width: 500px;
     min-height: 200px;
     margin: 6px 4px 4px 4px;
     position: relative;
@@ -83,7 +86,7 @@
 }
 
 .posttime {
-    font-size: 11px;
+    font-size: 13px;
     color: #7c7c7c;
 }
 
@@ -92,14 +95,14 @@
     bottom: 0;
     width: 100%;
     padding: 4px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .postmessage {
     padding: 4px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .posttitle {
-    font-size: 24px;
+    font-size: 26px;
 }

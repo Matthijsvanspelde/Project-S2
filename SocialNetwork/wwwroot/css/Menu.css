@@ -3,8 +3,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border-bottom: 1px solid #cccccc;
-    background-color: white;
+    border-bottom: 1px solid #bcc5de;
+    background-color: #3A559D;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -15,9 +15,10 @@ li {
     li a {
         display: block;
         text-align: center;
-        color: black;
-        padding: 12px 14px;
+        color: white;
+        padding: 14px 16px;
         text-decoration: none;
+        font-size: 16px;
     }
 
         li a:hover:not(.active) {
@@ -25,7 +26,7 @@ li {
         }
 
 .active {
-    background-color: white;
+    background-color: #3A559D;
 }
 
     .active:hover {

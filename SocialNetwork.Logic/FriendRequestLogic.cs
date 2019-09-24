@@ -1,6 +1,7 @@
 ﻿using SocialNetwork.DAL.IRepositories;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
+using System.Collections.Generic;
 
 namespace SocialNetwork.Logic
 {
@@ -21,6 +22,11 @@ namespace SocialNetwork.Logic
         public int CheckDublicateFriendRequest(FriendRequest friendRequest)
         {
             return _FriendRequestRepository.CheckDublicateFriendRequest(friendRequest);
+        }
+
+        public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)
+        {
+            return _FriendRequestRepository.GetFriendRequests(friendRequest);
         }
     }
 }

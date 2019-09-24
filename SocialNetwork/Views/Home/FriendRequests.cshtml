@@ -1,0 +1,17 @@
+﻿@model SocialNetwork.ViewModels.FriendRequestViewModel
+
+@{
+    ViewData["Title"] = "FriendRequests";
+}
+<partial name="_Menu">
+    <div class="content-wrapper">
+        <h2>FriendRequests</h2>
+
+        @foreach (var item in Model.friendRequests)
+        {
+            <div class="friendRequest-container">
+                <a>@item.Firstname @item.Middlename @item.Lastname</a><br />
+                <a class="recievedTime">@item.Recieved</a>
+            </div>
+        }
+    </div>
