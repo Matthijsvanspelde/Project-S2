@@ -9,9 +9,13 @@
 
         @foreach (var item in Model.friendRequests)
         {
-            <div class="friendRequest-container">
-                <a>@item.Firstname @item.Middlename @item.Lastname</a><br />
-                <a class="recievedTime">@item.Recieved</a>
+        <div class="friendRequest-container">
+            <a>@item.Firstname @item.Middlename @item.Lastname</a><br />
+            <a class="recievedTime">@item.Recieved</a>
+            <div class="friendRequest-action">
+                <a asp-controller="Home" asp-action="FriendRequests" asp-route-RecieverId="">Accept</a>
+                <a asp-controller="Home" asp-action="FriendRequests" asp-route-RecieverId="">Deny</a>
             </div>
+        </div>
         }
     </div>

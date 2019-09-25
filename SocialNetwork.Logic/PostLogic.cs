@@ -14,9 +14,9 @@ namespace SocialNetwork.Logic
             _postRepository = postRepository;
         }
 
-        public Post SetPost(Post post, User user)
+        public void SetPost(Post post, User user)
         {            
-            return _postRepository.SetPost(post, user);
+            _postRepository.SetPost(post, user);
         }
 
         public IEnumerable<Post> GetPost(User user)

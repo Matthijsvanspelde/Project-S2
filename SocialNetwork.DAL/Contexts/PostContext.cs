@@ -16,7 +16,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection = connection;
         }
 
-        public Post SetPost(Post post, User user)
+        public void SetPost(Post post, User user)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("SetPost", _connection.SqlConnection);
@@ -27,7 +27,6 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@DateTime", post.Posted);
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
-            return post;
         }
 
         public IEnumerable<Post> GetPost(User user)

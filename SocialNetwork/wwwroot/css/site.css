@@ -1,12 +1,12 @@
 ﻿body {
     font-family: Arial;
-    background-color: #E7EBF4;
+    background-color: #eeeeee;
     margin: 0;
     overflow-x: hidden;
 }
 
 .form-container {
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
     background-color: white;
     width: 300px;
     padding: 6px;
@@ -14,7 +14,7 @@
 }
 
 .edit-container {
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
     border-radius: 3px;
     background-color: white;
     width: 680px;
@@ -26,23 +26,26 @@
     width: 366px;
     padding: 2px;
     height: 126px;
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
     float: right;
     resize: none;
+    border-radius: 2px;
 }
 
 .postField {
     width: 474px;
     padding: 2px;
     height: 126px;
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
     resize: none;
 }
 
 .inputField {
     width: 293px;
     height: 26px;
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
     padding: 2px;
 }
 
@@ -59,14 +62,14 @@
 .inputButton {
     width: 100%;
     height: 26px;
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
     margin: 4px 0 0 0;
     cursor: pointer;
 }
 
 .content-wrapper {
     overflow: hidden;
-    width: 840px;
+    width: 780px;
     margin: auto;
     padding: 4px;
 }
@@ -74,7 +77,7 @@
 
 
 .post-form {
-    border: 1px solid #bcc5de;
+    border: 1px solid #dddddd;
     border-radius: 3px;
     background-color: white;
     width: 480px;

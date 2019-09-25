@@ -14,9 +14,9 @@ namespace SocialNetwork.DAL.Repositories
             _IPostContext = IUserContext;
         }
 
-        public Post SetPost(Post post, User user)
+        public void SetPost(Post post, User user)
         {
-            return _IPostContext.SetPost(post, user);
+            _IPostContext.SetPost(post, user);
         }
 
         public IEnumerable<Post> GetPost(User user)

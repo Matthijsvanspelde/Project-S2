@@ -1,6 +1,6 @@
 ﻿.basic-container {
-    border: 1px solid #bcc5de;
-    border-radius: 3px;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
     background-color: white;
     padding: 4px;
     width: 310px;
@@ -17,7 +17,7 @@
 
 .newpost {
     float: right;
-    width: 500px;
+    width: 440px;
     text-align: center;
     margin: 6px 4px 4px 4px;
     padding: 4px;
@@ -46,8 +46,8 @@
 
 .Friend-container {
     background-color: white;
-    border: 1px solid #bcc5de;
-    border-radius: 3px;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
     float: left;
     width: 310px;
     height: 240px;
@@ -69,10 +69,10 @@
 
 .post-container {
     background-color: white;
-    border: 1px solid #bcc5de;
-    border-radius: 3px;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
     float: right;
-    width: 500px;
+    width: 440px;
     min-height: 200px;
     margin: 6px 4px 4px 4px;
     position: relative;

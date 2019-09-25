@@ -14,9 +14,9 @@ namespace SocialNetwork.DAL.Repositories
             _IUserContext = IUserContext;
         }
 
-        public User RegisterUser(User user)
+        public void RegisterUser(User user)
         {
-            return _IUserContext.RegisterUser(user);
+            _IUserContext.RegisterUser(user);
         }
 
         public User GetSessionId(User user)
@@ -29,9 +29,9 @@ namespace SocialNetwork.DAL.Repositories
             return _IUserContext.GetUserDetails(user);
         }
 
-        public User EditProfileDetails(User user)
+        public void EditProfileDetails(User user)
         {
-            return _IUserContext.EditProfileDetails(user);
+            _IUserContext.EditProfileDetails(user);
         }
 
         public IEnumerable<User> GetSearchResult(string Searchterm)

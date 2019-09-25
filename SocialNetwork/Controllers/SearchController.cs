@@ -50,9 +50,7 @@ namespace SocialNetwork.Controllers
             else
             {
                 searchViewModel.SearchResult = new List<User>();
-
                 User user = new User();
-
                 searchViewModel.SearchResult.AddRange(_userLogic.GetSearchResult(Searchterm));
                 var ResultCount = searchViewModel.SearchResult.Count();
                 searchViewModel.SearchError = "About " + ResultCount + " matching result(s).";

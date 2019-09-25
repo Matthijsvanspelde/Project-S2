@@ -2,6 +2,7 @@
 using SocialNetwork.DAL.App_data;
 using SocialNetwork.DAL.IContexts;
 using SocialNetwork.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -16,7 +17,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection = connection;
         }
 
-        public FriendRequest SendFriendRequest(FriendRequest friendRequest)
+        public void SendFriendRequest(FriendRequest friendRequest)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("SendFriendRequest", _connection.SqlConnection);
@@ -26,7 +27,6 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@TimeSend", friendRequest.Recieved);
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
-            return friendRequest;
         }
 
         public int CheckDublicateFriendRequest(FriendRequest friendRequest)
@@ -68,6 +68,16 @@ namespace SocialNetwork.DAL.Contexts
             }
             _connection.SqlConnection.Close();
             return Requests;
+        }
+
+        public void AcceptFriendRequest()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DenyFriendRequest(FriendRequest friendRequest)
+        {
+            throw new NotImplementedException();
         }
     }
 }

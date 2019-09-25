@@ -14,9 +14,9 @@ namespace SocialNetwork.Logic
             _userRepository = userRepository;
         }
 
-        public User RegisterUser(User user)
+        public void RegisterUser(User user)
         {
-            return _userRepository.RegisterUser(user);
+            _userRepository.RegisterUser(user);
         }
 
         public User GetSessionId(User user)
@@ -29,9 +29,9 @@ namespace SocialNetwork.Logic
             return _userRepository.GetUserDetails(user);
         }
 
-        public User EditProfileDetails(User user)
+        public void EditProfileDetails(User user)
         {
-            return _userRepository.EditProfileDetails(user);
+            _userRepository.EditProfileDetails(user);
         }
 
         public IEnumerable<User> GetSearchResult(string Searchterm)

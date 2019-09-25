@@ -1,6 +1,6 @@
 ﻿.notification-container {
-    border: 1px solid #bcc5de;
-    border-radius: 3px;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
     background-color: white;
     width: 761px;
     padding: 4px;
@@ -9,7 +9,7 @@
 
 .friendRequest-container {
     border: 1px solid #bcc5de;
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: white;
     width: 400px;
     padding: 2px;
@@ -20,3 +20,22 @@
     font-size: 11px;
     color: #7c7c7c;
 }
+
+.friendRequest-action {
+    float: right;
+    font-size: 14px;
+    width: 100px;
+    margin: -8px 8px -8px 8px;
+    
+}
+
+    .friendRequest-action a {
+        text-decoration: none;
+        margin-right: 10px;
+        color: blue;
+    }
+
+        .friendRequest-action a:hover {
+            color: #8d8dff;
+            cursor: pointer;
+        }

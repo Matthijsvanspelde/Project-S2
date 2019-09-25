@@ -14,9 +14,9 @@ namespace SocialNetwork.DAL.Repositories
             _IFriendRequestContext = IUserContext;
         }
 
-        public FriendRequest SendFriendRequest(FriendRequest friendRequest)
+        public void SendFriendRequest(FriendRequest friendRequest)
         {
-            return _IFriendRequestContext.SendFriendRequest(friendRequest);
+            _IFriendRequestContext.SendFriendRequest(friendRequest);
         }
 
         public int CheckDublicateFriendRequest(FriendRequest friendRequest)

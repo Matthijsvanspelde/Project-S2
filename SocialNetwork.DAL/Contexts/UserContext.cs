@@ -17,7 +17,7 @@ namespace SocialNetwork.DAL.Contexts
         }
 
         //User Authentication
-        public User RegisterUser(User user)
+        public void RegisterUser(User user)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("RegisterUser", _connection.SqlConnection);
@@ -33,7 +33,6 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@Biography", "Nothing yet");
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
-            return user;
         }
 
         public int CheckDublicate(User user)
@@ -109,7 +108,7 @@ namespace SocialNetwork.DAL.Contexts
             return user;
         }
 
-        public User EditProfileDetails(User user)
+        public void EditProfileDetails(User user)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("EditProfileDetails", _connection.SqlConnection);
@@ -124,7 +123,6 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@Biography", user.Biography);
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
-            return user;
         }
 
         //User Search

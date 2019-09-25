@@ -74,18 +74,26 @@ namespace SocialNetwork.Controllers
 
         public IActionResult Post()
         {
-            return View();
+            if (HttpContext.Session.GetInt32("Id") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult EditProfile(User user)
         {
+
             if (user.Middlename == null)
             {
                 user.Middlename = "";
             }
-            user.Id = (int)HttpContext.Session.GetInt32("Id");            
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
             _userLogic.EditProfileDetails(user);
-            return RedirectToAction("Overview", "Profile");
+            return RedirectToAction("Overview", "Profile");           
         }
 
         public IActionResult SearchedProfile(int Id)
@@ -104,21 +112,27 @@ namespace SocialNetwork.Controllers
                 City = user.City,
                 Biography = user.Biography,
             };
+            profileViewModel.Added = IsAdded(Id);            
+            profileViewModel.Posts = new List<Post>();
+            profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
+            return View("Overview", profileViewModel);
+        }
 
+        public bool IsAdded(int Id)
+        {
+            bool Added;
             FriendRequest friendRequest = new FriendRequest();
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
             friendRequest.RevieverId = Id;
             if (_friendRequestLogic.CheckDublicateFriendRequest(friendRequest) == 0)
             {
-                profileViewModel.Added = false;
+                Added = false;
             }
             else
             {
-                profileViewModel.Added = true;
+                Added = true;
             }
-            profileViewModel.Posts = new List<Post>();
-            profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
-            return View("Overview", profileViewModel);
+            return Added;
         }
 
         public IActionResult SetPost(Post post, User user)
@@ -129,20 +143,14 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("Overview", "Profile");
         }
 
-        public IActionResult SendFriendRequest(FriendRequest friendRequest, int RecieverId)
+        public IActionResult SendFriendRequest(int RecieverId)
         {
+            FriendRequest friendRequest = new FriendRequest();
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
             friendRequest.RevieverId = RecieverId;
             friendRequest.Recieved = DateTime.Now;
-            if (_friendRequestLogic.CheckDublicateFriendRequest(friendRequest) == 0)
-            {
-                _friendRequestLogic.SendFriendRequest(friendRequest);
-                return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");
-            }
-            else
-            {
-                return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");
-            }         
+            _friendRequestLogic.SendFriendRequest(friendRequest);
+            return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");       
         }
     }
 }
