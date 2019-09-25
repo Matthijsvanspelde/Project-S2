@@ -39,6 +39,11 @@ namespace SocialNetwork.Logic
             return _userRepository.GetSearchResult(Searchterm);
         }
 
+        public IEnumerable<User> GetFollowers(User user)
+        {
+            return _userRepository.GetFollowers(user);
+        }
+
         public int CheckDublicate(User user)
         {
             int UserCount = _userRepository.CheckDublicate(user);

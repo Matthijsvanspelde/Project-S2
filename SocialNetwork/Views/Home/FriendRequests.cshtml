@@ -5,7 +5,7 @@
 }
 <partial name="_Menu">
     <div class="content-wrapper">
-        <h2>FriendRequests</h2>
+        <h2>Follow Requests</h2>
 
         @foreach (var item in Model.friendRequests)
         {
@@ -13,8 +13,8 @@
             <a>@item.Firstname @item.Middlename @item.Lastname</a><br />
             <a class="recievedTime">@item.Recieved</a>
             <div class="friendRequest-action">
-                <a asp-controller="Home" asp-action="FriendRequests" asp-route-RecieverId="">Accept</a>
-                <a asp-controller="Home" asp-action="FriendRequests" asp-route-RecieverId="">Deny</a>
+                <a asp-controller="Home" asp-action="AcceptFriendRequest" asp-route-SenderId="@item.SenderId">Accept</a>
+                <a asp-controller="Home" asp-action="DenyFriendRequest" asp-route-SenderId="@item.SenderId">Deny</a>
             </div>
         </div>
         }

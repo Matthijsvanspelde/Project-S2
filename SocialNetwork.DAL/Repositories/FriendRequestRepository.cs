@@ -19,6 +19,16 @@ namespace SocialNetwork.DAL.Repositories
             _IFriendRequestContext.SendFriendRequest(friendRequest);
         }
 
+        public void DeleteFriendRequest(FriendRequest friendRequest)
+        {
+            _IFriendRequestContext.DeleteFriendRequest(friendRequest);
+        }
+
+        public void AcceptFriendRequest(FriendRequest friendRequest)
+        {
+            _IFriendRequestContext.AcceptFriendRequest(friendRequest);
+        }
+
         public int CheckDublicateFriendRequest(FriendRequest friendRequest)
         {
             return _IFriendRequestContext.CheckDublicateFriendRequest(friendRequest);

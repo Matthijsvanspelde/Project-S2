@@ -23,7 +23,7 @@ namespace SocialNetwork.DAL.Contexts
             SqlCommand sqlCommand = new SqlCommand("SendFriendRequest", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@SenderId", friendRequest.SenderId);
-            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RevieverId);
+            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RecieverId);
             sqlCommand.Parameters.AddWithValue("@TimeSend", friendRequest.Recieved);
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
@@ -35,7 +35,7 @@ namespace SocialNetwork.DAL.Contexts
             SqlCommand sqlCommand = new SqlCommand("CheckDublicateFriendRequest", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@SenderId", friendRequest.SenderId);
-            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RevieverId);
+            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RecieverId);
             var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
             returnParameter.Direction = ParameterDirection.ReturnValue;
             sqlCommand.ExecuteNonQuery();
@@ -49,7 +49,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("GetFriendRequests", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RevieverId);
+            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RecieverId);
             var Requests = new List<FriendRequest>();
             sqlCommand.ExecuteNonQuery();
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
@@ -58,10 +58,11 @@ namespace SocialNetwork.DAL.Contexts
                 {
                     var request = new FriendRequest
                     {
-                        Firstname = reader.GetString(0),
-                        Middlename = reader.GetString(1),
-                        Lastname = reader.GetString(2),
-                        Recieved = reader.GetDateTime(3),
+                        SenderId = reader.GetInt32(0),
+                        Firstname = reader.GetString(1),
+                        Middlename = reader.GetString(2),
+                        Lastname = reader.GetString(3),
+                        Recieved = reader.GetDateTime(4),
                     };
                     Requests.Add(request);
                 }
@@ -70,14 +71,28 @@ namespace SocialNetwork.DAL.Contexts
             return Requests;
         }
 
-        public void AcceptFriendRequest()
+        public void AcceptFriendRequest(FriendRequest friendRequest)
         {
-            throw new NotImplementedException();
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("SetFriendship", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@SenderId", friendRequest.SenderId);
+            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RecieverId);
+            sqlCommand.Parameters.AddWithValue("@TimeSend", friendRequest.Recieved);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
+            DeleteFriendRequest(friendRequest);
         }
 
-        public void DenyFriendRequest(FriendRequest friendRequest)
+        public void DeleteFriendRequest(FriendRequest friendRequest)
         {
-            throw new NotImplementedException();
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("DenyFriendRequest", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@SenderId", friendRequest.SenderId);
+            sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RecieverId);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
         }
     }
 }

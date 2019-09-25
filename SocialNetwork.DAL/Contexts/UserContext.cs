@@ -125,6 +125,33 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
         }
 
+        public IEnumerable<User> GetFollowers(User user)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("GetFollowers", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            sqlCommand.ExecuteNonQuery();
+            var Friendlist = new List<User>();
+            sqlCommand.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var friend = new User
+                    {
+                        Id = reader.GetInt32(0),
+                        Firstname = reader.GetString(1),
+                        Middlename = reader.GetString(2),
+                        Lastname = reader.GetString(3)
+                    };
+                    Friendlist.Add(friend);
+                }
+            }
+            _connection.SqlConnection.Close();
+            return Friendlist;
+        }
+
         //User Search
         public IEnumerable<User> GetSearchResult(string Searchterm)
         {

@@ -44,18 +44,6 @@
         color: #8d8dff;
     }
 
-.Friend-container {
-    background-color: white;
-    border: 1px solid #dddddd;
-    border-radius: 2px;
-    float: left;
-    width: 310px;
-    height: 240px;
-    margin: 4px;
-    overflow: hidden;
-    padding: 4px;
-}
-
 .profile-left-wrapper {
     float: left;
     width: 300px;
@@ -105,4 +93,28 @@
 
 .posttitle {
     font-size: 26px;
+}
+
+.follower {
+    height: 32px;
+    width: 100%;
+    padding: 4px;
+    font-size: 16px;
+}
+
+.follower-container {
+    background-color: white;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
+    float: left;
+    width: 318px;
+    margin: 4px;
+    overflow: hidden;
+    padding-top: 12px;
+}
+
+.follower-header {
+    text-align: center;
+    font-size: 18px;
+    height: 26px;
 }

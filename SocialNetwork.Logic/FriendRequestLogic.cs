@@ -19,6 +19,16 @@ namespace SocialNetwork.Logic
             _FriendRequestRepository.SendFriendRequest(friendRequest);
         }
 
+        public void DeleteFriendRequest(FriendRequest friendRequest)
+        {
+            _FriendRequestRepository.DeleteFriendRequest(friendRequest);
+        }
+
+        public void AcceptFriendRequest(FriendRequest friendRequest)
+        {
+            _FriendRequestRepository.AcceptFriendRequest(friendRequest);
+        }
+
         public int CheckDublicateFriendRequest(FriendRequest friendRequest)
         {
             return _FriendRequestRepository.CheckDublicateFriendRequest(friendRequest);

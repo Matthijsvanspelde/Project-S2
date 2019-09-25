@@ -40,5 +40,6 @@ namespace SocialNetwork.ViewModels
         public bool Added { get; set; }
 
         public List<Post> Posts { get; set; }
+        public List<User> Followers { get; set; }
     }
 }

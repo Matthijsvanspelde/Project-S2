@@ -35,18 +35,30 @@
                     {
                         if (Model.Added == false)
                         {
-                            <a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Add to friends</a>
+                            <a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
                         }
                         else
                         {
-                            <a style="color: #808080;">Awaiting Friend Request</a>
+                            <a style="color: #808080;">Requested</a>
                         }
                     }
                 </div>
             </div>
 
-            <div class="Friend-container">
-                <h2>FRIENDS PLACEHOLDER</h2>
+            <div class="follower-container">
+                <div class="follower-header">
+                    <a>Followers (@Model.Followers.Count)</a>
+                </div>
+                @foreach (var item in Model.Followers)
+                {
+                    <div class="follower">
+                        <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+                            @item.Firstname
+                            @item.Middlename
+                            @item.Lastname
+                        </a>
+                    </div>
+                }
             </div>
         </div>
 

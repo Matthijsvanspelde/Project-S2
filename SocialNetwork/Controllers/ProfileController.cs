@@ -44,6 +44,8 @@ namespace SocialNetwork.Controllers
                 };
                 profileViewModel.Posts = new List<Post>();
                 profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
+                profileViewModel.Followers = new List<User>();
+                profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
                 return View(profileViewModel);
             }            
         }
@@ -115,6 +117,8 @@ namespace SocialNetwork.Controllers
             profileViewModel.Added = IsAdded(Id);            
             profileViewModel.Posts = new List<Post>();
             profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
+            profileViewModel.Followers = new List<User>();
+            profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
             return View("Overview", profileViewModel);
         }
 
@@ -123,7 +127,7 @@ namespace SocialNetwork.Controllers
             bool Added;
             FriendRequest friendRequest = new FriendRequest();
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
-            friendRequest.RevieverId = Id;
+            friendRequest.RecieverId = Id;
             if (_friendRequestLogic.CheckDublicateFriendRequest(friendRequest) == 0)
             {
                 Added = false;
@@ -147,7 +151,7 @@ namespace SocialNetwork.Controllers
         {
             FriendRequest friendRequest = new FriendRequest();
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
-            friendRequest.RevieverId = RecieverId;
+            friendRequest.RecieverId = RecieverId;
             friendRequest.Recieved = DateTime.Now;
             _friendRequestLogic.SendFriendRequest(friendRequest);
             return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");       

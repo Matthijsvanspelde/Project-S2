@@ -10,6 +10,7 @@ namespace SocialNetwork.Logic.ILogic
         User GetUserDetails(User user);
         void EditProfileDetails(User user);
         IEnumerable<User> GetSearchResult(string Searchterm);
+        IEnumerable<User> GetFollowers(User user);
         int CheckDublicate(User user);
         int VerifyUser(User user);
     }

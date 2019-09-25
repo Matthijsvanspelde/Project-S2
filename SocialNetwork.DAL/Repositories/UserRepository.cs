@@ -39,6 +39,11 @@ namespace SocialNetwork.DAL.Repositories
             return _IUserContext.GetSearchResult(Searchterm);
         }
 
+        public IEnumerable<User> GetFollowers(User user)
+        {
+            return _IUserContext.GetFollowers(user);
+        }
+
         public int CheckDublicate(User user)
         {
             int UserCount = _IUserContext.CheckDublicate(user);
