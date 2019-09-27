@@ -30,12 +30,12 @@
             </div>
             <div class="editRightSide">
                 <textarea asp-for="Biography" class="bioField" placeholder="Tell something about yourself..."></textarea><br />
-                <span asp-validation-for="Biography"></span>
+                <span asp-validation-for="Biography"></span><br />
             </div>
-            
+
             <input type="submit" value="Save" class="inputButton" />
         </form>
-        </div>
+    </div>
         @section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
         }
