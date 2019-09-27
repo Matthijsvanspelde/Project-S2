@@ -4,7 +4,7 @@
     ViewData["Title"] = "Register";
 }
 <div class="form-container">
-    <h2>Register</h2>
+    <a>Register</a>
     <form asp-action="RegisterUser">
         <div asp-validation-summary="ModelOnly"></div>
         <span asp-validation-for="Username"></span><br />
@@ -21,7 +21,7 @@
         <input asp-for="Birthdate" type="date" placeholder="Birthdate" class="inputField" /><br />
         <input type="submit" value="Create" class="inputButton" />
     </form>
-    <div>
+    <div class="form-action">
         <a asp-action="Login">Login</a>
     </div>
 </div>

@@ -34,6 +34,11 @@ namespace SocialNetwork.DAL.Repositories
             return _IFriendRequestContext.CheckDublicateFriendRequest(friendRequest);
         }
 
+        public int CheckIfFollowing(FriendRequest friendRequest)
+        {
+            return _IFriendRequestContext.CheckIfFollowing(friendRequest);
+        }
+
         public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)
         {
             return _IFriendRequestContext.GetFriendRequests(friendRequest);

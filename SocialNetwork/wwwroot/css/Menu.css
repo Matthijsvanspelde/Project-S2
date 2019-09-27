@@ -3,9 +3,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border-bottom: 1px solid #bcc5de;
     background-color: #3A559D;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 li {
@@ -32,3 +30,23 @@ li {
     .active:hover {
         color: #979797;
     }
+
+
+.notification-container {
+    background-color: white;
+    width: 100%;
+    padding: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+
+    .notification-container a {
+        color: blue;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+        .notification-container a:hover {
+            color: #8d8dff;
+            cursor: pointer;
+        }

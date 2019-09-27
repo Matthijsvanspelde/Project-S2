@@ -7,5 +7,6 @@ namespace SocialNetwork.Logic.ILogic
     {
         void SetPost(Post post, User user);
         IEnumerable<Post> GetPost(User user);
+        IEnumerable<Post> GetFollowingPosts(User user);
     }
 }

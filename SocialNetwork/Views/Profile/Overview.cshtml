@@ -33,11 +33,18 @@
                     }
                     else
                     {
-                        if (Model.Added == false)
+                        if (Model.Requested == false)
                         {
-                            <a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
+                            if (Model.Added == false)
+                            {
+                                <a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
+                            }
+                            else
+                            {
+                                <a style="color: #808080;">Following</a>
+                            }
                         }
-                        else
+                        else if (Model.Requested == true)
                         {
                             <a style="color: #808080;">Requested</a>
                         }

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Login";
 }
 <div class="form-container">
-    <h2>Login</h2>
+    <a>Login</a>
     @Model.ErrorMessage
 
     <form asp-action="VerifyUser">
@@ -15,7 +15,7 @@
         <input asp-for="Password" placeholder="Password" class="inputField"/><br />
         <input type="submit" value="Sign In" class="inputButton" />
     </form>
-    <div>
+    <div class="form-action">
         <a asp-action="Register">Register</a>
     </div>
 </div>

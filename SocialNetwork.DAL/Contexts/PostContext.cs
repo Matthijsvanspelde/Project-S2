@@ -57,5 +57,35 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
             return Posts;
         }
+
+        public IEnumerable<Post> GetFollowingPosts(User user)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("GetFollowingPosts", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            var Posts = new List<Post>();
+            sqlCommand.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    var post = new Post
+                    {
+                        Id = reader.GetInt32(0),
+                        Title = reader.GetString(1),
+                        Message = reader.GetString(2),
+                        Posted = reader.GetDateTime(3),
+                        Likes = reader.GetInt32(4),
+                        Firstname = reader.GetString(5),
+                        Middlename = reader.GetString(6),
+                        Lastname = reader.GetString(7),                                              
+                    };
+                    Posts.Add(post);
+                }
+            }
+            _connection.SqlConnection.Close();
+            return Posts;
+        }
     }
 }

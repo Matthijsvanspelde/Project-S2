@@ -44,6 +44,21 @@ namespace SocialNetwork.DAL.Contexts
             return RequestCount;
         }
 
+        public int CheckIfFollowing(FriendRequest friendRequest)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("CheckIfFollowing", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@Follower", friendRequest.SenderId);
+            sqlCommand.Parameters.AddWithValue("@Followed", friendRequest.RecieverId);
+            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            sqlCommand.ExecuteNonQuery();
+            int FollowingCount = (int)returnParameter.Value;
+            _connection.SqlConnection.Close();
+            return FollowingCount;
+        }
+
         public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)
         {
             _connection.SqlConnection.Open();

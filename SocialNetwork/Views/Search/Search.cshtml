@@ -5,7 +5,6 @@
 }
 <partial name="_Menu">
     <div class="content-wrapper">
-        <h2>Search Friends</h2>
         <form method="get" action="@Url.Action("GetSearchedUsers", "Search")">
             <span>@Model.SearchError</span><br />
             <input name="Searchterm" placeholder="Name" class="searchField" />

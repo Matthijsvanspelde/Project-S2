@@ -55,5 +55,6 @@ namespace SocialNetwork.DAL.Repositories
             int UserCount = _IUserContext.VerifyUser(user);
             return UserCount;
         }
+        
     }
 }

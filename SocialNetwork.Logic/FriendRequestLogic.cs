@@ -34,6 +34,11 @@ namespace SocialNetwork.Logic
             return _FriendRequestRepository.CheckDublicateFriendRequest(friendRequest);
         }
 
+        public int CheckIfFollowing(FriendRequest friendRequest)
+        {
+            return _FriendRequestRepository.CheckIfFollowing(friendRequest);
+        }
+
         public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)
         {
             return _FriendRequestRepository.GetFriendRequests(friendRequest);

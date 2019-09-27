@@ -10,5 +10,6 @@ namespace SocialNetwork.DAL.IRepositories
         void AcceptFriendRequest(FriendRequest friendRequest);
         IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest);
         int CheckDublicateFriendRequest(FriendRequest friendRequest);
+        int CheckIfFollowing(FriendRequest friendRequest);
     }
 }

@@ -114,7 +114,8 @@ namespace SocialNetwork.Controllers
                 City = user.City,
                 Biography = user.Biography,
             };
-            profileViewModel.Added = IsAdded(Id);            
+            profileViewModel.Requested = IsRequested(Id);
+            profileViewModel.Added = IsFollowing(Id);
             profileViewModel.Posts = new List<Post>();
             profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
             profileViewModel.Followers = new List<User>();
@@ -122,7 +123,7 @@ namespace SocialNetwork.Controllers
             return View("Overview", profileViewModel);
         }
 
-        public bool IsAdded(int Id)
+        public bool IsRequested(int Id)
         {
             bool Added;
             FriendRequest friendRequest = new FriendRequest();
@@ -137,6 +138,23 @@ namespace SocialNetwork.Controllers
                 Added = true;
             }
             return Added;
+        }
+
+        public bool IsFollowing(int Id)
+        {
+            bool Following;
+            FriendRequest friendRequest = new FriendRequest();
+            friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
+            friendRequest.RecieverId = Id;
+            if (_friendRequestLogic.CheckIfFollowing(friendRequest) == 0)
+            {
+                Following = false;
+            }
+            else
+            {
+                Following = true;
+            }
+            return Following;
         }
 
         public IActionResult SetPost(Post post, User user)

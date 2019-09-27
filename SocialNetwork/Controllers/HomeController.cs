@@ -12,14 +12,16 @@ namespace SocialNetwork.Controllers
     {
         private readonly IUserLogic _userLogic;
         private readonly IFriendRequestLogic _friendRequestLogic;
+        private readonly IPostLogic _postLogic;
 
-        public HomeController(IUserLogic userLogic, IFriendRequestLogic friendRequestLogic)
+        public HomeController(IUserLogic userLogic, IFriendRequestLogic friendRequestLogic, IPostLogic postLogic)
         {
             _userLogic = userLogic;
             _friendRequestLogic = friendRequestLogic;
+            _postLogic = postLogic;
         }
 
-        public IActionResult Timeline(User user)
+        public IActionResult NewsFeed(User user)
         {            
             if (HttpContext.Session.GetInt32("Id") == null)
             {
@@ -27,7 +29,12 @@ namespace SocialNetwork.Controllers
             }
             else
             {
-                return View();
+                Post post = new Post();
+                user.Id = (int)HttpContext.Session.GetInt32("Id");
+                HomeViewModel homeViewModel = new HomeViewModel();
+                homeViewModel.Posts = new List<Post>();
+                homeViewModel.Posts.AddRange(_postLogic.GetFollowingPosts(user));
+                return View(homeViewModel);
             }            
         }
 

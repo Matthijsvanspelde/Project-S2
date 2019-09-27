@@ -23,5 +23,10 @@ namespace SocialNetwork.Logic
         {
             return _postRepository.GetPost(user);
         }
+
+        public IEnumerable<Post> GetFollowingPosts(User user)
+        {
+            return _postRepository.GetFollowingPosts(user);
+        }
     }
 }

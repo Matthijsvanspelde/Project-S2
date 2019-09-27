@@ -1,0 +1,30 @@
+﻿@model SocialNetwork.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+<partial name="_Menu">    
+    <div class="content-wrapper">
+        @foreach (var item in Model.Posts)
+        {
+            <div class="home-post-container">
+
+                <div class="postheader">
+                    <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+                        @item.Firstname
+                        @item.Middlename
+                        @item.Lastname
+                    </a><br />
+                    <a class="posttime">@item.Posted</a>
+                </div>
+
+                <div class="postmessage">
+                    <a class="posttitle">@item.Title</a><br />
+                    <a>@item.Message</a>
+                </div>
+                <div class="likecontainer">
+                    <a class="postlikes">Likes: @item.Likes</a><br />
+                </div>
+            </div>
+        }
+    </div>

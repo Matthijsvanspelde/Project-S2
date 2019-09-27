@@ -36,9 +36,8 @@ namespace SocialNetwork.ViewModels
         [MinLength(10)]
         [MaxLength(300)]       
         public string Biography { get; set; }
-
+        public bool Requested { get; set; }
         public bool Added { get; set; }
-
         public List<Post> Posts { get; set; }
         public List<User> Followers { get; set; }
     }

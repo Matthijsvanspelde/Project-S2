@@ -40,7 +40,7 @@ namespace SocialNetwork.Controllers
             {
                 user = _userLogic.GetSessionId(user);
                 HttpContext.Session.SetInt32("Id", user.Id);
-                return RedirectToAction("Timeline", "Home");
+                return RedirectToAction("NewsFeed", "Home");
             }
             else
             {

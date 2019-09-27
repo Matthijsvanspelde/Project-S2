@@ -23,5 +23,10 @@ namespace SocialNetwork.DAL.Repositories
         {
             return _IPostContext.GetPost(user);
         }
+
+        public IEnumerable<Post> GetFollowingPosts(User user)
+        {
+            return _IPostContext.GetFollowingPosts(user);
+        }
     }
 }
