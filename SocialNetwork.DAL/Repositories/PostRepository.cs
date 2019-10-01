@@ -19,6 +19,11 @@ namespace SocialNetwork.DAL.Repositories
             _IPostContext.SetPost(post, user);
         }
 
+        public void LikePost(Post post, User user)
+        {
+            _IPostContext.LikePost(post, user);
+        }
+
         public IEnumerable<Post> GetPost(User user)
         {
             return _IPostContext.GetPost(user);

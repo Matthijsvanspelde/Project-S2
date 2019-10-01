@@ -10,7 +10,7 @@
             <div class="home-post-container">
 
                 <div class="postheader">
-                    <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+                    <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.UserId" class="username">
                         @item.Firstname
                         @item.Middlename
                         @item.Lastname
@@ -22,8 +22,23 @@
                     <a class="posttitle">@item.Title</a><br />
                     <a>@item.Message</a>
                 </div>
+
+                <div class="comment-section">
+                    @for (int i = 0; i < 6; i++)
+                    {
+                        <a>Placeholder: Comment</a><br />
+                    }
+                    <form asp-action="SetPost">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input placeholder="Comment" />
+                        <input type="submit" value="Post"/>
+                    </form>
+
+                </div>
                 <div class="likecontainer">
-                    <a class="postlikes">Likes: @item.Likes</a><br />
+                    <a asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
+                    <a class="postlikes">Likes: @item.Likes</a>
+                    <br />
                 </div>
             </div>
         }

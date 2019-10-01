@@ -54,6 +54,16 @@ namespace SocialNetwork.Controllers
             }           
         }
 
+        public IActionResult LikePost(int PostId)
+        {
+            User user = new User();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            Post post = new Post();
+            post.PostId = PostId;
+            _postLogic.LikePost(post, user);
+            return RedirectToAction("NewsFeed", "Home");
+        }
+
         public IActionResult DenyFriendRequest(int SenderId)
         {
             FriendRequest friendRequest = new FriendRequest();

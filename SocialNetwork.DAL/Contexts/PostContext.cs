@@ -29,6 +29,17 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
         }
 
+        public void LikePost(Post post, User user)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("LikePost", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
+        }
+
         public IEnumerable<Post> GetPost(User user)
         {
             _connection.SqlConnection.Open();
@@ -43,13 +54,14 @@ namespace SocialNetwork.DAL.Contexts
                 {
                     var post = new Post
                     {
-                        Title = reader.GetString(0),
-                        Message = reader.GetString(1),
-                        Firstname = reader.GetString(2),
-                        Middlename = reader.GetString(3),
-                        Lastname = reader.GetString(4),
-                        Posted = reader.GetDateTime(5),
-                        Likes = reader.GetInt32(6),
+                        PostId = reader.GetInt32(0),
+                        Title = reader.GetString(1),
+                        Message = reader.GetString(2),
+                        Firstname = reader.GetString(3),
+                        Middlename = reader.GetString(4),
+                        Lastname = reader.GetString(5),
+                        Posted = reader.GetDateTime(6),
+                        Likes = reader.GetInt32(7),
                     };
                     Posts.Add(post);
                 }
@@ -72,14 +84,15 @@ namespace SocialNetwork.DAL.Contexts
                 {
                     var post = new Post
                     {
-                        Id = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Message = reader.GetString(2),
-                        Posted = reader.GetDateTime(3),
-                        Likes = reader.GetInt32(4),
-                        Firstname = reader.GetString(5),
-                        Middlename = reader.GetString(6),
-                        Lastname = reader.GetString(7),                                              
+                        UserId = reader.GetInt32(0),
+                        PostId = reader.GetInt32(1),
+                        Title = reader.GetString(2),
+                        Message = reader.GetString(3),
+                        Posted = reader.GetDateTime(4),
+                        Likes = reader.GetInt32(5),
+                        Firstname = reader.GetString(6),
+                        Middlename = reader.GetString(7),
+                        Lastname = reader.GetString(8),                                              
                     };
                     Posts.Add(post);
                 }

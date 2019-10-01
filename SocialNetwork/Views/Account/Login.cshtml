@@ -3,6 +3,9 @@
 @{
     ViewData["Title"] = "Login";
 }
+<div class="title-container">
+    <h2>Social Network</h2>
+</div>
 <div class="form-container">
     <a>Login</a>
     @Model.ErrorMessage
@@ -19,6 +22,7 @@
         <a asp-action="Register">Register</a>
     </div>
 </div>
+
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

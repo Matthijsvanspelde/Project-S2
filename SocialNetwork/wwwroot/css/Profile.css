@@ -1,7 +1,7 @@
 ﻿.basic-container {
     background-color: white;
     padding: 4px;
-    width: 310px;
+    width: 306px;
     height: 370px;
     margin: 6px 4px 4px 4px;
     overflow: hidden;
@@ -18,7 +18,7 @@
 .newpost {
     background-color: white;
     float: right;
-    width: 432px;
+    width: 462px;
     text-align: center;
     margin: 6px 4px 4px 4px;
     padding: 4px;
@@ -54,7 +54,7 @@
 
 .profile-left-wrapper {
     float: left;
-    width: 300px;
+    width: 312px;
 }
 
 .username-display {
@@ -62,15 +62,15 @@
     font-size: 18px;
     height: 20px;
     margin: -2px -6px -2px -6px;
-    border-bottom: 1px solid #dddddd
+    border-bottom: 1px solid #dddddd;
 }
 
 .post-container {
     background-color: white;
     float: right;
-    width: 440px;
+    width: 470px;
     min-height: 200px;
-    margin: 6px 4px 4px 4px;
+    margin: 4px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -115,7 +115,7 @@
 .follower-container {
     background-color: white;
     float: left;
-    width: 318px;
+    width: 314px;
     margin: 4px;
     overflow: hidden;
     padding-top: 12px;

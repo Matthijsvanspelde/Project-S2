@@ -19,6 +19,11 @@ namespace SocialNetwork.Logic
             _postRepository.SetPost(post, user);
         }
 
+        public void LikePost(Post post, User user)
+        {
+            _postRepository.LikePost(post, user);
+        }
+
         public IEnumerable<Post> GetPost(User user)
         {
             return _postRepository.GetPost(user);

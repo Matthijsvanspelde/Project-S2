@@ -6,6 +6,7 @@ namespace SocialNetwork.DAL.IContexts
     public interface IPostContext
     {
         void SetPost(Post post, User user);
+        void LikePost(Post post, User user);
         IEnumerable<Post> GetPost(User user);
         IEnumerable<Post> GetFollowingPosts(User user);
     }
