@@ -97,8 +97,9 @@ namespace SocialNetwork.DAL.Contexts
                     Posts.Add(post);
                 }
             }
-            _connection.SqlConnection.Close();
+            _connection.SqlConnection.Close();           
             return Posts;
         }
+
     }
 }

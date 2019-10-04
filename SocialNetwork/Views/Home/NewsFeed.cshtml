@@ -21,23 +21,10 @@
                 <div class="postmessage">
                     <a class="posttitle">@item.Title</a><br />
                     <a>@item.Message</a>
-                </div>
-
-                <div class="comment-section">
-                    @for (int i = 0; i < 6; i++)
-                    {
-                        <a>Placeholder: Comment</a><br />
-                    }
-                    <form asp-action="SetPost">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <input placeholder="Comment" />
-                        <input type="submit" value="Post"/>
-                    </form>
-
-                </div>
+                </div>              
                 <div class="likecontainer">
-                    <a asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
-                    <a class="postlikes">Likes: @item.Likes</a>
+                    <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
+                    <a class="postlikes">@item.Likes</a>
                     <br />
                 </div>
             </div>

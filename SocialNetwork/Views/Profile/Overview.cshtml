@@ -89,7 +89,9 @@
                     <a>@item.Message</a>
                 </div>
                 <div class="likecontainer">
-                <a class="postlikes">Likes: @item.Likes</a><br />
+                    <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
+                    <a class="postlikes">@item.Likes</a>
+                    <br />
                 </div>
             </div>
         }

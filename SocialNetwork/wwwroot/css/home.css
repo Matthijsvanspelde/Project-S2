@@ -38,7 +38,6 @@
     margin: 6px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
-    padding: 4px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -53,4 +52,17 @@
     font-size: 16px;
 }
 
+.likeBtn {
+    background-color: white;
+    width: 50px;
+    text-decoration: none;
+    color: #7c7c7c;
+    padding: 4px 6px 4px 6px;
+}
+
+.postlikes {
+    float: right;
+    margin-right: 6px;
+    color: #7c7c7c;
+}
 
