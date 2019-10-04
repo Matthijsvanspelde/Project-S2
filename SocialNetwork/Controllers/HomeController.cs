@@ -60,7 +60,10 @@ namespace SocialNetwork.Controllers
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             Post post = new Post();
             post.PostId = PostId;
-            _postLogic.LikePost(post, user);
+            if (_postLogic.CheckDublicateLike(post, user) == 0)
+            {
+                _postLogic.LikePost(post, user);
+            }            
             return RedirectToAction("NewsFeed", "Home");
         }
 

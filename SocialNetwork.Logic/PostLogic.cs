@@ -24,6 +24,11 @@ namespace SocialNetwork.Logic
             _postRepository.LikePost(post, user);
         }
 
+        public int CheckDublicateLike(Post post, User user)
+        {
+            return _postRepository.CheckDublicateLike(post, user);
+        }
+
         public IEnumerable<Post> GetPost(User user)
         {
             return _postRepository.GetPost(user);

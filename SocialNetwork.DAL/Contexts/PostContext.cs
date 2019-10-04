@@ -40,6 +40,21 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
         }
 
+        public int CheckDublicateLike(Post post, User user)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("CheckDublicateLikes", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            sqlCommand.ExecuteNonQuery();
+            int LikeCount = (int)returnParameter.Value;
+            _connection.SqlConnection.Close();
+            return LikeCount;
+        }
+
         public IEnumerable<Post> GetPost(User user)
         {
             _connection.SqlConnection.Open();
