@@ -4,10 +4,47 @@
 @{
     ViewData["Title"] = "Profile";
 }
+
+<script language="javascript" type='text/javascript'>
+    function ShowDivFollowers() {
+        if (document.getElementById('Popup').style.visibility = 'hidden') {
+            document.getElementById('Popup').style.visibility = 'visible';
+        }
+    }
+
+    function HideDivFollowers() {
+        if (document.getElementById('Popup').style.visibility = 'visible') {
+            document.getElementById('Popup').style.visibility = 'hidden';
+        }
+    }
+</script>
+<div id="Popup" class="popup-container">
+    <div class="FollowerPopup">
+        <div class="popup-action">
+            <a onclick="javascript:HideDivFollowers()" href="#?Followers">&#10006;</a>
+        </div>
+        <div class="follower-header">
+            <a>Followers (@Model.Followers.Count)</a>
+        </div>
+        <div class="follower-overflow">
+            @foreach (var item in Model.Followers)
+            {
+                <div class="follower">
+                    <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+                        @item.Firstname
+                        @item.Middlename
+                        @item.Lastname
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
 <partial name="_Menu">
     <div class="content-wrapper">
-
-
+        
         <div class="profile-left-wrapper">
             <div class="basic-container">
                 <div class="username-display">
@@ -15,7 +52,6 @@
                         @Html.DisplayFor(model => model.Firstname)
                         @Html.DisplayFor(model => model.Middlename)
                         @Html.DisplayFor(model => model.Lastname)
-
                     </p>
                 </div>
                 <p style="color: grey; font-size: 14px">Birthday</p>
@@ -51,21 +87,11 @@
                     }
                 </div>
             </div>
-
             <div class="follower-container">
                 <div class="follower-header">
                     <a>Followers (@Model.Followers.Count)</a>
-                </div>
-                @foreach (var item in Model.Followers)
-                {
-                    <div class="follower">
-                        <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
-                            @item.Firstname
-                            @item.Middlename
-                            @item.Lastname
-                        </a>
-                    </div>
-                }
+                </div>               
+                <a class="popup-toggle" onclick="javascript:ShowDivFollowers()" href="#?Followers">Show Followers</a>
             </div>
         </div>
 
@@ -85,7 +111,7 @@
                 </div>
 
                 <div class="postmessage">
-                    <a class="posttitle">@item.Title</a><br/>
+                    <a class="posttitle">@item.Title</a><br />
                     <a>@item.Message</a>
                 </div>
                 <div class="likecontainer">

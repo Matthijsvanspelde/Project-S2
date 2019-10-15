@@ -32,12 +32,12 @@
                 <textarea asp-for="Biography" class="bioField" placeholder="Tell something about yourself..."></textarea><br />
                 <span asp-validation-for="Biography"></span><br />
             </div>
-
             <input type="submit" value="Save" class="inputButton" />
         </form>
-
-       
-
+        <form asp-action="UploadPicture" enctype="multipart/form-data">
+            <input type="file" name="image" id="image" accept="image/*">
+            <input type="submit">
+        </form>
     </div>
         @section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

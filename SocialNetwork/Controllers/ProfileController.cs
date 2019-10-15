@@ -5,6 +5,8 @@ using SocialNetwork.Models;
 using SocialNetwork.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace SocialNetwork.Controllers
 {
@@ -13,12 +15,14 @@ namespace SocialNetwork.Controllers
         private readonly IUserLogic _userLogic;
         private readonly IPostLogic _postLogic;
         private readonly IFriendRequestLogic _friendRequestLogic;
+        private readonly IProfilePictureLogic _profilePictureLogic;
 
-        public ProfileController(IUserLogic userLogic, IPostLogic postLogic, IFriendRequestLogic friendRequestLogic)
+        public ProfileController(IUserLogic userLogic, IPostLogic postLogic, IFriendRequestLogic friendRequestLogic, IProfilePictureLogic profilePictureLogic)
         {
             _userLogic = userLogic;
             _postLogic = postLogic;
             _friendRequestLogic = friendRequestLogic;
+            _profilePictureLogic = profilePictureLogic;
         }
 
         public IActionResult Overview(User user)
@@ -28,7 +32,7 @@ namespace SocialNetwork.Controllers
                 return RedirectToAction("Login", "Account");
             }
             else
-            {               
+            {
                 user.Id = (int)HttpContext.Session.GetInt32("Id");
                 _userLogic.GetUserDetails(user);
                 ProfileViewModel profileViewModel = new ProfileViewModel()
@@ -47,7 +51,7 @@ namespace SocialNetwork.Controllers
                 profileViewModel.Followers = new List<User>();
                 profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
                 return View(profileViewModel);
-            }            
+            }
         }
 
         public IActionResult Edit(User user)
@@ -58,7 +62,7 @@ namespace SocialNetwork.Controllers
             }
             else
             {
-                user.Id = (int)HttpContext.Session.GetInt32("Id");               
+                user.Id = (int)HttpContext.Session.GetInt32("Id");
                 _userLogic.GetUserDetails(user);
                 ProfileViewModel profileViewModel = new ProfileViewModel()
                 {
@@ -69,9 +73,9 @@ namespace SocialNetwork.Controllers
                     Country = user.Country,
                     City = user.City,
                     Biography = user.Biography
-                };                
+                };
                 return View(profileViewModel);
-            }            
+            }
         }
 
         public IActionResult Post()
@@ -95,7 +99,7 @@ namespace SocialNetwork.Controllers
             }
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             _userLogic.EditProfileDetails(user);
-            return RedirectToAction("Overview", "Profile");           
+            return RedirectToAction("Overview", "Profile");
         }
 
         public IActionResult SearchedProfile(int Id)
@@ -139,7 +143,7 @@ namespace SocialNetwork.Controllers
             }
             return Added;
         }
-
+        
         public bool IsFollowing(int Id)
         {
             bool Following;
@@ -155,6 +159,23 @@ namespace SocialNetwork.Controllers
                 Following = true;
             }
             return Following;
+        }
+
+        public async Task<IActionResult> UploadPicture(IFormFile image)
+        {
+            ProfilePicture profilePicture = new ProfilePicture();
+            User user = new User();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            if (image.Length > 0)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    await image.CopyToAsync(stream);
+                    profilePicture.Image = stream.ToArray();
+                }
+            }
+            _profilePictureLogic.UploadPicture(profilePicture, user);
+            return View("Edit");
         }
 
         public IActionResult SetPost(Post post, User user)
@@ -174,5 +195,7 @@ namespace SocialNetwork.Controllers
             _friendRequestLogic.SendFriendRequest(friendRequest);
             return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");       
         }
+
+        
     }
 }

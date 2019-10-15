@@ -58,6 +58,9 @@ namespace SocialNetwork
             services.AddScoped<IFriendRequestContext, FriendRequestContext>();
             services.AddScoped<IFriendRequestRepository, FriendRequestRepository>();
             services.AddScoped<IFriendRequestLogic, FriendRequestLogic>();
+            services.AddScoped<IProfilePictureContext, ProfilePictureContext>();
+            services.AddScoped<IProfilePictureRepository, ProfilePictureRepository>();
+            services.AddScoped<IProfilePictureLogic, ProfilePictureLogic>();
         }
 
 

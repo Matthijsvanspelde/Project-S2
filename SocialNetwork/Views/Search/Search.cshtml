@@ -5,7 +5,7 @@
 }
 <partial name="_Menu">
     <div class="content-wrapper">
-        <form method="get" action="@Url.Action("GetSearchedUsers", "Search")">
+        <form method="get" action="@Url.Action("GetSearchedUsers", "Search")" autocomplete="off">
             <span>@Model.SearchError</span><br />
             <input name="Searchterm" placeholder="Name" class="searchField" />
             <input type="submit" value="Search" class="searchButton" />

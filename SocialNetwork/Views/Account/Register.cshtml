@@ -8,7 +8,7 @@
 </div>
 <div class="form-container">
     <a>Register</a>
-    <form asp-action="RegisterUser">
+    <form asp-action="RegisterUser" autocomplete="off">
         <div asp-validation-summary="ModelOnly"></div>
         <span asp-validation-for="Username"></span><br />
         <input asp-for="Username" placeholder="Username" class="inputField" /><br />

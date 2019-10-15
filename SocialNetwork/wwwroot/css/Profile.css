@@ -70,7 +70,7 @@
     float: right;
     width: 470px;
     min-height: 200px;
-    margin: 4px 4px 4px 4px;
+    margin: 6px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -109,7 +109,6 @@
     width: 100%;
     padding: 6px;
     font-size: 16px;
-    border: 1px solid #dddddd;
 }
 
 .follower-container {
@@ -128,3 +127,58 @@
     height: 26px;
     border-bottom: 1px solid #dddddd
 }
+
+
+.FollowerPopup {
+    background-color: white;
+    float: left;
+    padding-top: 12px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    width: 400px;
+    height: 286px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px; /* Negative half of height. */
+    margin-left: -200px; /* Negative half of width. */
+    border-radius: 2px;
+}
+
+.popup-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    visibility: hidden;
+    position: fixed;
+    z-index: 1;
+
+}
+
+.follower-overflow {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 259px;
+}
+
+.popup-action a{
+    width: 24px;
+    height: 24px;
+    position: fixed;
+    text-decoration: none;
+    color: #808080;
+    margin-left: 4px;
+    margin-top: -13px;
+    font-size: 18px;
+}
+
+.popup-toggle {
+    color: blue;
+    font-size: 13px;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+    .popup-toggle:hover {
+        color: #8d8dff;
+        cursor: pointer;
+    }

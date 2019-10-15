@@ -6,7 +6,7 @@
 <partial name="_Menu">
     <div class="post-form">
         <h2>Post</h2>
-        <form asp-action="SetPost">
+        <form asp-action="SetPost" autocomplete="off">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input asp-for="Title" class="inputField" placeholder="Title"/><br />
             <span asp-validation-for="Title"></span><br />
