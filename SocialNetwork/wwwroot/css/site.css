@@ -1,5 +1,5 @@
 ﻿body {
-    font-family: Arial;
+    font-family: 'Montserrat', sans-serif;
     background-color: #eeeeee;
     margin: 0;
     overflow-x: hidden;
@@ -22,17 +22,17 @@
 }
 
 .bioField {
-    width: 366px;
+    width: 466px;
     padding: 2px;
-    height: 126px;
+    margin-top: 16px;
+    height: 166px;
     border: 1px solid #dddddd;
-    float: right;
     resize: none;
     border-radius: 2px;
 }
 
 .postField {
-    width: 474px;
+    width: 778px;
     padding: 2px;
     height: 126px;
     border: 1px solid #dddddd;
@@ -60,11 +60,18 @@
 
 .inputButton {
     width: 100%;
-    height: 26px;
+    height: 28px;
     border: 1px solid #dddddd;
+    border-radius: 2px;
+    padding: 4px 14px 4px 14px;
     margin: 4px 0 0 0;
     cursor: pointer;
+    background-color: #ffffff;
 }
+
+    .inputButton:hover {
+        background-color: #dddddd;
+    }
 
 .content-wrapper {
     overflow: hidden;
@@ -75,8 +82,8 @@
 
 .post-form {
     background-color: white;
-    width: 480px;
-    padding: 6px;
+    width: 784px;
+    padding: 4px;
     margin: 12px auto;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
@@ -104,3 +111,17 @@
     font-size: 20px;
 }
 
+.saveBtn {
+    width: auto;
+    height: 28px;
+    border: 1px solid #dddddd;
+    border-radius: 2px;
+    padding: 4px 14px 4px 14px;
+    margin: 4px 0 0 0;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+    .saveBtn:hover {
+        background-color: #dddddd;
+    }

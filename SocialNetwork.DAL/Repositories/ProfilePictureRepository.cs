@@ -17,5 +17,10 @@ namespace SocialNetwork.DAL.Repositories
         {
             _profilePictureContext.UploadPicture(profilePicture, user);
         }
+
+        public ProfilePicture GetProfilePicture(User user)
+        {
+            return _profilePictureContext.GetProfilePicture(user);
+        }
     }
 }

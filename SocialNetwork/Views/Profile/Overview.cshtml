@@ -48,12 +48,16 @@
         <div class="profile-left-wrapper">
             <div class="basic-container">
                 <div class="username-display">
+                    <div class="profile-picture">
+                        <img src="data:image;base64,@Convert.ToBase64String(Model.Img)" />
+                    </div>
                     <p>
                         @Html.DisplayFor(model => model.Firstname)
                         @Html.DisplayFor(model => model.Middlename)
                         @Html.DisplayFor(model => model.Lastname)
                     </p>
                 </div>
+                
                 <p style="color: grey; font-size: 14px">Birthday</p>
                 <p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.Birthdate)</p>
                 <p style="color: grey; font-size: 14px">Country</p>
@@ -98,7 +102,7 @@
         @if (Model.Id == Context.Session.GetInt32("Id"))
         {
             <div class="newpost">
-                @Html.ActionLink("New post", "Post")<br />
+                @Html.ActionLink("Post something", "Post")<br />
             </div>
         }
         @foreach (var item in Model.Posts)

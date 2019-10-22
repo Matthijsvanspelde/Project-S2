@@ -17,5 +17,10 @@ namespace SocialNetwork.Logic
         {
             _profilePictureRepository.UploadPicture(profilePicture, user);
         }
+
+        public ProfilePicture GetProfilePicture(User user)
+        {
+            return _profilePictureRepository.GetProfilePicture(user);
+        }
     }
 }

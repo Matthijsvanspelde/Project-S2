@@ -72,7 +72,7 @@ namespace SocialNetwork.DAL.Contexts
                         PostId = reader.GetInt32(0),
                         Title = reader.GetString(1),
                         Message = reader.GetString(2),
-                        Firstname = reader.GetString(3),
+                        Firstname = reader.GetString(3),                        
                         Middlename = reader.GetString(4),
                         Lastname = reader.GetString(5),
                         Posted = reader.GetDateTime(6),

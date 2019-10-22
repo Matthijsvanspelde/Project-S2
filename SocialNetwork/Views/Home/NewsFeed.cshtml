@@ -5,6 +5,9 @@
 }
 <partial name="_Menu">    
     <div class="content-wrapper">
+        <div class="newpost-newsfeed">
+            @Html.ActionLink("Post something", "Post", "Profile")<br />
+        </div>
         @foreach (var item in Model.Posts)
         {
             <div class="home-post-container">
@@ -21,11 +24,19 @@
                 <div class="postmessage">
                     <a class="posttitle">@item.Title</a><br />
                     <a>@item.Message</a>
-                </div>              
+                </div>
                 <div class="likecontainer">
                     <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
-                    <a class="postlikes">@item.Likes</a>
+                    <a class="postlikes">@item.Likes Like(s)</a>
                     <br />
+                </div>
+                <div class="comment-container">
+                    <div class="comment-form">
+                        <form asp-controller="" asp-action="">
+                            <input type="text" placeholder="Leave a comment..." class="comment-input">
+                            <input type="button" value="Send" class="comment-btn">
+                        </form>
+                    </div>
                 </div>
             </div>
         }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SocialNetwork.Controllers
 {
@@ -35,6 +36,7 @@ namespace SocialNetwork.Controllers
             {
                 user.Id = (int)HttpContext.Session.GetInt32("Id");
                 _userLogic.GetUserDetails(user);
+                ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);
                 ProfileViewModel profileViewModel = new ProfileViewModel()
                 {
                     Id = user.Id,
@@ -45,6 +47,7 @@ namespace SocialNetwork.Controllers
                     Country = user.Country,
                     City = user.City,
                     Biography = user.Biography,
+                    Img = profilePicture.Image,
                 };
                 profileViewModel.Posts = new List<Post>();
                 profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
@@ -107,6 +110,7 @@ namespace SocialNetwork.Controllers
             User user = new User();
             user.Id = Id;
             _userLogic.GetUserDetails(user);
+            ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);
             ProfileViewModel profileViewModel = new ProfileViewModel()
             {
                 Id = user.Id,
@@ -117,6 +121,7 @@ namespace SocialNetwork.Controllers
                 Country = user.Country,
                 City = user.City,
                 Biography = user.Biography,
+                Img = profilePicture.Image,
             };
             profileViewModel.Requested = IsRequested(Id);
             profileViewModel.Added = IsFollowing(Id);
@@ -127,7 +132,7 @@ namespace SocialNetwork.Controllers
             return View("Overview", profileViewModel);
         }
 
-        public bool IsRequested(int Id)
+        private bool IsRequested(int Id)
         {
             bool Added;
             FriendRequest friendRequest = new FriendRequest();
@@ -144,7 +149,7 @@ namespace SocialNetwork.Controllers
             return Added;
         }
         
-        public bool IsFollowing(int Id)
+        private bool IsFollowing(int Id)
         {
             bool Following;
             FriendRequest friendRequest = new FriendRequest();
@@ -166,16 +171,24 @@ namespace SocialNetwork.Controllers
             ProfilePicture profilePicture = new ProfilePicture();
             User user = new User();
             user.Id = (int)HttpContext.Session.GetInt32("Id");
-            if (image.Length > 0)
+            if (image != null)
             {
-                using (var stream = new MemoryStream())
+                if (image.ContentType == "image/png" || image.ContentType == "image/jpeg" || image.ContentType == "image/gif")
                 {
-                    await image.CopyToAsync(stream);
-                    profilePicture.Image = stream.ToArray();
-                }
-            }
-            _profilePictureLogic.UploadPicture(profilePicture, user);
-            return View("Edit");
+                    if (image.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await image.CopyToAsync(stream);
+                            profilePicture.Image = stream.ToArray();
+                        }
+                        profilePicture.FileType = image.ContentType;
+                        _profilePictureLogic.UploadPicture(profilePicture, user);
+                        return RedirectToAction("Overview", "Profile");
+                    }
+                }                
+            }            
+            return RedirectToAction("Edit", "Profile");            
         }
 
         public IActionResult SetPost(Post post, User user)

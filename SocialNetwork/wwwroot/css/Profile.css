@@ -2,7 +2,7 @@
     background-color: white;
     padding: 4px;
     width: 306px;
-    height: 370px;
+    height: 480px;
     margin: 6px 4px 4px 4px;
     overflow: hidden;
     float: left;
@@ -60,9 +60,9 @@
 .username-display {
     text-align: center;
     font-size: 18px;
-    height: 20px;
-    margin: -2px -6px -2px -6px;
+    height: 210px;
     border-bottom: 1px solid #dddddd;
+    margin: 0;
 }
 
 .post-container {
@@ -139,8 +139,8 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -200px; /* Negative half of height. */
-    margin-left: -200px; /* Negative half of width. */
+    margin-top: -200px;
+    margin-left: -200px;
     border-radius: 2px;
 }
 
@@ -182,3 +182,28 @@
         color: #8d8dff;
         cursor: pointer;
     }
+
+.profile-picture img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile-picture {
+    height: 178px;
+    width: 178px;
+    overflow: hidden;
+    margin: auto;
+    border-radius: 92px;
+}
+
+.upload-container {
+    height: 100px;
+    padding: 4px;
+    margin-top: 24px;
+    border-top: 1px solid #dddddd;
+}
+
+.saveBtn-container {
+    width: 100px;
+}
