@@ -170,7 +170,8 @@ namespace SocialNetwork.DAL.Contexts
                         Id = reader.GetInt32(0),
                         Firstname = reader.GetString(1),
                         Middlename = reader.GetString(2),
-                        Lastname = reader.GetString(3)
+                        Lastname = reader.GetString(3),
+                        Biography = reader.GetString(4),
                     };
                     SearchResult.Add(user);
                 }

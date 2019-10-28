@@ -3,7 +3,6 @@ using SocialNetwork.DAL.App_data;
 using SocialNetwork.DAL.IContexts;
 using SocialNetwork.Models;
 using System.Data;
-using System.IO;
 
 namespace SocialNetwork.DAL.Contexts
 {
@@ -37,14 +36,19 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
             sqlCommand.ExecuteNonQuery();
             using (SqlDataReader reader = sqlCommand.ExecuteReader())
-            {
+            {               
                 while (reader.Read())
                 {
-                    profilePicture.Image = (byte[])reader["Data"];
-                }
+                    if (!reader.IsDBNull(0))
+                    {
+                        profilePicture.Image = (byte[])reader["Data"];
+                    }
+                }                                
             }
             _connection.SqlConnection.Close();
             return profilePicture;
         }
+
+               
     }
 }

@@ -1,0 +1,17 @@
+﻿.notification-container {
+    background-color: white;
+    width: 100%;
+    padding: 4px;
+    border-bottom: 1px solid #dddddd;
+}
+
+    .notification-container a {
+        color: blue;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+        .notification-container a:hover {
+            color: #8d8dff;
+            cursor: pointer;
+        }

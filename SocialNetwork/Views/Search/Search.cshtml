@@ -14,8 +14,9 @@
         @foreach (var item in @Model.SearchResult)
         {
         <div class="userportret">
+
             <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
-                @item.Firstname                
+                @item.Firstname
                 @item.Middlename
                 @item.Lastname
             </a>

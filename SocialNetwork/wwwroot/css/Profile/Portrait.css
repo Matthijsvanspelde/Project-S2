@@ -1,0 +1,98 @@
+﻿.UserPortrait {
+    background-color: white;
+    padding: 4px;
+    width: 306px;
+    height: 520px;
+    margin: 6px 4px 4px 4px;
+    overflow: hidden;
+    float: left;
+    font-size: 16px;
+    position: relative;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+    .UserPortrait p {
+        line-height: 2px;
+    }
+
+.profileaction a {
+    color: blue;
+    font-size: 13px;
+    text-decoration: none;
+    padding: 4px;
+    border-top: 1px solid #dddddd;
+    margin-left: -4px;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
+    .profileaction a:hover {
+        color: #8d8dff;
+    }
+
+.username-display {
+    text-align: center;
+    font-size: 18px;
+    height: 210px;
+    border-bottom: 1px solid #dddddd;
+    margin: 0;
+}
+
+.post-container {
+    background-color: white;
+    float: right;
+    width: 470px;
+    min-height: 300px;
+    margin: 6px 4px 4px 4px;
+    position: relative;
+    word-wrap: break-word;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.postheader {
+    width: 462px;
+    height: 40px;
+    padding: 4px;
+}
+
+.posttime {
+    font-size: 13px;
+    color: #7c7c7c;
+}
+
+.likecontainer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 26px;
+    font-size: 16px;
+}
+
+.postmessage {
+    padding: 4px;
+    font-size: 16px;
+}
+
+.posttitle {
+    font-size: 26px;
+}
+
+.profile-picture img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.profile-picture {
+    height: 178px;
+    width: 178px;
+    overflow: hidden;
+    margin: auto;
+    border-radius: 92px;
+}
+
+.profile-left-wrapper {
+    float: left;
+    width: 312px;
+}

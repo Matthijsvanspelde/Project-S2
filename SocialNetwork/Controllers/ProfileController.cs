@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SocialNetwork.Controllers
 {
@@ -36,7 +35,7 @@ namespace SocialNetwork.Controllers
             {
                 user.Id = (int)HttpContext.Session.GetInt32("Id");
                 _userLogic.GetUserDetails(user);
-                ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);
+                ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);               
                 ProfileViewModel profileViewModel = new ProfileViewModel()
                 {
                     Id = user.Id,
@@ -209,6 +208,17 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");       
         }
 
-        
+        public IActionResult LikePost(int PostId)
+        {
+            User user = new User();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            Post post = new Post();
+            post.PostId = PostId;
+            if (_postLogic.CheckDublicateLike(post, user) == 0)
+            {
+                _postLogic.LikePost(post, user);
+            }
+            return RedirectToAction("SearchedProfile/" + user.Id, "Profile");
+        }
     }
 }

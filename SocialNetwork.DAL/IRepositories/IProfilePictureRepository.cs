@@ -1,4 +1,5 @@
 ﻿using SocialNetwork.Models;
+using System.Collections.Generic;
 
 namespace SocialNetwork.DAL.IRepositories
 {

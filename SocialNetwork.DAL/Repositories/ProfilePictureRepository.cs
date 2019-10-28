@@ -1,6 +1,7 @@
 ﻿using SocialNetwork.DAL.IContexts;
 using SocialNetwork.DAL.IRepositories;
 using SocialNetwork.Models;
+using System.Collections.Generic;
 
 namespace SocialNetwork.DAL.Repositories
 {
@@ -22,5 +23,6 @@ namespace SocialNetwork.DAL.Repositories
         {
             return _profilePictureContext.GetProfilePicture(user);
         }
+
     }
 }

@@ -1,0 +1,31 @@
+﻿.title-container {
+    text-align: center;
+    font-size: 20px;
+}
+
+.form-container {
+    background-color: white;
+    width: 300px;
+    padding: 6px;
+    margin: 100px auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+
+.form-action {
+    margin: 12px -6px -6px -6px;
+    background-color: white;
+    height: 20px;
+    width: 300px;
+    border-top: 1px solid #dddddd;
+    padding: 6px;
+}
+
+    .form-action a {
+        color: blue;
+        text-decoration: none;
+    }
+
+        .form-action a:hover {
+            color: #8d8dff;
+        }

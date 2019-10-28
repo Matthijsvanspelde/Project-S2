@@ -4,46 +4,52 @@
     ViewData["Title"] = "Edit";
 }
 <partial name="_Menu">
-    <div class="edit-container">
-        <h2>Edit profile details</h2>
-        <form asp-action="EditProfile">
-            <div class="editLeftSide">
-                <div asp-validation-summary="ModelOnly"></div>
 
-                <input asp-for="Firstname" placeholder="Firstname" class="inputField" /><br />
-                <span asp-validation-for="Firstname"></span><br />
-
-                <input asp-for="Middlename" placeholder="Middlename" class="inputField" /><br />
-                <span asp-validation-for="Middlename"></span><br />
-
-                <input asp-for="Lastname" placeholder="Lastname" class="inputField" /><br />
-                <span asp-validation-for="Lastname"></span><br />
-
-                <input asp-for="Birthdate" class="inputField" /><br />
-                <span asp-validation-for="Birthdate"></span><br />
-
-                <input asp-for="Country" placeholder="Country" class="inputField" /><br />
-                <span asp-validation-for="Country"></span><br />
-
-                <input asp-for="City" placeholder="City" class="inputField" /><br />
-                <span asp-validation-for="City"></span>
-
-                <textarea asp-for="Biography" class="bioField" placeholder="Tell something about yourself..."></textarea><br />
-                <span asp-validation-for="Biography"></span><br />
-            </div>
-            <div class="saveBtn-container">
-                <input type="submit" value="Save" class="saveBtn" />
-            </div>
-        </form>
-
+    <div class="content-wrapper">
         <div class="upload-container">
             <h2>Upload Profile Picture </h2>
-        <form asp-action="UploadPicture" enctype="multipart/form-data">
-            <input type="file" name="image" id="image" accept="image/*" >
-            <input type="submit" class="saveBtn">
-        </form>
+            <form asp-action="UploadPicture" enctype="multipart/form-data">
+                <input type="file" name="image" id="image" accept="image/*">
+                <input type="submit" class="saveBtn">
+            </form>
         </div>
+
+
+        <div class="edit-container">
+            <h2>Edit profile details</h2>
+            <form asp-action="EditProfile">
+                <div asp-validation-summary="ModelOnly"></div>
+                <label>Firstname</label>
+                <input asp-for="Firstname" placeholder="Firstname" class="inputField-edit" /><br />
+                <span asp-validation-for="Firstname"></span><br />
+                <label>Middlename</label>
+                <input asp-for="Middlename" placeholder="Middlename" class="inputField-edit" /><br />
+                <span asp-validation-for="Middlename"></span><br />
+                <label>Lastname</label>
+                <input asp-for="Lastname" placeholder="Lastname" class="inputField-edit" /><br />
+                <span asp-validation-for="Lastname"></span><br />
+                <label>Birthday</label>
+                <input asp-for="Birthdate" class="inputField-edit" /><br />
+                <span asp-validation-for="Birthdate"></span><br />
+                <label>Country</label>
+                <input asp-for="Country" placeholder="Country" class="inputField-edit" /><br />
+                <span asp-validation-for="Country"></span><br />
+                <label>City</label>
+                <input asp-for="City" placeholder="City" class="inputField-edit" /><br />
+                <span asp-validation-for="City"></span><br />
+                <label>Biography</label>
+                <textarea asp-for="Biography" class="bioField" placeholder="Tell something about yourself..."></textarea><br />
+                <span asp-validation-for="Biography"></span><br />
+                <input type="submit" value="Save" class="saveBtn" />
+            </form>
+        </div>
+
     </div>
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+    
+
+
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

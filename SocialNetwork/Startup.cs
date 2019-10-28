@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +11,7 @@ using SocialNetwork.DAL.IRepositories;
 using SocialNetwork.DAL.Repositories;
 using SocialNetwork.Logic;
 using SocialNetwork.Logic.ILogic;
+using System;
 
 namespace SocialNetwork
 {
@@ -45,7 +41,6 @@ namespace SocialNetwork
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
             });
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient(_ => new Connection(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -61,6 +56,9 @@ namespace SocialNetwork
             services.AddScoped<IProfilePictureContext, ProfilePictureContext>();
             services.AddScoped<IProfilePictureRepository, ProfilePictureRepository>();
             services.AddScoped<IProfilePictureLogic, ProfilePictureLogic>();
+            services.AddScoped<ICommentContext, CommentContext>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<ICommentLogic, CommentLogic>();
         }
 
 

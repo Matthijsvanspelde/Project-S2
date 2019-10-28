@@ -1,6 +1,7 @@
 ﻿using SocialNetwork.DAL.IRepositories;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
+using System.Collections.Generic;
 
 namespace SocialNetwork.Logic
 {

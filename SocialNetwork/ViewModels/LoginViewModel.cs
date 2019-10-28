@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SocialNetwork.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace SocialNetwork.ViewModels
 {

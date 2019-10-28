@@ -1,6 +1,6 @@
 ﻿ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0 0 0 0;
     padding: 0;
     overflow: hidden;
     background-color: #3A559D;
@@ -30,23 +30,3 @@ li {
     .active:hover {
         background-color: #4766b9;
     }
-
-
-.notification-container {
-    background-color: white;
-    width: 100%;
-    padding: 4px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-}
-
-
-    .notification-container a {
-        color: blue;
-        font-size: 13px;
-        text-decoration: none;
-    }
-
-        .notification-container a:hover {
-            color: #8d8dff;
-            cursor: pointer;
-        }

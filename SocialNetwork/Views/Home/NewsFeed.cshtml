@@ -8,36 +8,37 @@
         <div class="newpost-newsfeed">
             @Html.ActionLink("Post something", "Post", "Profile")<br />
         </div>
+
+
+
         @foreach (var item in Model.Posts)
         {
-            <div class="home-post-container">
-
-                <div class="postheader">
-                    <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.UserId" class="username">
-                        @item.Firstname
-                        @item.Middlename
-                        @item.Lastname
-                    </a><br />
-                    <a class="posttime">@item.Posted</a>
-                </div>
-
-                <div class="postmessage">
-                    <a class="posttitle">@item.Title</a><br />
-                    <a>@item.Message</a>
-                </div>
-                <div class="likecontainer">
-                    <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
-                    <a class="postlikes">@item.Likes Like(s)</a>
-                    <br />
-                </div>
-                <div class="comment-container">
-                    <div class="comment-form">
-                        <form asp-controller="" asp-action="">
-                            <input type="text" placeholder="Leave a comment..." class="comment-input">
-                            <input type="button" value="Send" class="comment-btn">
-                        </form>
-                    </div>
+        <div class="home-post-container">
+            <div class="postheader">
+                <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.UserId" class="username">
+                    @item.Firstname
+                    @item.Middlename
+                    @item.Lastname
+                </a><br />
+                <a class="posttime">@item.Posted</a>
+            </div>           
+            <div class="postmessage">
+                <a class="posttitle">@item.Title</a><br />
+                <a>@item.Message</a>
+            </div>   
+            <div class="likecontainer">
+                <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
+                <a class="postlikes">@item.Likes Like(s)</a>
+                <br />
+            </div>
+            <div class="comment-container">
+                <div class="comment-form">
+                    <form asp-controller="Home" asp-action="SetComment" asp-route-PostId="@item.PostId">
+                        <input name="Message" type="text" placeholder="Leave a comment..." class="comment-input">
+                        <input type="submit" value="Send" class="comment-btn">
+                    </form>
                 </div>
             </div>
+        </div>
         }
     </div>

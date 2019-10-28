@@ -107,8 +107,8 @@ namespace SocialNetwork.DAL.Contexts
                         Likes = reader.GetInt32(5),
                         Firstname = reader.GetString(6),
                         Middlename = reader.GetString(7),
-                        Lastname = reader.GetString(8),                                              
-                    };
+                        Lastname = reader.GetString(8),
+                    };                   
                     Posts.Add(post);
                 }
             }

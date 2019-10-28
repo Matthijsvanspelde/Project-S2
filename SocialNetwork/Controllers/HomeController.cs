@@ -13,12 +13,14 @@ namespace SocialNetwork.Controllers
         private readonly IUserLogic _userLogic;
         private readonly IFriendRequestLogic _friendRequestLogic;
         private readonly IPostLogic _postLogic;
+        private readonly ICommentLogic _commentLogic;
 
-        public HomeController(IUserLogic userLogic, IFriendRequestLogic friendRequestLogic, IPostLogic postLogic)
+        public HomeController(IUserLogic userLogic, IFriendRequestLogic friendRequestLogic, IPostLogic postLogic, ICommentLogic commentLogic)
         {
             _userLogic = userLogic;
             _friendRequestLogic = friendRequestLogic;
             _postLogic = postLogic;
+            _commentLogic = commentLogic;
         }
 
         public IActionResult NewsFeed(User user)
@@ -32,6 +34,10 @@ namespace SocialNetwork.Controllers
                 Post post = new Post();
                 user.Id = (int)HttpContext.Session.GetInt32("Id");
                 HomeViewModel homeViewModel = new HomeViewModel();
+
+                homeViewModel.Comments = new List<Comment>();
+                homeViewModel.Comments.AddRange(_commentLogic.GetComment(user));
+
                 homeViewModel.Posts = new List<Post>();
                 homeViewModel.Posts.AddRange(_postLogic.GetFollowingPosts(user));
                 return View(homeViewModel);
@@ -64,6 +70,15 @@ namespace SocialNetwork.Controllers
             {
                 _postLogic.LikePost(post, user);
             }            
+            return RedirectToAction("NewsFeed", "Home");
+        }
+
+        public IActionResult SetComment(Comment comment, Post post)
+        {
+            User user = new User();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            comment.Posted = DateTime.Now;
+            _commentLogic.SetComment(comment, post, user);
             return RedirectToAction("NewsFeed", "Home");
         }
 

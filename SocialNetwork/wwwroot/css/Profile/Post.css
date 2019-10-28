@@ -1,0 +1,41 @@
+﻿.newpost {
+    background-color: white;
+    float: right;
+    width: 462px;
+    text-align: center;
+    margin: 6px 4px 4px 4px;
+    padding: 4px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+    .newpost a {
+        color: blue;
+        font-size: 13px;
+        text-decoration: none;
+    }
+
+        .newpost a:hover {
+            color: #8d8dff;
+            cursor: pointer;
+        }
+
+
+.postField {
+    width: 788px;
+    padding: 2px;
+    height: 126px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    border-left: none;
+    border-right: none;
+    resize: none;
+    margin-left: -4px;
+}
+
+.post-form {
+    background-color: white;
+    width: 784px;
+    padding: 4px;
+    margin: 12px auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}

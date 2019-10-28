@@ -1,0 +1,51 @@
+﻿.upload-container {
+    background-color: white;
+    width: 788px;
+    padding: 6px;
+    margin: 12px auto 0 auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+
+.titlefield {
+    width: 788px;
+    height: 26px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    padding: 2px;
+    margin-left: -4px;
+}
+
+.bioField {
+    width: 396px;
+    padding: 2px;
+    height: 84px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    resize: none;
+    margin-left: -6px;
+}
+
+.inputField-edit {
+    width: 396px;
+    height: 26px;
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    padding: 2px;
+    margin-left: -6px;
+}
+
+.edit-container {
+    background-color: white;
+    width: 388px;
+    float: left;
+    padding: 6px;
+    margin: 12px auto 48px auto;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}

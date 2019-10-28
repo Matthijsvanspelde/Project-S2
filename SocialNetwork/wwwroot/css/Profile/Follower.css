@@ -1,0 +1,76 @@
+﻿.follower {
+    height: 18px;
+    width: 100%;
+    padding: 6px;
+    font-size: 16px;
+}
+
+.follower-container {
+    background-color: white;
+    float: left;
+    width: 314px;
+    margin: 4px;
+    overflow: hidden;
+    padding-top: 12px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.follower-header {
+    text-align: center;
+    font-size: 18px;
+    height: 26px;
+    border-bottom: 1px solid #dddddd
+}
+
+.FollowerPopup {
+    background-color: white;
+    float: left;
+    padding-top: 12px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    width: 400px;
+    height: 286px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+    border-radius: 2px;
+}
+
+.follower-overflow {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 259px;
+}
+
+.popup-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    visibility: hidden;
+    position: fixed;
+    z-index: 1;
+}
+
+.popup-action a {
+    width: 24px;
+    height: 24px;
+    position: fixed;
+    text-decoration: none;
+    color: #808080;
+    margin-left: 4px;
+    margin-top: -13px;
+    font-size: 18px;
+}
+
+.popup-toggle {
+    color: blue;
+    font-size: 13px;
+    text-decoration: none;
+    margin-left: 4px;
+}
+
+    .popup-toggle:hover {
+        color: #8d8dff;
+        cursor: pointer;
+    }
