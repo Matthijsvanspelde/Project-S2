@@ -2,6 +2,7 @@
 using SocialNetwork.DAL.App_data;
 using SocialNetwork.DAL.IContexts;
 using SocialNetwork.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -150,6 +151,20 @@ namespace SocialNetwork.DAL.Contexts
             }
             _connection.SqlConnection.Close();
             return Friendlist;
+        }
+
+        public bool CheckIfProfileExists(int Id)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("CheckIfProfileExists", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@UserId", Id);
+            var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            sqlCommand.ExecuteNonQuery();
+            bool DoesExist = Convert.ToBoolean(returnParameter.Value);
+            _connection.SqlConnection.Close();
+            return DoesExist;
         }
 
         //User Search

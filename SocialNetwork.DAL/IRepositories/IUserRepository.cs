@@ -13,5 +13,6 @@ namespace SocialNetwork.DAL.IRepositories
         IEnumerable<User> GetFollowers(User user);
         int CheckDublicate(User user);
         int VerifyUser(User user);
+        bool CheckIfProfileExists(int Id);
     }
 }

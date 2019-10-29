@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
 using SocialNetwork.ViewModels;
-using System;
 
 namespace SocialNetwork.Controllers
 {

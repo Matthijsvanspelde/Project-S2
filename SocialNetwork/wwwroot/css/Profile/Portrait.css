@@ -16,19 +16,20 @@
     }
 
 .profileaction a {
-    color: blue;
+    color: white;
     font-size: 13px;
     text-decoration: none;
+    text-align: center;
     padding: 4px;
-    border-top: 1px solid #dddddd;
     margin-left: -4px;
     width: 100%;
     bottom: 0;
     position: absolute;
+    background-color: #3A559D;
 }
 
     .profileaction a:hover {
-        color: #8d8dff;
+        background-color: #4766b9;
     }
 
 .username-display {

@@ -106,29 +106,57 @@ namespace SocialNetwork.Controllers
 
         public IActionResult SearchedProfile(int Id)
         {
-            User user = new User();
-            user.Id = Id;
-            _userLogic.GetUserDetails(user);
-            ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);
-            ProfileViewModel profileViewModel = new ProfileViewModel()
+
+            if (HttpContext.Session.GetInt32("Id") == null)
             {
-                Id = user.Id,
-                Firstname = user.Firstname,
-                Middlename = user.Middlename,
-                Lastname = user.Lastname,
-                Birthdate = user.Birthdate,
-                Country = user.Country,
-                City = user.City,
-                Biography = user.Biography,
-                Img = profilePicture.Image,
-            };
-            profileViewModel.Requested = IsRequested(Id);
-            profileViewModel.Added = IsFollowing(Id);
-            profileViewModel.Posts = new List<Post>();
-            profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
-            profileViewModel.Followers = new List<User>();
-            profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
-            return View("Overview", profileViewModel);
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                User user = new User();
+                user.Id = Id;
+                if (_userLogic.CheckIfProfileExists(Id) == true)
+                {
+                    _userLogic.GetUserDetails(user);
+                    ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);
+                    ProfileViewModel profileViewModel = new ProfileViewModel()
+                    {
+                        Id = user.Id,
+                        Firstname = user.Firstname,
+                        Middlename = user.Middlename,
+                        Lastname = user.Lastname,
+                        Birthdate = user.Birthdate,
+                        Country = user.Country,
+                        City = user.City,
+                        Biography = user.Biography,
+                        Img = profilePicture.Image,
+                    };
+                    profileViewModel.Requested = IsRequested(Id);
+                    profileViewModel.Added = IsFollowing(Id);
+                    profileViewModel.Posts = new List<Post>();
+                    profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
+                    profileViewModel.Followers = new List<User>();
+                    profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
+                    return View("Overview", profileViewModel);
+                }
+                else
+                {
+                    return View("PageNotFound", "Profile");
+                }
+                
+            }
+        }
+
+        public IActionResult PageNotFound()
+        {
+            if (HttpContext.Session.GetInt32("Id") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return View();
+            }            
         }
 
         private bool IsRequested(int Id)

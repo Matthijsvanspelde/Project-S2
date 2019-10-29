@@ -55,5 +55,11 @@ namespace SocialNetwork.Logic
             int UserCount = _userRepository.VerifyUser(user);
             return UserCount;
         }
+
+        public bool CheckIfProfileExists(int Id)
+        {
+            bool DoesExist = _userRepository.CheckIfProfileExists(Id);
+            return DoesExist;
+        }
     }
 }

@@ -1,8 +1,9 @@
 ﻿.upload-container {
     background-color: white;
-    width: 788px;
-    padding: 6px;
-    margin: 12px auto 0 auto;
+    width: 340px;
+    padding: 6px 6px 0 6px;
+    float: left;
+    margin: 12px 8px 0 auto;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -19,7 +20,7 @@
 }
 
 .bioField {
-    width: 396px;
+    width: 436px;
     padding: 2px;
     height: 84px;
     border-left: none;
@@ -31,7 +32,7 @@
 }
 
 .inputField-edit {
-    width: 396px;
+    width: 436px;
     height: 26px;
     border-left: none;
     border-right: none;
@@ -43,9 +44,39 @@
 
 .edit-container {
     background-color: white;
-    width: 388px;
+    width: 428px;
     float: left;
-    padding: 6px;
+    padding: 6px 6px 0 6px;
     margin: 12px auto 48px auto;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
+
+.uploadbtn {
+    width: 352px;
+    margin: 12px 0 0 -6px;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    background-color: #3A559D;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .uploadbtn:hover {
+        background-color: #4766b9;
+    }
+
+.saveBtn {
+    width: 440px;
+    margin: 0 0 0 -6px;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    background-color: #3A559D;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+    .saveBtn:hover {
+        background-color: #4766b9;
+    }
