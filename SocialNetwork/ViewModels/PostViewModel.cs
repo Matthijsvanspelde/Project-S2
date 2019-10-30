@@ -13,7 +13,8 @@ namespace SocialNetwork.ViewModels
         [MinLength(10)]
         [MaxLength(500)]
         public string Message { get; set; }
-
+        [Required]
+        public string Image { get; set; }
         public int Likes { get; set; }
         public DateTime Posted { get; set; }
     }

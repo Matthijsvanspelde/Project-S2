@@ -25,10 +25,11 @@ namespace SocialNetwork.DAL.Contexts
             sqlCommand.Parameters.AddWithValue("@Message", post.Message);
             sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
             sqlCommand.Parameters.AddWithValue("@DateTime", post.Posted);
+            sqlCommand.Parameters.AddWithValue("@Image", post.Image);
             sqlCommand.ExecuteNonQuery();
             _connection.SqlConnection.Close();
         }
-
+        
         public void LikePost(Post post, User user)
         {
             _connection.SqlConnection.Open();
@@ -77,7 +78,8 @@ namespace SocialNetwork.DAL.Contexts
                         Lastname = reader.GetString(5),
                         Posted = reader.GetDateTime(6),
                         Likes = reader.GetInt32(7),
-                    };
+                        Image = (byte[])reader["Image"],
+                };
                     Posts.Add(post);
                 }
             }
@@ -108,6 +110,7 @@ namespace SocialNetwork.DAL.Contexts
                         Firstname = reader.GetString(6),
                         Middlename = reader.GetString(7),
                         Lastname = reader.GetString(8),
+                        Image = (byte[])reader["Image"],
                     };                   
                     Posts.Add(post);
                 }

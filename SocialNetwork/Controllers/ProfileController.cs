@@ -218,12 +218,29 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("Edit", "Profile");            
         }
 
-        public IActionResult SetPost(Post post, User user)
+        public async Task<IActionResult> SetPost (Post post, User user, IFormFile image)
         {
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             post.Posted = DateTime.Now;
-            _postLogic.SetPost(post, user);
-            return RedirectToAction("Overview", "Profile");
+            
+            if (image != null)
+            {
+                if (image.ContentType == "image/png" || image.ContentType == "image/jpeg")
+                {
+                    if (image.Length > 0)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await image.CopyToAsync(stream);
+                            post.Image = stream.ToArray();
+                        }
+                        _postLogic.SetPost(post, user);
+                        return RedirectToAction("Overview", "Profile");
+                    }
+                }
+            }
+
+            return RedirectToAction("Post", "Profile");
         }
 
         public IActionResult SendFriendRequest(int RecieverId)

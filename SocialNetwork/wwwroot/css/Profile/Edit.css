@@ -20,26 +20,18 @@
 }
 
 .bioField {
-    width: 436px;
+    width: 420px;
     padding: 2px;
     height: 84px;
-    border-left: none;
-    border-right: none;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
+    border: 1px solid #dddddd;
     resize: none;
-    margin-left: -6px;
 }
 
 .inputField-edit {
-    width: 436px;
+    width: 420px;
     height: 26px;
-    border-left: none;
-    border-right: none;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
+    border: 1px solid #dddddd;
     padding: 2px;
-    margin-left: -6px;
 }
 
 .edit-container {

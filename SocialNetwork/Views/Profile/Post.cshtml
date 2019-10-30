@@ -6,12 +6,13 @@
 <partial name="_Menu">
     <div class="post-form">
         <h2>Post</h2>
-        <form asp-action="SetPost" autocomplete="off">
+        <form asp-action="SetPost" autocomplete="off" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input asp-for="Title" class="titlefield" placeholder="Title"/><br />
+            <input asp-for="Title" class="titlefield" placeholder="Title" /><br />
             <span asp-validation-for="Title"></span><br />
             <textarea asp-for="Message" class="postField" placeholder="Write something..."></textarea><br />
             <span asp-validation-for="Message"></span><br />
+            <input asp-for="Image" type="file" name="image" id="image" accept="image/*">
             <input type="submit" value="Post" class="postBtn" />
         </form>
 

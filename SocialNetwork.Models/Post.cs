@@ -11,9 +11,9 @@ namespace SocialNetwork.Models
         public string Message { get; set; }
         public int Likes { get; set; }
         public DateTime Posted { get; set; }
+        public byte[] Image { get; set; }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
-        public List<Comment> Comments { get; set; }
     }
 }
