@@ -11,5 +11,7 @@ namespace SocialNetwork.Logic.ILogic
         IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest);
         int CheckDublicateFriendRequest(FriendRequest friendRequest);
         int CheckIfFollowing(FriendRequest friendRequest);
+        bool IsRequested(FriendRequest friendRequest);
+        bool IsFollowing(FriendRequest friendRequest);
     }
 }

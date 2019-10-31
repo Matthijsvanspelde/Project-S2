@@ -113,6 +113,9 @@ namespace SocialNetwork.Controllers
             }
             else
             {
+                FriendRequest friendRequest = new FriendRequest();
+                friendRequest.RecieverId = Id;
+                friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
                 User user = new User();
                 user.Id = Id;
                 if (_userLogic.CheckIfProfileExists(Id) == true)
@@ -131,8 +134,8 @@ namespace SocialNetwork.Controllers
                         Biography = user.Biography,
                         Img = profilePicture.Image,
                     };
-                    profileViewModel.Requested = IsRequested(Id);
-                    profileViewModel.Added = IsFollowing(Id);
+                    profileViewModel.Requested = _friendRequestLogic.IsRequested(friendRequest);
+                    profileViewModel.Added = _friendRequestLogic.IsFollowing(friendRequest);
                     profileViewModel.Posts = new List<Post>();
                     profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
                     profileViewModel.Followers = new List<User>();
@@ -158,41 +161,7 @@ namespace SocialNetwork.Controllers
                 return View();
             }            
         }
-
-        private bool IsRequested(int Id)
-        {
-            bool Added;
-            FriendRequest friendRequest = new FriendRequest();
-            friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
-            friendRequest.RecieverId = Id;
-            if (_friendRequestLogic.CheckDublicateFriendRequest(friendRequest) == 0)
-            {
-                Added = false;
-            }
-            else
-            {
-                Added = true;
-            }
-            return Added;
-        }
-        
-        private bool IsFollowing(int Id)
-        {
-            bool Following;
-            FriendRequest friendRequest = new FriendRequest();
-            friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
-            friendRequest.RecieverId = Id;
-            if (_friendRequestLogic.CheckIfFollowing(friendRequest) == 0)
-            {
-                Following = false;
-            }
-            else
-            {
-                Following = true;
-            }
-            return Following;
-        }
-
+                     
         public async Task<IActionResult> UploadPicture(IFormFile image)
         {
             ProfilePicture profilePicture = new ProfilePicture();

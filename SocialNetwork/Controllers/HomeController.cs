@@ -35,6 +35,7 @@ namespace SocialNetwork.Controllers
                 user.Id = (int)HttpContext.Session.GetInt32("Id");
                 HomeViewModel homeViewModel = new HomeViewModel();
 
+                //TODO: Haalt niet de juiste comments bij de juiste posts op.
                 homeViewModel.Comments = new List<Comment>();
                 homeViewModel.Comments.AddRange(_commentLogic.GetComment(user));
 
