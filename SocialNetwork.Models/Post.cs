@@ -15,5 +15,6 @@ namespace SocialNetwork.Models
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
+        public List<Comment> Comments { get; set; }
     }
 }

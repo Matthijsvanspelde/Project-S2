@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
 using SocialNetwork.ViewModels;
+using System.IO;
 
 namespace SocialNetwork.Controllers
 {
@@ -54,7 +55,7 @@ namespace SocialNetwork.Controllers
             if (user.Middlename == null)
             {
                 user.Middlename = "";
-            }           
+            }
             _userLogic.RegisterUser(user);
             return RedirectToAction("Login", "Account");
         }

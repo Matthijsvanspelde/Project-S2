@@ -106,7 +106,6 @@ namespace SocialNetwork.Controllers
 
         public IActionResult SearchedProfile(int Id)
         {
-
             if (HttpContext.Session.GetInt32("Id") == null)
             {
                 return RedirectToAction("Login", "Account");

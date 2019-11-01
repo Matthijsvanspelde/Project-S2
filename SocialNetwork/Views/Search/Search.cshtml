@@ -14,15 +14,27 @@
         @foreach (var item in @Model.SearchResult)
         {
         <div class="userportret">
+            <div class="profile-picture-search">
+                @if (item.ProfilePicture.Image != null)
+                {
+                    <img src="data:image;base64,@Convert.ToBase64String(item.ProfilePicture.Image)">
+                }
+                else
+                {
+                    <img src="~/images/defaultProfilePicture.jpg" />
+                }
+            </div>
 
-            <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
-                @item.Firstname
-                @item.Middlename
-                @item.Lastname
-            </a>
+            <div class="profile-name-search">
+                <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+                    @item.Firstname
+                    @item.Middlename
+                    @item.Lastname
+                </a>
+            </div>
+            </div>
+            }
         </div>
-        }
-    </div>
 
     
     

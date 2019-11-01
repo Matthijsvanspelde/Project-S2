@@ -187,12 +187,22 @@ namespace SocialNetwork.DAL.Contexts
                         Middlename = reader.GetString(2),
                         Lastname = reader.GetString(3),
                         Biography = reader.GetString(4),
+                        
                     };
+
+                    var profilePicture = new ProfilePicture();
+                    if (!reader.IsDBNull(5))
+                    {
+                        profilePicture.Image = (byte[])reader["Data"];
+                    }                   
+                    user.ProfilePicture = profilePicture;                                     
                     SearchResult.Add(user);
                 }
             }
             _connection.SqlConnection.Close();
             return SearchResult;
         }
+
+        
     }
 }

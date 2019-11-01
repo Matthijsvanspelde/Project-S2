@@ -4,6 +4,8 @@
     width: 784px;
     height: 120px;
     margin: 8px 0 8px 0;
+    border-bottom-left-radius: 92px;
+    border-top-left-radius: 92px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -18,3 +20,30 @@
         text-decoration: none;
         color: #878787;
     }
+
+.profile-picture-search img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+.profile-picture-search {
+    height: 120px;
+    width: 120px;
+    overflow: hidden;
+    border-radius: 92px;
+    float: left;
+}
+
+.profile-name-search {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin-top: -120px;
+}
