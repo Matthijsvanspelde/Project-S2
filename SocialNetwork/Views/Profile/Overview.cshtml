@@ -138,7 +138,7 @@
 					<img src="data:image;base64,@Convert.ToBase64String(item.Image)">
 				</div>
                 <div class="likecontainer">
-                    <a class="likeBtn" asp-controller="Profile" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
+                    <a class="likeBtn" asp-controller="Profile" asp-action="LikePost" asp-route-PostId="@item.PostId" asp-route-RecieverId="@item.UserId">Like</a>
                     @if (item.UserId == Context.Session.GetInt32("Id"))
                     {
                         <a class="likeBtn">|</a>
