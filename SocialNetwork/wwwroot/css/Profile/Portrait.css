@@ -32,6 +32,19 @@
         background-color: #4766b9;
     }
 
+.profileaction-frozen a {
+    color: white;
+    font-size: 13px;
+    text-decoration: none;
+    text-align: center;
+    padding: 4px;
+    margin-left: -4px;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    background-color: #7c7c7c;
+}
+
 .username-display {
     text-align: center;
     font-size: 18px;

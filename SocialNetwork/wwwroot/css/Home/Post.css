@@ -1,8 +1,8 @@
 ﻿.home-post-container {
     background-color: white;
     float: left;
-    width: 792px;
-    min-height: 260px;
+    width: 392px;
+    height: 580px;
     margin: 6px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
@@ -73,7 +73,7 @@
 
 
 .comment-input {
-    width: 729px;
+    width: 329px;
     height: 24px;
     border-top: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;

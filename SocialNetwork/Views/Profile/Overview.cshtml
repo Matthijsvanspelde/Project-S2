@@ -74,10 +74,12 @@
 				<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.City)</p>
 				<p style="color: grey; font-size: 14px">About @Html.DisplayFor(model => model.Firstname)</p>
 				<p style="margin-bottom: 26px; line-height: 16px;">@Html.DisplayFor(model => model.Biography)</p>
-				<div class="profileaction">
+				
 					@if (Model.Id == Context.Session.GetInt32("Id"))
 					{
-						@Html.ActionLink("Edit profile", "Edit")<br />
+						<div class="profileaction">
+							@Html.ActionLink("Edit profile", "Edit")<br />
+						</div>
 					}
 					else
 					{
@@ -85,19 +87,25 @@
 						{
 							if (Model.Added == false)
 							{
-								<a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
+								<div class="profileaction">
+									<a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
+								</div>
 							}
 							else
 							{
-								<a style="color: #ffffff;">Following</a>
+								<div class="profileaction-frozen">
+									<a style="color: #ffffff;">Following</a>
+								</div>
 							}
 						}
 						else if (Model.Requested == true)
 						{
-							<a style="color: #ffffff;">Requested</a>
+							<div class="profileaction-frozen">
+								<a style="color: #ffffff;">Requested</a>
+							</div>
 						}
 					}
-				</div>
+				
 			</div>
 			<div class="follower-container">
 				<div class="follower-header">
