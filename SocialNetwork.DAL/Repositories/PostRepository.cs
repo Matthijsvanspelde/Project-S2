@@ -38,5 +38,10 @@ namespace SocialNetwork.DAL.Repositories
         {
             return _IPostContext.GetFollowingPosts(user);
         }
+
+        public void DeletePost(Post post, User user)
+        {
+            _IPostContext.DeletePost(post, user);
+        }
     }
 }

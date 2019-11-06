@@ -38,5 +38,10 @@ namespace SocialNetwork.Logic
         {
             return _postRepository.GetFollowingPosts(user);
         }
+
+        public void DeletePost(Post post, User user)
+        {
+            _postRepository.DeletePost(post, user);
+        }
     }
 }

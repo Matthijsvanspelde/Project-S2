@@ -70,14 +70,15 @@ namespace SocialNetwork.DAL.Contexts
                 {
                     var post = new Post
                     {
-                        PostId = reader.GetInt32(0),
-                        Title = reader.GetString(1),
-                        Message = reader.GetString(2),
-                        Firstname = reader.GetString(3),                        
-                        Middlename = reader.GetString(4),
-                        Lastname = reader.GetString(5),
-                        Posted = reader.GetDateTime(6),
-                        Likes = reader.GetInt32(7),
+                        UserId = reader.GetInt32(0),
+                        PostId = reader.GetInt32(1),
+                        Title = reader.GetString(2),
+                        Message = reader.GetString(3),
+                        Firstname = reader.GetString(4),                        
+                        Middlename = reader.GetString(5),
+                        Lastname = reader.GetString(6),
+                        Posted = reader.GetDateTime(7),
+                        Likes = reader.GetInt32(8),
                         Image = (byte[])reader["Image"],
                 };
                     Posts.Add(post);
@@ -119,5 +120,15 @@ namespace SocialNetwork.DAL.Contexts
             return Posts;
         }
 
+        public void DeletePost(Post post, User user)
+        {
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("DeletePost", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
+            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
+        }
     }
 }

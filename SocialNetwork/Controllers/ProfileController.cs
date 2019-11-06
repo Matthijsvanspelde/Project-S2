@@ -211,6 +211,14 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("Post", "Profile");
         }
 
+        public IActionResult DeletePost(Post post)
+        {
+            User user = new User();
+            user.Id = (int)HttpContext.Session.GetInt32("Id");
+            _postLogic.DeletePost(post, user);
+            return RedirectToAction("Overview", "Profile");
+        }
+
         public IActionResult SendFriendRequest(int RecieverId)
         {
             FriendRequest friendRequest = new FriendRequest();
