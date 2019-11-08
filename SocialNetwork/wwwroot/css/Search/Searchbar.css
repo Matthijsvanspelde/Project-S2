@@ -4,6 +4,7 @@
     border: 1px solid #dddddd;
     padding: 2px;
     margin-right: -5px;
+    margin-top: 4px;
     border-bottom-left-radius: 2px;
     border-top-left-radius: 2px;
 }
@@ -18,4 +19,5 @@
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
     cursor: pointer;
+    margin-top: 4px;
 }

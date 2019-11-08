@@ -53,7 +53,7 @@ namespace SocialNetwork.Controllers
                 User user = new User();
                 searchViewModel.SearchResult.AddRange(_userLogic.GetSearchResult(Searchterm));
                 var ResultCount = searchViewModel.SearchResult.Count();
-                searchViewModel.SearchError = "About " + ResultCount + " matching result(s).";
+                searchViewModel.SearchError =  ResultCount + " matching result(s).";
                 return View("Search", searchViewModel);
             }                     
         }      

@@ -6,37 +6,39 @@
 <partial name="_Menu">
     <div class="content-wrapper">
         <form method="get" action="@Url.Action("GetSearchedUsers", "Search")" autocomplete="off">
-            <span>@Model.SearchError</span><br />
             <input name="Searchterm" placeholder="Name" class="searchField" />
             <input type="submit" value="Search" class="searchButton" />
+            <span>@Model.SearchError</span><br />
         </form>
 
-        @foreach (var item in @Model.SearchResult)
-        {
-        <div class="userportret">
-            <div class="profile-picture-search">
-                @if (item.ProfilePicture.Image != null)
-                {
-                    <img src="data:image;base64,@Convert.ToBase64String(item.ProfilePicture.Image)">
-                }
-                else
-                {
-                    <img src="~/images/defaultProfilePicture.jpg" />
-                }
-            </div>
+        <div class="animate-bottom">
+            @foreach (var item in @Model.SearchResult)
+            {
+                <div class="userportret">
+                    <div class="profile-picture-search">
+                        @if (item.ProfilePicture.Image != null)
+                        {
+                            <img src="data:image;base64,@Convert.ToBase64String(item.ProfilePicture.Image)">
+                        }
+                        else
+                        {
+                            <img src="~/images/defaultProfilePicture.jpg" />
+                        }
+                    </div>
 
-            <div class="profile-name-search">
-                <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
-                    @item.Firstname
-                    @item.Middlename
-                    @item.Lastname
-                </a>
-            </div>
-            </div>
+                    <div class="profile-name-search">
+                        <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+                            @item.Firstname
+                            @item.Middlename
+                            @item.Lastname
+                        </a>
+                    </div>
+                </div>
             }
         </div>
+    </div>
 
-    
-    
+
+
 
 

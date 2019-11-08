@@ -5,20 +5,22 @@
 }
 <partial name="_Menu">
     <div class="content-wrapper">
-        @foreach (var item in Model.friendRequests)
-        {
-            <div class="friendRequest-container">
-                <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.SenderId" class="username">
-                    @item.Firstname
-                    @item.Middlename
-                    @item.Lastname
-                </a>
-                <br />
-                <a class="recievedTime">@item.Recieved</a>
-                <div class="friendRequest-action">
-                    <a asp-controller="Home" asp-action="AcceptFriendRequest" asp-route-SenderId="@item.SenderId">Accept</a>
-                    <a asp-controller="Home" asp-action="DenyFriendRequest" asp-route-SenderId="@item.SenderId">Deny</a>
+        <div class="animate-bottom">
+            @foreach (var item in Model.friendRequests)
+            {
+                <div class="friendRequest-container">
+                    <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.SenderId" class="username">
+                        @item.Firstname
+                        @item.Middlename
+                        @item.Lastname
+                    </a>
+                    <br />
+                    <a class="recievedTime">@item.Recieved</a>
+                    <div class="friendRequest-action">
+                        <a asp-controller="Home" asp-action="AcceptFriendRequest" asp-route-SenderId="@item.SenderId">Accept</a>
+                        <a asp-controller="Home" asp-action="DenyFriendRequest" asp-route-SenderId="@item.SenderId">Deny</a>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>

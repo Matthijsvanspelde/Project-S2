@@ -12,6 +12,7 @@
         <link href="~/css/Menu/MainMenu.css" rel="stylesheet" />
         <link href="~/css/Login/Form.css" rel="stylesheet" />
         <link href="~/css/Menu/SubMenu.css" rel="stylesheet" />
+        <link href="~/css/Home/Loader.css" rel="stylesheet" />
         <link href="~/css/Profile/Edit.css" rel="stylesheet" />
         <link href="~/css/Profile/Follower.css" rel="stylesheet" />
         <link href="~/css/Profile/Portrait.css" rel="stylesheet" />
@@ -24,12 +25,28 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body>
+<body onload="myFunction()" style="margin:0;">
     <div class="container body-content">
         <div class="wrapper">
             @RenderBody()
         </div>
     </div>
+
+    <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 500);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("myDiv").style.display = "block";
+        }
+    </script>
+
+
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -41,9 +58,13 @@
                 asp-fallback-test="window.jQuery"
                 crossorigin="anonymous"
                 integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>      
+        </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
     @RenderSection("Scripts", required: false)
+
+
+
 </body>
+
 </html>
