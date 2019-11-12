@@ -6,27 +6,23 @@
 }
 
 .inputField {
-    width: 380px;
-    height: 26px;
-    border: 1px solid #dddddd;
-    border-radius: 2px;
-    padding: 2px;
+    width: 374px;
+    height: 28px;
+    padding: 6px;
+    border: none;
+    margin-top: -10px;
 }
 
 .inputButton {
     width: 100%;
-    height: 28px;
-    border: 1px solid #dddddd;
-    border-radius: 2px;
+    height: 36px;
+    border: none;
     padding: 4px 14px 4px 14px;
-    margin: 4px 0 0 0;
+    margin: 12px 0 0 0;
+    color: white;
     cursor: pointer;
-    background-color: #ffffff;
+    background-color: #5780B9;
 }
-
-    .inputButton:hover {
-        background-color: #dddddd;
-    }
 
 .content-wrapper {
     overflow: hidden;

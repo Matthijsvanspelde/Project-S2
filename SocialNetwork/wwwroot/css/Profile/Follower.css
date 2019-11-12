@@ -64,16 +64,15 @@
 }
 
 .popup-toggle {
-
     color: white;
     font-size: 13px;
     text-decoration: none;
     text-align: center;
     padding: 4px;
-    background-color: #3A559D;
+    background-color: #4167B2;
 }
 
     .popup-toggle:hover {
-        background-color: #4766b9;
+        background-color: #4e79ce;
         cursor: pointer;
     }

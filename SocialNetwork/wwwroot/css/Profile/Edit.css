@@ -49,13 +49,13 @@
     border: none;
     padding: 4px;
     cursor: pointer;
-    background-color: #3A559D;
+    background-color: #4167B2;
     color: white;
     font-family: 'Montserrat', sans-serif;
 }
 
     .uploadbtn:hover {
-        background-color: #4766b9;
+        background-color: #4e79ce;
     }
 
 .saveBtn {
@@ -64,11 +64,11 @@
     border: none;
     padding: 4px;
     cursor: pointer;
-    background-color: #3A559D;
+    background-color: #4167B2;
     color: white;
     font-family: 'Montserrat', sans-serif;
 }
 
     .saveBtn:hover {
-        background-color: #4766b9;
+        background-color: #4e79ce;
     }

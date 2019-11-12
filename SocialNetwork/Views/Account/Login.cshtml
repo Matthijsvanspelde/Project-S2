@@ -10,18 +10,15 @@
 
         <form asp-action="VerifyUserCombination" autocomplete="off">
             <span asp-validation-for="Username"></span><br />
-            <label asp-for="Username"></label>
             <div asp-validation-summary="ModelOnly"></div>
             <input asp-for="Username" placeholder="Username" class="inputField" /><br />
             <span asp-validation-for="Password"></span><br />
-            <label asp-for="Password"></label>
             <input asp-for="Password" placeholder="Password" class="inputField" /><br />
             <input type="submit" value="Sign In" class="inputButton" />
         </form>
-
-    </div>
-    <div class="form-action">
-        <a asp-action="Register">Register</a>
+        <div class="form-action">
+            <a asp-action="Register">Register an account</a>
+        </div>
     </div>
 </div>
 

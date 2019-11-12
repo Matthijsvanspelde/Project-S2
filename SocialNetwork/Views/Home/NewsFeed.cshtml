@@ -4,13 +4,10 @@
     ViewData["Title"] = "Home";
 }
 <partial name="_Menu">
-        <div id="loader"></div>
-
         <div class="content-wrapper">
             <div class="newpost-newsfeed">
                 @Html.ActionLink("Post something", "Post", "Profile")<br />
             </div>
-            <div style="display:none;" id="myDiv" class="animate-bottom">
                 @foreach (var item in Model.Posts)
                 {
                     <div class="home-post-container">
@@ -44,5 +41,4 @@
                         </div>
                     </div>
                 }
-            </div>
-        </div>     
+            </div>    

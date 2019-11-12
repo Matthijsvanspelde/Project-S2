@@ -49,8 +49,7 @@ namespace SocialNetwork.Controllers
                 return View("Login", loginViewModel);
             }
         }
-
-        [HttpPost]
+      
         public IActionResult RegisterUser(User user)
         {
             if (user.Middlename == null)
@@ -70,8 +69,7 @@ namespace SocialNetwork.Controllers
             }
             return Json(user != null);
         }
-
-        [HttpPost]
+        
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
