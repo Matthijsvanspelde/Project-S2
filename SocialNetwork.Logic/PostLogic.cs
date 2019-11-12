@@ -24,9 +24,9 @@ namespace SocialNetwork.Logic
             _postRepository.LikePost(post, user);
         }
 
-        public int CheckDublicateLike(Post post, User user)
+        public bool AlreadyLiked(Post post, User user)
         {
-            return _postRepository.CheckDublicateLike(post, user);
+            return _postRepository.AlreadyLiked(post, user);
         }
 
         public IEnumerable<Post> GetPost(User user)

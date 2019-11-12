@@ -11,9 +11,9 @@ namespace SocialNetwork.DAL.IContexts
         void EditProfileDetails(User user);
         IEnumerable<User> GetSearchResult(string Searchterm);
         IEnumerable<User> GetFollowers(User user);
-        int CheckDublicate(User user);
-        int VerifyUser(User user);
-        bool CheckIfProfileExists(int Id);
+        bool DoesUsernameExist(User user);
+        bool DoesUserCombinationMatch(User user);
+        bool DoesProfileExist(int Id);
 
     }
 }

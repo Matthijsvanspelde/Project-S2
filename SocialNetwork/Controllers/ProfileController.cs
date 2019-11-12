@@ -92,6 +92,18 @@ namespace SocialNetwork.Controllers
             }
         }
 
+        public IActionResult PageNotFound()
+        {
+            if (HttpContext.Session.GetInt32("Id") == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         public IActionResult EditProfile(User user)
         {
 
@@ -103,7 +115,7 @@ namespace SocialNetwork.Controllers
             _userLogic.EditProfileDetails(user);
             return RedirectToAction("Overview", "Profile");
         }
-
+       
         public IActionResult SearchedProfile(int Id)
         {
             if (HttpContext.Session.GetInt32("Id") == null)
@@ -117,7 +129,7 @@ namespace SocialNetwork.Controllers
                 friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
                 User user = new User();
                 user.Id = Id;
-                if (_userLogic.CheckIfProfileExists(Id) == true)
+                if (_userLogic.DoesProfileExist(Id) == true)
                 {
                     _userLogic.GetUserDetails(user);
                     ProfilePicture profilePicture = _profilePictureLogic.GetProfilePicture(user);
@@ -133,8 +145,8 @@ namespace SocialNetwork.Controllers
                         Biography = user.Biography,
                         Img = profilePicture.Image,
                     };
-                    profileViewModel.Requested = _friendRequestLogic.IsRequested(friendRequest);
-                    profileViewModel.Added = _friendRequestLogic.IsFollowing(friendRequest);
+                    profileViewModel.Requested = _friendRequestLogic.DoesFriendRequestExist(friendRequest);
+                    profileViewModel.Following = _friendRequestLogic.IsFollowing(friendRequest);
                     profileViewModel.Posts = new List<Post>();
                     profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
                     profileViewModel.Followers = new List<User>();
@@ -149,18 +161,7 @@ namespace SocialNetwork.Controllers
             }
         }
 
-        public IActionResult PageNotFound()
-        {
-            if (HttpContext.Session.GetInt32("Id") == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            else
-            {
-                return View();
-            }            
-        }
-                     
+
         public async Task<IActionResult> UploadPicture(IFormFile image)
         {
             ProfilePicture profilePicture = new ProfilePicture();
@@ -219,14 +220,18 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("Overview", "Profile");
         }
 
-        public IActionResult SendFriendRequest(int RecieverId)
+        public IActionResult SendFriendRequest(FriendRequest friendRequest)
         {
-            FriendRequest friendRequest = new FriendRequest();
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
-            friendRequest.RecieverId = RecieverId;
             friendRequest.Recieved = DateTime.Now;
-            _friendRequestLogic.SendFriendRequest(friendRequest);
-            return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");       
+            if (_friendRequestLogic.DoesFriendRequestExist(friendRequest) == false)
+            {
+                if (_friendRequestLogic.IsFollowing(friendRequest) == false)
+                {
+                    _friendRequestLogic.SendFriendRequest(friendRequest);                    
+                }
+            }
+            return RedirectToAction("SearchedProfile/" + friendRequest.RecieverId, "Profile");
         }
 
         public IActionResult LikePost(int PostId, int RecieverId)
@@ -235,7 +240,7 @@ namespace SocialNetwork.Controllers
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             Post post = new Post();
             post.PostId = PostId;
-            if (_postLogic.CheckDublicateLike(post, user) == 0)
+            if (_postLogic.AlreadyLiked(post, user) == false)
             {
                 _postLogic.LikePost(post, user);
             }

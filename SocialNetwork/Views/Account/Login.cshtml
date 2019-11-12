@@ -8,7 +8,7 @@
         <h2>Login</h2><br />
         @Model.ErrorMessage
 
-        <form asp-action="VerifyUser" autocomplete="off">
+        <form asp-action="VerifyUserCombination" autocomplete="off">
             <span asp-validation-for="Username"></span><br />
             <label asp-for="Username"></label>
             <div asp-validation-summary="ModelOnly"></div>

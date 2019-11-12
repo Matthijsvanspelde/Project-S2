@@ -9,9 +9,7 @@ namespace SocialNetwork.Logic.ILogic
         void DeleteFriendRequest(FriendRequest friendRequest);
         void AcceptFriendRequest(FriendRequest friendRequest);
         IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest);
-        int CheckDublicateFriendRequest(FriendRequest friendRequest);
-        int CheckIfFollowing(FriendRequest friendRequest);
-        bool IsRequested(FriendRequest friendRequest);
+        bool DoesFriendRequestExist(FriendRequest friendRequest);
         bool IsFollowing(FriendRequest friendRequest);
     }
 }

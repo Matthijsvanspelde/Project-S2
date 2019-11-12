@@ -14,34 +14,6 @@ namespace SocialNetwork.Logic
             _FriendRequestRepository = FriendRequestRepository;
         }
 
-        public bool IsRequested(FriendRequest friendRequest)
-        {
-            bool Added;
-            if (CheckDublicateFriendRequest(friendRequest) == 0)
-            {
-                Added = false;
-            }
-            else
-            {
-                Added = true;
-            }
-            return Added;
-        }
-
-        public bool IsFollowing(FriendRequest friendRequest)
-        {
-            bool Following;
-            if (CheckIfFollowing(friendRequest) == 0)
-            {
-                Following = false;
-            }
-            else
-            {
-                Following = true;
-            }
-            return Following;
-        }
-
         public void SendFriendRequest(FriendRequest friendRequest)
         {
             _FriendRequestRepository.SendFriendRequest(friendRequest);
@@ -57,14 +29,14 @@ namespace SocialNetwork.Logic
             _FriendRequestRepository.AcceptFriendRequest(friendRequest);
         }
 
-        public int CheckDublicateFriendRequest(FriendRequest friendRequest)
+        public bool DoesFriendRequestExist(FriendRequest friendRequest)
         {
-            return _FriendRequestRepository.CheckDublicateFriendRequest(friendRequest);
+            return _FriendRequestRepository.DoesFriendRequestExist(friendRequest);
         }
 
-        public int CheckIfFollowing(FriendRequest friendRequest)
+        public bool IsFollowing(FriendRequest friendRequest)
         {
-            return _FriendRequestRepository.CheckIfFollowing(friendRequest);
+            return _FriendRequestRepository.IsFollowing(friendRequest);
         }
 
         public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)

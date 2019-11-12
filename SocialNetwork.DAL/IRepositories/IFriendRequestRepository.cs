@@ -9,7 +9,7 @@ namespace SocialNetwork.DAL.IRepositories
         void DeleteFriendRequest(FriendRequest friendRequest);
         void AcceptFriendRequest(FriendRequest friendRequest);
         IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest);
-        int CheckDublicateFriendRequest(FriendRequest friendRequest);
-        int CheckIfFollowing(FriendRequest friendRequest);
+        bool DoesFriendRequestExist(FriendRequest friendRequest);
+        bool IsFollowing(FriendRequest friendRequest);
     }
 }

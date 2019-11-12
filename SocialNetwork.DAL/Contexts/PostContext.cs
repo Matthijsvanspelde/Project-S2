@@ -2,6 +2,7 @@
 using SocialNetwork.DAL.App_data;
 using SocialNetwork.DAL.IContexts;
 using SocialNetwork.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -41,19 +42,19 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
         }
 
-        public int CheckDublicateLike(Post post, User user)
+        public bool AlreadyLiked(Post post, User user)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("CheckDublicateLikes", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
             sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
             returnParameter.Direction = ParameterDirection.ReturnValue;
             sqlCommand.ExecuteNonQuery();
-            int LikeCount = (int)returnParameter.Value;
+            bool AlreadyLiked = Convert.ToBoolean(returnParameter.Value);
             _connection.SqlConnection.Close();
-            return LikeCount;
+            return AlreadyLiked;
         }
 
         public IEnumerable<Post> GetPost(User user)

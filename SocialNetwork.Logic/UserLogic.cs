@@ -44,21 +44,21 @@ namespace SocialNetwork.Logic
             return _userRepository.GetFollowers(user);
         }
 
-        public int CheckDublicate(User user)
+        public bool DoesUsernameExist(User user)
         {
-            int UserCount = _userRepository.CheckDublicate(user);
-            return UserCount;
+            bool DoesExist = _userRepository.DoesUsernameExist(user);
+            return DoesExist;
         }
 
-        public int VerifyUser(User user)
+        public bool DoesUserCombinationMatch(User user)
         {
-            int UserCount = _userRepository.VerifyUser(user);
-            return UserCount;
+            bool DoesMatch = _userRepository.DoesUserCombinationMatch(user);
+            return DoesMatch;
         }
 
-        public bool CheckIfProfileExists(int Id)
+        public bool DoesProfileExist(int Id)
         {
-            bool DoesExist = _userRepository.CheckIfProfileExists(Id);
+            bool DoesExist = _userRepository.DoesProfileExist(Id);
             return DoesExist;
         }
     }

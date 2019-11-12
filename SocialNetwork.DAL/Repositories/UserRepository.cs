@@ -44,21 +44,21 @@ namespace SocialNetwork.DAL.Repositories
             return _IUserContext.GetFollowers(user);
         }
 
-        public int CheckDublicate(User user)
+        public bool DoesUsernameExist(User user)
         {
-            int UserCount = _IUserContext.CheckDublicate(user);
-            return UserCount;
+            bool DoesExist = _IUserContext.DoesUsernameExist(user);
+            return DoesExist;
         }
 
-        public int VerifyUser(User user)
+        public bool DoesUserCombinationMatch(User user)
         {
-            int UserCount = _IUserContext.VerifyUser(user);
-            return UserCount;
+            bool DoesMatch = _IUserContext.DoesUserCombinationMatch(user);
+            return DoesMatch; 
         }
 
-        public bool CheckIfProfileExists(int Id)
+        public bool DoesProfileExist(int Id)
         {
-            bool DoesExist = _IUserContext.CheckIfProfileExists(Id);
+            bool DoesExist = _IUserContext.DoesProfileExist(Id);
             return DoesExist;
         }
 

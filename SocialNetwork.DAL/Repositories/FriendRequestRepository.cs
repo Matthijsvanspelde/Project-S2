@@ -29,14 +29,14 @@ namespace SocialNetwork.DAL.Repositories
             _IFriendRequestContext.AcceptFriendRequest(friendRequest);
         }
 
-        public int CheckDublicateFriendRequest(FriendRequest friendRequest)
+        public bool DoesFriendRequestExist(FriendRequest friendRequest)
         {
-            return _IFriendRequestContext.CheckDublicateFriendRequest(friendRequest);
+            return _IFriendRequestContext.DoesFriendRequestExist(friendRequest);
         }
 
-        public int CheckIfFollowing(FriendRequest friendRequest)
+        public bool IsFollowing(FriendRequest friendRequest)
         {
-            return _IFriendRequestContext.CheckIfFollowing(friendRequest);
+            return _IFriendRequestContext.IsFollowing(friendRequest);
         }
 
         public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)

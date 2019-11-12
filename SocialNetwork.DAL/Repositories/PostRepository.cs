@@ -24,9 +24,9 @@ namespace SocialNetwork.DAL.Repositories
             _IPostContext.LikePost(post, user);
         }
 
-        public int CheckDublicateLike(Post post, User user)
+        public bool AlreadyLiked(Post post, User user)
         {
-            return _IPostContext.CheckDublicateLike(post, user);
+            return _IPostContext.AlreadyLiked(post, user);
         }
 
         public IEnumerable<Post> GetPost(User user)

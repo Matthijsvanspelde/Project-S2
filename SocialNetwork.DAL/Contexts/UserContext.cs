@@ -16,8 +16,7 @@ namespace SocialNetwork.DAL.Contexts
         {
             _connection = connection;
         }
-
-        //User Authentication
+       
         public void RegisterUser(User user)
         {
             _connection.SqlConnection.Open();
@@ -36,33 +35,33 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
         }
 
-        public int CheckDublicate(User user)
+        public bool DoesUsernameExist(User user)
         {
             _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("CheckDublicate", _connection.SqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("CheckDublicateUsername", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@Username", user.Username);
-            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            var returnParameter = sqlCommand.Parameters.Add("@Return", SqlDbType.Bit);
             returnParameter.Direction = ParameterDirection.ReturnValue;
             sqlCommand.ExecuteNonQuery();
-            int UserCount = (int)returnParameter.Value;
+            bool DoesExist = Convert.ToBoolean(returnParameter.Value);
             _connection.SqlConnection.Close();
-            return UserCount;
+            return DoesExist;
         }
 
-        public int VerifyUser(User user)
+        public bool DoesUserCombinationMatch(User user)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("VerifyUser", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@Username", user.Username);
             sqlCommand.Parameters.AddWithValue("@Password", user.Password);
-            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            var returnParameter = sqlCommand.Parameters.Add("@Return", SqlDbType.Bit);
             returnParameter.Direction = ParameterDirection.ReturnValue;
             sqlCommand.ExecuteNonQuery();
-            int UserCount = (int)returnParameter.Value;
+            bool DoesMatch = Convert.ToBoolean(returnParameter.Value);
             _connection.SqlConnection.Close();
-            return UserCount;
+            return DoesMatch;
         }
 
         public User GetSessionId(User user)
@@ -82,8 +81,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
             return user;
         }
-
-        //User Profile
+        
         public User GetUserDetails(User user)
         {
             _connection.SqlConnection.Open();
@@ -153,7 +151,7 @@ namespace SocialNetwork.DAL.Contexts
             return Friendlist;
         }
 
-        public bool CheckIfProfileExists(int Id)
+        public bool DoesProfileExist(int Id)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("CheckIfProfileExists", _connection.SqlConnection);
@@ -167,7 +165,6 @@ namespace SocialNetwork.DAL.Contexts
             return DoesExist;
         }
 
-        //User Search
         public IEnumerable<User> GetSearchResult(string Searchterm)
         {
             _connection.SqlConnection.Open();

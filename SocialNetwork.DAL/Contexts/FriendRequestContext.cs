@@ -29,34 +29,34 @@ namespace SocialNetwork.DAL.Contexts
             _connection.SqlConnection.Close();
         }
 
-        public int CheckDublicateFriendRequest(FriendRequest friendRequest)
+        public bool DoesFriendRequestExist(FriendRequest friendRequest)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("CheckDublicateFriendRequest", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@SenderId", friendRequest.SenderId);
             sqlCommand.Parameters.AddWithValue("@RecieverId", friendRequest.RecieverId);
-            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
             returnParameter.Direction = ParameterDirection.ReturnValue;
             sqlCommand.ExecuteNonQuery();
-            int RequestCount = (int)returnParameter.Value;
+            bool DoesExist = Convert.ToBoolean(returnParameter.Value);
             _connection.SqlConnection.Close();
-            return RequestCount;
+            return DoesExist;
         }
 
-        public int CheckIfFollowing(FriendRequest friendRequest)
+        public bool IsFollowing(FriendRequest friendRequest)
         {
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("CheckIfFollowing", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
             sqlCommand.Parameters.AddWithValue("@Follower", friendRequest.SenderId);
             sqlCommand.Parameters.AddWithValue("@Followed", friendRequest.RecieverId);
-            var returnParameter = sqlCommand.Parameters.Add("@Count", SqlDbType.Int);
+            var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
             returnParameter.Direction = ParameterDirection.ReturnValue;
             sqlCommand.ExecuteNonQuery();
-            int FollowingCount = (int)returnParameter.Value;
+            bool IsFollowing = Convert.ToBoolean(returnParameter.Value);
             _connection.SqlConnection.Close();
-            return FollowingCount;
+            return IsFollowing;
         }
 
         public IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest)

@@ -30,13 +30,14 @@ namespace SocialNetwork.Controllers
             return View();
         }
 
-        public IActionResult VerifyUser(User user)
+        [HttpPost]
+        public IActionResult VerifyUserCombination(User user)
         {
             LoginViewModel loginViewModel = new LoginViewModel()
             {
                 ErrorMessage = "",
             };
-            if (_userLogic.VerifyUser(user) == 1)
+            if (_userLogic.DoesUserCombinationMatch(user) == true)
             {
                 user = _userLogic.GetSessionId(user);
                 HttpContext.Session.SetInt32("Id", user.Id);
@@ -63,13 +64,14 @@ namespace SocialNetwork.Controllers
         [HttpPost]
         public JsonResult DoesUserNameExist(User user)
         {
-            if (_userLogic.CheckDublicate(user) >= 1)
+            if (_userLogic.DoesUsernameExist(user) == true)
             {
                 return Json(user == null);
             }
             return Json(user != null);
         }
-        
+
+        [HttpPost]
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
