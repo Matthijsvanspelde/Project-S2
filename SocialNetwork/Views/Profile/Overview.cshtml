@@ -85,7 +85,7 @@
 				{
 					if (Model.Requested == false)
 					{
-						if (Model.Added == false)
+						if (Model.Following == false)
 						{
 							<div class="profileaction">
 								<a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
@@ -138,6 +138,16 @@
 				</div>
 				<div class="likecontainer">
 					<a class="likeBtn" asp-controller="Profile" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
+					@if (item.UserId == Context.Session.GetInt32("Id"))
+					{
+						<a class="likeBtn">|</a>
+						<a method="post" class="likeBtn" asp-controller="Profile" asp-action="DeletePost" asp-route-PostId="@item.PostId">Delete</a>
+					}
+					<a class="postlikes">@item.Likes Like(s)</a>
+					<br />
+				</div>
+				<div class="likecontainer">
+					<a class="likeBtn" asp-controller="Profile" asp-action="LikePost" asp-route-PostId="@item.PostId" asp-route-RecieverId="@item.UserId">Like</a>
 					@if (item.UserId == Context.Session.GetInt32("Id"))
 					{
 						<a class="likeBtn">|</a>

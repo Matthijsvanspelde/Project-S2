@@ -229,7 +229,7 @@ namespace SocialNetwork.Controllers
             return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");       
         }
 
-        public IActionResult LikePost(int PostId)
+        public IActionResult LikePost(int PostId, int RecieverId)
         {
             User user = new User();
             user.Id = (int)HttpContext.Session.GetInt32("Id");
@@ -239,7 +239,7 @@ namespace SocialNetwork.Controllers
             {
                 _postLogic.LikePost(post, user);
             }
-            return RedirectToAction("SearchedProfile/" + user.Id, "Profile");
+            return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");
         }
     }
 }
