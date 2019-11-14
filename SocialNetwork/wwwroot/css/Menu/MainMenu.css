@@ -7,12 +7,25 @@
     position: fixed;
     width: 100%;
     z-index: 1;
+    height: 52px;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 li {
     float: left;
 }
+
+    li hr {
+        height: 2px;
+        width: 0;
+        background-color: white;
+        border: none;
+        margin: 0;
+        position: relative;
+        display: block;
+        margin-top: -14px; 
+        border-radius: 8px;
+    }
 
     li a {
         display: block;
@@ -23,14 +36,32 @@ li {
         font-size: 16px;
     }
 
-        li a:hover:not(.active) {
-            background-color: #4e79ce;
+        li a:hover + hr {
+            width: 80%;
+            left: 10%;
+            -webkit-animation-name: animatemenu;
+            -webkit-animation-duration: .35s;
+            animation-name: animatemenu;
+            animation-duration: .35s
         }
 
-.active {
-    background-color: #4167B2;
+
+@-webkit-keyframes animatemenu {
+    from {
+        width: 0%
+    }
+
+    to {
+        width: 80%
+    }
 }
 
-    .active:hover {
-        background-color: #4e79ce;
+@keyframes animatemenu {
+    from {
+        width: 0%
     }
+
+    to {
+        width: 80%
+    }
+}

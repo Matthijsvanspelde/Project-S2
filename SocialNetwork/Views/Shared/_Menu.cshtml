@@ -1,8 +1,9 @@
-﻿<ul>
-    
-    <li><a href="@Url.Action("NewsFeed", "Home")"><img src="~/images/news.png" style="height: 16px; width: 16px; margin-right: 6px;"/>News Feed</a></li>
-    <li><a href="@Url.Action("Search", "Search")"><img src="~/images/Search.png" style="height: 16px; width: 16px; margin-right: 6px;" />Search</a></li>
-    <li><a href="@Url.Action("Overview", "Profile")"><img src="~/images/Profile.png" style="height: 16px; width: 16px; margin-right: 6px;" />Profile</a></li>
-    <li><a href="@Url.Action("FriendRequests", "Home")"><img src="~/images/Notification.png" style="height: 16px; width: 16px; margin-right: 6px;" />Follow Requests</a></li>
-    <li style="float:right"><a class="active" href="@Url.Action("Logout", "Account")">Logout</a></li>
+﻿<ul class="menu">   
+    <li><a href="@Url.Action("NewsFeed", "Home")">News Feed</a><hr></li>
+    <li><a href="@Url.Action("Search", "Search")">Search</a><hr></li>
+    <li><a href="@Url.Action("Overview", "Profile")">Profile</a><hr></li>
+    <li><a href="@Url.Action("FriendRequests", "Home")">Follow Requests</a><hr></li>
+    <li style="float:right"><a class="active" href="@Url.Action("Logout", "Account")">Logout</a><hr></li>
 </ul>
+
+

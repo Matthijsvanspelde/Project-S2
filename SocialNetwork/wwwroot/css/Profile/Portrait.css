@@ -3,12 +3,11 @@
     padding: 4px;
     width: 306px;
     height: 520px;
-    margin: 6px 4px 4px 4px;
+    margin: 12px 4px 4px 4px;
     overflow: hidden;
     float: left;
     font-size: 16px;
     position: relative;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
     .UserPortrait p {
@@ -61,7 +60,6 @@
     margin: 6px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     position: relative;
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;

@@ -1,23 +1,20 @@
 ﻿.searchField {
-    width: 714px;
-    height: 26px;
-    border: 1px solid #dddddd;
-    padding: 2px;
+    width: 710px;
+    height: 32px;
+    border: none;
+    padding: 2px 2px 2px 8px;
     margin-right: -5px;
-    margin-top: 4px;
+    margin-top: 12px;
     border-bottom-left-radius: 2px;
     border-top-left-radius: 2px;
 }
 
 .searchButton {
     width: 72px;
-    height: 32px;
-    border-bottom: 1px solid #dddddd;
-    border-top: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
-    border-left: none;
+    height: 36px;
+    border: none;
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
     cursor: pointer;
-    margin-top: 4px;
+    margin-top: 12px;
 }

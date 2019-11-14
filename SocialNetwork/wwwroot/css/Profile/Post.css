@@ -3,9 +3,8 @@
     float: right;
     width: 462px;
     text-align: center;
-    margin: 6px 4px 4px 4px;
+    margin: 12px 4px 4px 4px;
     padding: 4px;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
     .newpost a {
@@ -37,7 +36,6 @@
     width: 784px;
     padding: 4px 4px 0 4px;
     margin: 12px auto;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
 .postBtn {
