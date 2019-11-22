@@ -1,0 +1,41 @@
+﻿.Message-bar {
+    width: 100%;
+    margin: -12px 0 0 0;
+}
+
+
+.chatInput {
+    width: 680px;
+    height: 31px;
+    border: none;
+    padding: 2px 2px 2px 8px;
+    margin-right: -5px;
+    margin-top: 12px;
+    border-bottom-left-radius: 2px;
+    border-top: 1px solid #dddddd;
+    outline: none;
+}
+
+.chatBtn {
+    background-color: white;
+    width: 110px;
+    height: 36px;
+    border: none;
+    border-bottom-right-radius: 2px;
+    cursor: pointer;
+    margin-top: 12px;
+    color: #D55844;
+    font-weight: bold;
+    border-top: 1px solid #dddddd;
+}
+
+.messagesList {
+    height: 500px;
+    width: 100%;
+    background-color: #ffffff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    overflow-y: scroll;
+    margin: 12px 0 0 0;
+   
+}

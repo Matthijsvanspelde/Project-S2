@@ -12,6 +12,7 @@ using SocialNetwork.DAL.Repositories;
 using SocialNetwork.Logic;
 using SocialNetwork.Logic.ILogic;
 using System;
+using SocialNetwork.Hubs;
 
 namespace SocialNetwork
 {
@@ -27,6 +28,7 @@ namespace SocialNetwork
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -59,6 +61,8 @@ namespace SocialNetwork
             services.AddScoped<ICommentContext, CommentContext>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<ICommentLogic, CommentLogic>();
+            services.AddSignalR();
+            services.AddHttpContextAccessor();
         }
 
 
@@ -85,6 +89,11 @@ namespace SocialNetwork
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Account}/{action=Login}/{id?}");
+            });
+
+            app.UseSignalR(route =>
+            {
+                route.MapHub<ChatHub>("/ChatHub");
             });
         }
     }

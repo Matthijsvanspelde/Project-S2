@@ -2,7 +2,8 @@
     background-color: white;
     float: left;
     width: 392px;
-    height: 580px;
+    height: 564px;
+    border-radius: 3px;
     margin: 4px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
@@ -26,11 +27,14 @@
 }
 
 .likeBtn {
-    background-color: white;
-    width: 50px;
+    width: 80px;
     text-decoration: none;
-    color: #7c7c7c;
+    color: #9c9c9c;
     padding: 4px 6px 4px 6px;
+    border: 1px solid #dddddd;
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: #eeeeee;
 }
 
 .postlikes {
@@ -47,18 +51,15 @@
     text-align: center;
     margin: 12px 4px 4px 4px;
     padding: 4px;
+    border-radius: 3px;
 }
 
     .newpost-newsfeed a {
-        color: blue;
+        color: #D55844;
         font-size: 13px;
         text-decoration: none;
+        font-weight: bold;
     }
-
-        .newpost-newsfeed a:hover {
-            color: #8d8dff;
-            cursor: pointer;
-        }
 
 .comment-container {
     position: absolute;

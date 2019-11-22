@@ -5,19 +5,24 @@
     font-size: 16px;
 }
 
-.follower-container {
-    background-color: white;
-    float: left;
-    width: 314px;
-    margin: 4px;
-    overflow: hidden;
-    padding-top: 4px;
-}
 
 .follower-header {
     text-align: center;
     font-size: 18px;
-    height: 26px;
+    border-top: 1px solid #dddddd;
+}
+
+.following-header {
+    text-align: center;
+    font-size: 18px;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+
+.follower-header-popup {
+    text-align: center;
+    font-size: 18px;
+    height: 30px;
 }
 
 .FollowerPopup {
@@ -25,7 +30,7 @@
     float: left;
     padding-top: 12px;
     width: 400px;
-    height: 286px;
+    height: 290px;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -62,15 +67,13 @@
 }
 
 .popup-toggle {
-    color: white;
+    color: #808080;
     font-size: 13px;
     text-decoration: none;
     text-align: center;
     padding: 4px;
-    background-color: #4167B2;
 }
 
     .popup-toggle:hover {
-        background-color: #4e79ce;
         cursor: pointer;
     }

@@ -52,6 +52,8 @@ namespace SocialNetwork.Controllers
                 profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
                 profileViewModel.Followers = new List<User>();
                 profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
+                profileViewModel.Following = new List<User>();
+                profileViewModel.Following.AddRange(_userLogic.GetFollowing(user));
                 return View(profileViewModel);
             }
         }
@@ -146,11 +148,13 @@ namespace SocialNetwork.Controllers
                         Img = profilePicture.Image,
                     };
                     profileViewModel.Requested = _friendRequestLogic.DoesFriendRequestExist(friendRequest);
-                    profileViewModel.Following = _friendRequestLogic.IsFollowing(friendRequest);
+                    profileViewModel.IsFollowing = _friendRequestLogic.IsFollowing(friendRequest);
                     profileViewModel.Posts = new List<Post>();
                     profileViewModel.Posts.AddRange(_postLogic.GetPost(user));
                     profileViewModel.Followers = new List<User>();
                     profileViewModel.Followers.AddRange(_userLogic.GetFollowers(user));
+                    profileViewModel.Following = new List<User>();
+                    profileViewModel.Following.AddRange(_userLogic.GetFollowing(user));
                     return View("Overview", profileViewModel);
                 }
                 else

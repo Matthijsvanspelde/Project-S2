@@ -2,6 +2,7 @@
     background-color: white;
     width: 784px;
     padding: 4px;  
+    border-radius: 3px;
 }
 
 .recievedTime {
@@ -12,22 +13,19 @@
 .friendRequest-action {
     float: right;
     font-size: 14px;
-    width: 100px;
-    margin: -16px 8px -8px 8px;
+    width: 140px;
+    margin: -8px 8px -8px 8px;
 }
 
     .friendRequest-action a {
         text-decoration: none;
         margin-right: 10px;
-        color: blue;
+        color: #D55844;
+        font-weight: bold;
     }
-
-        .friendRequest-action a:hover {
-            color: #8d8dff;
-            cursor: pointer;
-        }
 
 .friendRequest-wrapper {
     background-color: white;
     margin: 12px 4px 4px 4px;
+    border-radius: 3px;
 }

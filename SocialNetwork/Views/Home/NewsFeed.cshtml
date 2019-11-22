@@ -30,15 +30,7 @@
                             <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
                             <a class="postlikes">@item.Likes Like(s)</a>
                             <br />
-                        </div>
-                        <div class="comment-container">
-                            <div class="comment-form">
-                                <form asp-controller="Home" asp-action="SetComment" asp-route-PostId="@item.PostId">
-                                    <input name="Message" type="text" placeholder="Leave a comment..." class="comment-input">
-                                    <input type="submit" value="Send" class="comment-btn">
-                                </form>
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
                 }
             </div>    

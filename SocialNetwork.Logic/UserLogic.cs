@@ -44,6 +44,11 @@ namespace SocialNetwork.Logic
             return _userRepository.GetFollowers(user);
         }
 
+        public IEnumerable<User> GetFollowing(User user)
+        {
+            return _userRepository.GetFollowing(user);
+        }
+
         public bool DoesUsernameExist(User user)
         {
             bool DoesExist = _userRepository.DoesUsernameExist(user);

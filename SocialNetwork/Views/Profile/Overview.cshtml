@@ -7,27 +7,62 @@
 
 <script language="javascript" type='text/javascript'>
 	function ShowDivFollowers() {
-		if (document.getElementById('Popup').style.visibility = 'hidden') {
-			document.getElementById('Popup').style.visibility = 'visible';
+		if (document.getElementById('PopupFollowers').style.visibility = 'hidden') {
+			document.getElementById('PopupFollowers').style.visibility = 'visible';
 		}
 	}
 
 	function HideDivFollowers() {
-		if (document.getElementById('Popup').style.visibility = 'visible') {
-			document.getElementById('Popup').style.visibility = 'hidden';
+		if (document.getElementById('PopupFollowers').style.visibility = 'visible') {
+			document.getElementById('PopupFollowers').style.visibility = 'hidden';
+		}
+	}
+
+	function ShowDivFollowing() {
+		if (document.getElementById('PopupFollowing').style.visibility = 'hidden') {
+			document.getElementById('PopupFollowing').style.visibility = 'visible';
+		}
+	}
+
+	function HideDivFollowing() {
+		if (document.getElementById('PopupFollowing').style.visibility = 'visible') {
+			document.getElementById('PopupFollowing').style.visibility = 'hidden';
 		}
 	}
 </script>
-<div id="Popup" class="popup-container">
+<div id="PopupFollowers" class="popup-container">
 	<div class="FollowerPopup">
 		<div class="popup-action">
 			<a onclick="javascript:HideDivFollowers()" href="#?Followers">&#10006;</a>
 		</div>
-		<div class="follower-header">
+		<div class="follower-header-popup">
 			<a>Followers (@Model.Followers.Count)</a>
 		</div>
 		<div class="follower-overflow">
 			@foreach (var item in Model.Followers)
+			{
+				<div class="follower">
+					<a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
+						@item.Firstname
+						@item.Middlename
+						@item.Lastname
+					</a>
+				</div>
+			}
+		</div>
+	</div>
+</div>
+
+<div id="PopupFollowing" class="popup-container">
+	<div class="FollowerPopup">
+		<div class="popup-action">
+			<a onclick="javascript:HideDivFollowing()" href="#?Followers">&#10006;</a>
+		</div>
+		<div class="follower-header-popup">
+			<a>Following (@Model.Following.Count)</a>
+		</div>
+		<div class="follower-overflow">
+			@foreach (var item in Model.Following)
 			{
 				<div class="follower">
 					<a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
@@ -47,6 +82,7 @@
 		<div class="profile-left-wrapper">
 			<div class="UserPortrait">
 				<div class="username-display">
+					<br />
 					<div class="profile-picture">
 						@if (Model.Img != null)
 						{
@@ -65,14 +101,26 @@
 					</p>
 				</div>
 
-				<p style="color: grey; font-size: 14px">Birthday</p>
-				<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.Birthdate)</p>
-				<p style="color: grey; font-size: 14px">Country</p>
-				<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.Country)</p>
-				<p style="color: grey; font-size: 14px">City</p>
-				<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.City)</p>
-				<p style="color: grey; font-size: 14px">About @Html.DisplayFor(model => model.Firstname)</p>
-				<p style="margin-bottom: 26px; line-height: 16px;">@Html.DisplayFor(model => model.Biography)</p>
+				<div class="info-container">
+					<p style="color: grey; font-size: 14px">Birthday</p>
+					<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.Birthdate)</p>
+					<p style="color: grey; font-size: 14px">Country</p>
+					<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.Country)</p>
+					<p style="color: grey; font-size: 14px">City</p>
+					<p style="margin-bottom: 26px;">@Html.DisplayFor(model => model.City)</p>
+					<p style="color: grey; font-size: 14px">About @Html.DisplayFor(model => model.Firstname)</p>
+					<p style="margin-bottom: 26px; line-height: 16px;">@Html.DisplayFor(model => model.Biography)</p>
+				</div>
+
+				<div class="follower-header">
+					<div class="popup-toggle" onclick="javascript:ShowDivFollowers()" href="#?Followers">Followers</div>
+					<a>@Model.Followers.Count</a>
+				</div>
+
+				<div class="following-header">
+					<div class="popup-toggle" onclick="javascript:ShowDivFollowing()" href="#?Followers">Following</div>
+					<a>@Model.Following.Count</a>
+				</div>
 
 				@if (Model.Id == Context.Session.GetInt32("Id"))
 				{
@@ -84,7 +132,7 @@
 				{
 					if (Model.Requested == false)
 					{
-						if (Model.Following == false)
+						if (Model.IsFollowing == false)
 						{
 							<div class="profileaction">
 								<a asp-controller="Profile" asp-action="SendFriendRequest" asp-route-RecieverId="@Model.Id">Follow</a>
@@ -93,25 +141,19 @@
 						else
 						{
 							<div class="profileaction-frozen">
-								<a style="color: #ffffff;">Following</a>
+								<a>Following</a>
 							</div>
 						}
 					}
 					else if (Model.Requested == true)
 					{
 						<div class="profileaction-frozen">
-							<a style="color: #ffffff;">Requested</a>
+							<a>Requested</a>
 						</div>
 					}
 				}
 
-			</div>
-			<div class="follower-container">
-				<div class="follower-header">
-					<a>Followers (@Model.Followers.Count)</a>
-				</div>
-				<div class="popup-toggle" onclick="javascript:ShowDivFollowers()" href="#?Followers">Show followers</div>
-			</div>
+			</div>			
 		</div>
 
 		@if (Model.Id == Context.Session.GetInt32("Id"))
@@ -126,7 +168,15 @@
 				<div class="postheader">
 					<a>@item.Firstname @item.Middlename @item.Lastname</a><br />
 					<a class="posttime">@item.Posted</a>
-				</div>
+					@if (item.UserId == Context.Session.GetInt32("Id"))
+					{
+						<div class="post-popup">
+							<a style="font-size: 12px" method="post" asp-controller="Profile" asp-action="DeletePost" asp-route-PostId="@item.PostId">Delete</a>
+						</div>
+					}
+					</div>
+					
+
 
 				<div class="postmessage">
 					<a class="posttitle">@item.Title</a><br />
@@ -136,25 +186,10 @@
 					<img src="data:image;base64,@Convert.ToBase64String(item.Image)">
 				</div>
 				<div class="likecontainer">
-					<a class="likeBtn" asp-controller="Profile" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
-					@if (item.UserId == Context.Session.GetInt32("Id"))
-					{
-						<a class="likeBtn">|</a>
-						<a method="post" class="likeBtn" asp-controller="Profile" asp-action="DeletePost" asp-route-PostId="@item.PostId">Delete</a>
-					}
-					<a class="postlikes">@item.Likes Like(s)</a>
-					<br />
-				</div>
-				<div class="likecontainer">
 					<a class="likeBtn" asp-controller="Profile" asp-action="LikePost" asp-route-PostId="@item.PostId" asp-route-RecieverId="@item.UserId">Like</a>
-					@if (item.UserId == Context.Session.GetInt32("Id"))
-					{
-						<a class="likeBtn">|</a>
-						<a method="post" class="likeBtn" asp-controller="Profile" asp-action="DeletePost" asp-route-PostId="@item.PostId">Delete</a>
-					}
 					<a class="postlikes">@item.Likes Like(s)</a>
 					<br />
-				</div>
+				</div>                
 			</div>
 		}
 	</div>

@@ -5,37 +5,36 @@
     text-align: center;
     margin: 12px 4px 4px 4px;
     padding: 4px;
+    border-radius: 3px;
 }
 
     .newpost a {
-        color: blue;
+        color: #D55844;
         font-size: 13px;
         text-decoration: none;
+        font-weight: bold;
     }
 
         .newpost a:hover {
-            color: #8d8dff;
             cursor: pointer;
         }
 
 
 .postField {
-    width: 788px;
+    width: 768px;
     padding: 2px;
     height: 126px;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    border-left: none;
-    border-right: none;
+    border: 1px solid #dddddd;
     resize: none;
-    margin-left: -4px;
 }
 
 .post-form {
     background-color: white;
     width: 784px;
-    padding: 4px 4px 0 4px;
+    padding: 4px 4px 4px 4px;
     margin: 12px auto;
+    border-radius: 3px
+  
 }
 
 .postBtn {
@@ -44,14 +43,12 @@
     border: none;
     padding: 4px;
     cursor: pointer;
-    background-color: #3A559D;
-    color: white;
+    background-color: transparent;
+    color: #D55844;
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
 
-    .postBtn:hover {
-        background-color: #4766b9;
-    }
 
 .postimage img {
     height: 420px;
@@ -68,4 +65,11 @@
 .postimage {
     overflow: hidden;
     margin: auto auto 32px auto;
+}
+
+.titlefield {
+    width: 768px;
+    height: 26px;
+    border: 1px solid #dddddd;
+    padding: 2px;
 }

@@ -1,13 +1,13 @@
 ﻿.UserPortrait {
     background-color: white;
-    padding: 4px;
     width: 306px;
-    height: 520px;
+    height: 566px;
     margin: 12px 4px 4px 4px;
     overflow: hidden;
     float: left;
     font-size: 16px;
     position: relative;
+    border-radius: 3px;
 }
 
     .UserPortrait p {
@@ -15,7 +15,7 @@
     }
 
 .profileaction a {
-    color: white;
+    color: #D55844;
     font-size: 13px;
     text-decoration: none;
     text-align: center;
@@ -24,15 +24,12 @@
     width: 100%;
     bottom: 0;
     position: absolute;
-    background-color: #4167B2;
+    font-weight: bold;
 }
 
-    .profileaction a:hover {
-        background-color: #4e79ce;
-    }
 
 .profileaction-frozen a {
-    color: white;
+    color: #D55844;
     font-size: 13px;
     text-decoration: none;
     text-align: center;
@@ -41,15 +38,14 @@
     width: 100%;
     bottom: 0;
     position: absolute;
-    background-color: #7c7c7c;
 }
 
 .username-display {
     text-align: center;
     font-size: 18px;
-    height: 210px;
-    border-bottom: 1px solid #dddddd;
-    margin: 0;
+    height: 100px;
+    margin: 0 0 150px 0;
+    background-color: #D55844;
 }
 
 .post-container {
@@ -57,20 +53,53 @@
     float: right;
     width: 470px;
     min-height: 300px;
-    margin: 6px 4px 4px 4px;
+    margin: 12px 4px 4px 4px;
     position: relative;
     word-wrap: break-word;
     position: relative;
     -webkit-animation-name: animatebottom;
     -webkit-animation-duration: 1s;
     animation-name: animatebottom;
-    animation-duration: 1s
+    animation-duration: 1s;
+    border-radius: 3px;
+}
+
+.post-options{
+    font-size: 34px;
+    color: #9c9c9c;
+    float: right;
+    margin-top: -20px;   
+}
+
+    .post-options a {
+        text-decoration: none;
+    }
+
+.post-popup  {
+    float: right;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    width: 80px;
+    background-color: #eeeeee;
+    margin: -14px 6px 0 0;
+    padding: 4px;
+}
+
+.post-popup a{
+    color: #9c9c9c;
+    text-decoration: none;    
+}
+
+.post-options a:hover {
+    color: #D55844;
+    cursor: pointer;
 }
 
 .postheader {
     width: 462px;
     height: 40px;
     padding: 4px;
+    border-bottom: 1px solid #dddddd;
 }
 
 .posttime {
@@ -82,7 +111,8 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 26px;
+    height: 24px;
+    padding: 4px;
     font-size: 16px;
 }
 
@@ -97,7 +127,7 @@
 
 .profile-picture img {
     height: 100%;
-    width: 100%;
+    width: 100%;    
     object-fit: cover;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -107,14 +137,20 @@
 }
 
 .profile-picture {
-    height: 178px;
-    width: 178px;
+    height: 148px;
+    width: 148px;
     overflow: hidden;
     margin: auto;
-    border-radius: 92px;
+    border-radius: 98px;    
+    border: 4px solid white;
+    background-color: white;
 }
 
 .profile-left-wrapper {
     float: left;
     width: 312px;
+}
+
+.info-container {
+    padding: 0 4px 0 4px;
 }

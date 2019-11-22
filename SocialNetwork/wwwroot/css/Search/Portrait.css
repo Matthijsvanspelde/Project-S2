@@ -4,19 +4,16 @@
     width: 784px;
     height: 120px;
     margin: 8px 0 8px 0;
+    border-radius: 3px;
 }
 
-.username {
+.username
+{
     font-size: 16px;
     text-decoration: none;
-    color: black;
+    color: #000000;
 }
 
-    .username:hover {
-        font-size: 16px;
-        text-decoration: none;
-        color: #878787;
-    }
 
 .profile-picture-search img {
     height: 100%;

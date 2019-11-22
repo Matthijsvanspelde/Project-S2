@@ -4,18 +4,7 @@
     padding: 6px 6px 0 6px;
     float: left;
     margin: 12px 8px 0 auto;
-}
-
-
-.titlefield {
-    width: 788px;
-    height: 26px;
-    border-left: none;
-    border-right: none;
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    padding: 2px;
-    margin-left: -4px;
+    border-radius: 3px;
 }
 
 .bioField {
@@ -39,6 +28,7 @@
     float: left;
     padding: 6px 6px 0 6px;
     margin: 12px auto 48px auto;
+    border-radius: 3px;
 }
 
 .uploadbtn {
@@ -47,14 +37,12 @@
     border: none;
     padding: 4px;
     cursor: pointer;
-    background-color: #4167B2;
-    color: white;
+    background-color: transparent;
+    color: #D55844;
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
 
-    .uploadbtn:hover {
-        background-color: #4e79ce;
-    }
 
 .saveBtn {
     width: 440px;
@@ -62,11 +50,8 @@
     border: none;
     padding: 4px;
     cursor: pointer;
-    background-color: #4167B2;
-    color: white;
+    background-color: transparent;
+    color: #D55844;
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
 }
-
-    .saveBtn:hover {
-        background-color: #4e79ce;
-    }

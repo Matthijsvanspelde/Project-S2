@@ -44,6 +44,11 @@ namespace SocialNetwork.DAL.Repositories
             return _IUserContext.GetFollowers(user);
         }
 
+        public IEnumerable<User> GetFollowing(User user)
+        {
+            return _IUserContext.GetFollowing(user);
+        }
+
         public bool DoesUsernameExist(User user)
         {
             bool DoesExist = _IUserContext.DoesUsernameExist(user);
