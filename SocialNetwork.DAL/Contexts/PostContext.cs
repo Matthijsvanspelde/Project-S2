@@ -19,117 +19,159 @@ namespace SocialNetwork.DAL.Contexts
 
         public void SetPost(Post post, User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("SetPost", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Title", post.Title);
-            sqlCommand.Parameters.AddWithValue("@Message", post.Message);
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            sqlCommand.Parameters.AddWithValue("@DateTime", post.Posted);
-            sqlCommand.Parameters.AddWithValue("@Image", post.Image);
-            sqlCommand.ExecuteNonQuery();
-            _connection.SqlConnection.Close();
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SetPost", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Title", post.Title);
+                sqlCommand.Parameters.AddWithValue("@Message", post.Message);
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                sqlCommand.Parameters.AddWithValue("@DateTime", post.Posted);
+                sqlCommand.Parameters.AddWithValue("@Image", post.Image);
+                sqlCommand.ExecuteNonQuery();
+                _connection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
         
         public void LikePost(Post post, User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("LikePost", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            sqlCommand.ExecuteNonQuery();
-            _connection.SqlConnection.Close();
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("LikePost", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                sqlCommand.ExecuteNonQuery();
+                _connection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }           
         }
 
         public bool AlreadyLiked(Post post, User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("CheckDublicateLikes", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
-            sqlCommand.ExecuteNonQuery();
-            bool AlreadyLiked = Convert.ToBoolean(returnParameter.Value);
-            _connection.SqlConnection.Close();
-            return AlreadyLiked;
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("CheckDublicateLikes", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                sqlCommand.ExecuteNonQuery();
+                bool AlreadyLiked = Convert.ToBoolean(returnParameter.Value);
+                _connection.SqlConnection.Close();
+                return AlreadyLiked;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public IEnumerable<Post> GetPost(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("Getpost", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            var Posts = new List<Post>();
-            sqlCommand.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("Getpost", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                var Posts = new List<Post>();
+                sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    var post = new Post
+                    while (reader.Read())
                     {
-                        UserId = reader.GetInt32(0),
-                        PostId = reader.GetInt32(1),
-                        Title = reader.GetString(2),
-                        Message = reader.GetString(3),
-                        Firstname = reader.GetString(4),                        
-                        Middlename = reader.GetString(5),
-                        Lastname = reader.GetString(6),
-                        Posted = reader.GetDateTime(7),
-                        Likes = reader.GetInt32(8),
-                        Image = (byte[])reader["Image"],
-                };
-                    Posts.Add(post);
+                        var post = new Post
+                        {
+                            UserId = reader.GetInt32(0),
+                            PostId = reader.GetInt32(1),
+                            Title = reader.GetString(2),
+                            Message = reader.GetString(3),
+                            Firstname = reader.GetString(4),
+                            Middlename = reader.GetString(5),
+                            Lastname = reader.GetString(6),
+                            Posted = reader.GetDateTime(7),
+                            Likes = reader.GetInt32(8),
+                            Image = (byte[])reader["Image"],
+                        };
+                        Posts.Add(post);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return Posts;
             }
-            _connection.SqlConnection.Close();
-            return Posts;
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public IEnumerable<Post> GetFollowingPosts(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("GetFollowingPosts", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            var Posts = new List<Post>();
-            sqlCommand.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("GetFollowingPosts", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                var Posts = new List<Post>();
+                sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    var post = new Post
+                    while (reader.Read())
                     {
-                        UserId = reader.GetInt32(0),
-                        PostId = reader.GetInt32(1),
-                        Title = reader.GetString(2),
-                        Message = reader.GetString(3),
-                        Posted = reader.GetDateTime(4),
-                        Likes = reader.GetInt32(5),
-                        Firstname = reader.GetString(6),
-                        Middlename = reader.GetString(7),
-                        Lastname = reader.GetString(8),
-                        Image = (byte[])reader["Image"],
-                    };                   
-                    Posts.Add(post);
+                        var post = new Post
+                        {
+                            UserId = reader.GetInt32(0),
+                            PostId = reader.GetInt32(1),
+                            Title = reader.GetString(2),
+                            Message = reader.GetString(3),
+                            Posted = reader.GetDateTime(4),
+                            Likes = reader.GetInt32(5),
+                            Firstname = reader.GetString(6),
+                            Middlename = reader.GetString(7),
+                            Lastname = reader.GetString(8),
+                            Image = (byte[])reader["Image"],
+                        };
+                        Posts.Add(post);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return Posts;
             }
-            _connection.SqlConnection.Close();           
-            return Posts;
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public void DeletePost(Post post, User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("DeletePost", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            sqlCommand.ExecuteNonQuery();
-            _connection.SqlConnection.Close();
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("DeletePost", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@PostId", post.PostId);
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                sqlCommand.ExecuteNonQuery();
+                _connection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }          
         }
     }
 }

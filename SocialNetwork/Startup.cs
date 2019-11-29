@@ -83,6 +83,8 @@ namespace SocialNetwork
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();
+            app.UseExceptionHandler("/Exception/Error");
+            app.UseStatusCodePagesWithRedirects("/Exception/Error/{0}");
 
             app.UseMvc(routes =>
             {

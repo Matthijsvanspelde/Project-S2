@@ -1,32 +1,29 @@
 ﻿.Message-bar {
     width: 100%;
-    margin: -12px 0 0 0;
+
 }
 
-
 .chatInput {
-    width: 680px;
-    height: 31px;
+    width: 789px;
+    height: 30px;
     border: none;
     padding: 2px 2px 2px 8px;
-    margin-right: -5px;
-    margin-top: 12px;
-    border-bottom-left-radius: 2px;
-    border-top: 1px solid #dddddd;
+    margin-right: -40px;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
     outline: none;
 }
 
 .chatBtn {
-    background-color: white;
-    width: 110px;
+    background: rgb(213,88,68);
+    width: 36px;
     height: 36px;
     border: none;
-    border-bottom-right-radius: 2px;
+    border-radius: 3px;
     cursor: pointer;
-    margin-top: 12px;
-    color: #D55844;
-    font-weight: bold;
-    border-top: 1px solid #dddddd;
+    margin-top: 4px;
+    color: white;
+    outline: none;
 }
 
 .messagesList {
@@ -37,5 +34,5 @@
     border-top-right-radius: 3px;
     overflow-y: scroll;
     margin: 12px 0 0 0;
-   
+    list-style: none;  
 }

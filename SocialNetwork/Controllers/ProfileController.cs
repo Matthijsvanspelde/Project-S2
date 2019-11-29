@@ -160,11 +160,9 @@ namespace SocialNetwork.Controllers
                 else
                 {
                     return View("PageNotFound", "Profile");
-                }
-                
+                }                
             }
         }
-
 
         public async Task<IActionResult> UploadPicture(IFormFile image)
         {
@@ -194,8 +192,7 @@ namespace SocialNetwork.Controllers
         public async Task<IActionResult> SetPost (Post post, User user, IFormFile image)
         {
             user.Id = (int)HttpContext.Session.GetInt32("Id");
-            post.Posted = DateTime.Now;
-            
+            post.Posted = DateTime.Now;            
             if (image != null)
             {
                 if (image.ContentType == "image/png" || image.ContentType == "image/jpeg")
@@ -212,7 +209,6 @@ namespace SocialNetwork.Controllers
                     }
                 }
             }
-
             return RedirectToAction("Post", "Profile");
         }
 
@@ -228,13 +224,16 @@ namespace SocialNetwork.Controllers
         {
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
             friendRequest.Recieved = DateTime.Now;
-            if (_friendRequestLogic.DoesFriendRequestExist(friendRequest) == false)
+            if (friendRequest.SenderId != friendRequest.RecieverId)
             {
-                if (_friendRequestLogic.IsFollowing(friendRequest) == false)
+                if (_friendRequestLogic.DoesFriendRequestExist(friendRequest) == false)
                 {
-                    _friendRequestLogic.SendFriendRequest(friendRequest);                    
+                    if (_friendRequestLogic.IsFollowing(friendRequest) == false)
+                    {
+                        _friendRequestLogic.SendFriendRequest(friendRequest);
+                    }
                 }
-            }
+            }            
             return RedirectToAction("SearchedProfile/" + friendRequest.RecieverId, "Profile");
         }
 

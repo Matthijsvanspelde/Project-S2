@@ -19,214 +19,284 @@ namespace SocialNetwork.DAL.Contexts
        
         public void RegisterUser(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("RegisterUser", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Username", user.Username);
-            sqlCommand.Parameters.AddWithValue("@Password", user.Password);
-            sqlCommand.Parameters.AddWithValue("@Firstname", user.Firstname);
-            sqlCommand.Parameters.AddWithValue("@Middlename", user.Middlename);
-            sqlCommand.Parameters.AddWithValue("@Lastname", user.Lastname);
-            sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
-            sqlCommand.Parameters.AddWithValue("@Country", "Unknown");
-            sqlCommand.Parameters.AddWithValue("@City", "Unknown");
-            sqlCommand.Parameters.AddWithValue("@Biography", "Nothing yet");
-            sqlCommand.ExecuteNonQuery();
-            _connection.SqlConnection.Close();
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("RegisterUser", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Username", user.Username);
+                sqlCommand.Parameters.AddWithValue("@Password", user.Password);
+                sqlCommand.Parameters.AddWithValue("@Firstname", user.Firstname);
+                sqlCommand.Parameters.AddWithValue("@Middlename", user.Middlename);
+                sqlCommand.Parameters.AddWithValue("@Lastname", user.Lastname);
+                sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
+                sqlCommand.Parameters.AddWithValue("@Country", "Unknown");
+                sqlCommand.Parameters.AddWithValue("@City", "Unknown");
+                sqlCommand.Parameters.AddWithValue("@Biography", "Nothing yet");
+                sqlCommand.ExecuteNonQuery();
+                _connection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public bool DoesUsernameExist(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("CheckDublicateUsername", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Username", user.Username);
-            var returnParameter = sqlCommand.Parameters.Add("@Return", SqlDbType.Bit);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
-            sqlCommand.ExecuteNonQuery();
-            bool DoesExist = Convert.ToBoolean(returnParameter.Value);
-            _connection.SqlConnection.Close();
-            return DoesExist;
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("CheckDublicateUsername", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Username", user.Username);
+                var returnParameter = sqlCommand.Parameters.Add("@Return", SqlDbType.Bit);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                sqlCommand.ExecuteNonQuery();
+                bool DoesExist = Convert.ToBoolean(returnParameter.Value);
+                _connection.SqlConnection.Close();
+                return DoesExist;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }
         }
 
         public bool DoesUserCombinationMatch(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("VerifyUser", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Username", user.Username);
-            sqlCommand.Parameters.AddWithValue("@Password", user.Password);
-            var returnParameter = sqlCommand.Parameters.Add("@Return", SqlDbType.Bit);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
-            sqlCommand.ExecuteNonQuery();
-            bool DoesMatch = Convert.ToBoolean(returnParameter.Value);
-            _connection.SqlConnection.Close();
-            return DoesMatch;
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("VerifyUser", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Username", user.Username);
+                sqlCommand.Parameters.AddWithValue("@Password", user.Password);
+                var returnParameter = sqlCommand.Parameters.Add("@Return", SqlDbType.Bit);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                sqlCommand.ExecuteNonQuery();
+                bool DoesMatch = Convert.ToBoolean(returnParameter.Value);
+                _connection.SqlConnection.Close();
+                return DoesMatch;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }
+            
         }
 
         public User GetSessionId(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCmd = new SqlCommand("GetSessionId", _connection.SqlConnection);
-            sqlCmd.CommandType = CommandType.StoredProcedure;
-            sqlCmd.Parameters.AddWithValue("@Username", user.Username);
-            sqlCmd.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCmd.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCmd = new SqlCommand("GetSessionId", _connection.SqlConnection);
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Parameters.AddWithValue("@Username", user.Username);
+                sqlCmd.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCmd.ExecuteReader())
                 {
-                    user.Id = reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        user.Id = reader.GetInt32(0);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return user;
             }
-            _connection.SqlConnection.Close();
-            return user;
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }           
         }
         
         public User GetUserDetails(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("GetUserDetails", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Id", user.Id);
-            sqlCommand.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("GetUserDetails", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Id", user.Id);
+                sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    user.Id = reader.GetInt32(0);
-                    user.Firstname = reader.GetString(1);
-                    user.Middlename = reader.GetString(2);
-                    user.Lastname = reader.GetString(3);
-                    user.Birthdate = reader.GetDateTime(4);
-                    user.Country = reader.GetString(5);
-                    user.City = reader.GetString(6);
-                    user.Biography = reader.GetString(7);
+                    while (reader.Read())
+                    {
+                        user.Id = reader.GetInt32(0);
+                        user.Firstname = reader.GetString(1);
+                        user.Middlename = reader.GetString(2);
+                        user.Lastname = reader.GetString(3);
+                        user.Birthdate = reader.GetDateTime(4);
+                        user.Country = reader.GetString(5);
+                        user.City = reader.GetString(6);
+                        user.Biography = reader.GetString(7);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return user;
             }
-            _connection.SqlConnection.Close();
-            return user;
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public void EditProfileDetails(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("EditProfileDetails", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Id", user.Id);
-            sqlCommand.Parameters.AddWithValue("@Firstname", user.Firstname);
-            sqlCommand.Parameters.AddWithValue("@Middlename", user.Middlename);
-            sqlCommand.Parameters.AddWithValue("@Lastname", user.Lastname);
-            sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
-            sqlCommand.Parameters.AddWithValue("@Country", user.Country);
-            sqlCommand.Parameters.AddWithValue("@City", user.City);
-            sqlCommand.Parameters.AddWithValue("@Biography", user.Biography);
-            sqlCommand.ExecuteNonQuery();
-            _connection.SqlConnection.Close();
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("EditProfileDetails", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Id", user.Id);
+                sqlCommand.Parameters.AddWithValue("@Firstname", user.Firstname);
+                sqlCommand.Parameters.AddWithValue("@Middlename", user.Middlename);
+                sqlCommand.Parameters.AddWithValue("@Lastname", user.Lastname);
+                sqlCommand.Parameters.AddWithValue("@Birthdate", user.Birthdate);
+                sqlCommand.Parameters.AddWithValue("@Country", user.Country);
+                sqlCommand.Parameters.AddWithValue("@City", user.City);
+                sqlCommand.Parameters.AddWithValue("@Biography", user.Biography);
+                sqlCommand.ExecuteNonQuery();
+                _connection.SqlConnection.Close();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }           
         }
 
         public IEnumerable<User> GetFollowers(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("GetFollowers", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            sqlCommand.ExecuteNonQuery();
-            var Friendlist = new List<User>();
-            sqlCommand.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("GetFollowers", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                sqlCommand.ExecuteNonQuery();
+                var Friendlist = new List<User>();
+                sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    var friend = new User
+                    while (reader.Read())
                     {
-                        Id = reader.GetInt32(0),
-                        Firstname = reader.GetString(1),
-                        Middlename = reader.GetString(2),
-                        Lastname = reader.GetString(3)
-                    };
-                    Friendlist.Add(friend);
+                        var friend = new User
+                        {
+                            Id = reader.GetInt32(0),
+                            Firstname = reader.GetString(1),
+                            Middlename = reader.GetString(2),
+                            Lastname = reader.GetString(3)
+                        };
+                        Friendlist.Add(friend);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return Friendlist;
             }
-            _connection.SqlConnection.Close();
-            return Friendlist;
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public IEnumerable<User> GetFollowing(User user)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("GetFollowing", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
-            sqlCommand.ExecuteNonQuery();
-            var Friendlist = new List<User>();
-            sqlCommand.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("GetFollowing", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@UserId", user.Id);
+                sqlCommand.ExecuteNonQuery();
+                var Friendlist = new List<User>();
+                sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    var friend = new User
+                    while (reader.Read())
                     {
-                        Id = reader.GetInt32(0),
-                        Firstname = reader.GetString(1),
-                        Middlename = reader.GetString(2),
-                        Lastname = reader.GetString(3)
-                    };
-                    Friendlist.Add(friend);
+                        var friend = new User
+                        {
+                            Id = reader.GetInt32(0),
+                            Firstname = reader.GetString(1),
+                            Middlename = reader.GetString(2),
+                            Lastname = reader.GetString(3)
+                        };
+                        Friendlist.Add(friend);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return Friendlist;
             }
-            _connection.SqlConnection.Close();
-            return Friendlist;
+            catch (Exception)
+            {
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
 
         public bool DoesProfileExist(int Id)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("CheckIfProfileExists", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@UserId", Id);
-            var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
-            returnParameter.Direction = ParameterDirection.ReturnValue;
-            sqlCommand.ExecuteNonQuery();
-            bool DoesExist = Convert.ToBoolean(returnParameter.Value);
-            _connection.SqlConnection.Close();
-            return DoesExist;
+            try
+            {
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("CheckIfProfileExists", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@UserId", Id);
+                var returnParameter = sqlCommand.Parameters.Add("@return", SqlDbType.Bit);
+                returnParameter.Direction = ParameterDirection.ReturnValue;
+                sqlCommand.ExecuteNonQuery();
+                bool DoesExist = Convert.ToBoolean(returnParameter.Value);
+                _connection.SqlConnection.Close();
+                return DoesExist;
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Had trouble connecting with the server.");
+            }
         }
 
         public IEnumerable<User> GetSearchResult(string Searchterm)
         {
-            _connection.SqlConnection.Open();
-            SqlCommand sqlCommand = new SqlCommand("SearchUsers", _connection.SqlConnection);
-            sqlCommand.CommandType = CommandType.StoredProcedure;
-            sqlCommand.Parameters.AddWithValue("@Searchterm", Searchterm);
-            var SearchResult = new List<User>();
-            sqlCommand.ExecuteNonQuery();
-            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                _connection.SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SearchUsers", _connection.SqlConnection);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@Searchterm", Searchterm);
+                var SearchResult = new List<User>();
+                sqlCommand.ExecuteNonQuery();
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
                 {
-                    var user = new User
+                    while (reader.Read())
                     {
-                        Id = reader.GetInt32(0),
-                        Firstname = reader.GetString(1),
-                        Middlename = reader.GetString(2),
-                        Lastname = reader.GetString(3),
-                        Biography = reader.GetString(4),
-                        
-                    };
+                        var user = new User
+                        {
+                            Id = reader.GetInt32(0),
+                            Firstname = reader.GetString(1),
+                            Middlename = reader.GetString(2),
+                            Lastname = reader.GetString(3),
+                            Biography = reader.GetString(4),
 
-                    var profilePicture = new ProfilePicture();
-                    if (!reader.IsDBNull(5))
-                    {
-                        profilePicture.Image = (byte[])reader["Data"];
-                    }                   
-                    user.ProfilePicture = profilePicture;                                     
-                    SearchResult.Add(user);
+                        };
+                        var profilePicture = new ProfilePicture();
+                        if (!reader.IsDBNull(5))
+                        {
+                            profilePicture.Image = (byte[])reader["Data"];
+                        }
+                        user.ProfilePicture = profilePicture;
+                        SearchResult.Add(user);
+                    }
                 }
+                _connection.SqlConnection.Close();
+                return SearchResult;
             }
-            _connection.SqlConnection.Close();
-            return SearchResult;
-        }
+            catch (Exception)
+            {
 
-        
+                throw new Exception("Had trouble connecting with the server.");
+            }            
+        }        
     }
 }
