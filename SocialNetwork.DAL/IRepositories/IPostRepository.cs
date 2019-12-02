@@ -11,5 +11,6 @@ namespace SocialNetwork.DAL.IRepositories
         IEnumerable<Post> GetPost(User user);
         IEnumerable<Post> GetFollowingPosts(User user);
         void DeletePost(Post post, User user);
+        int GetPostCount();
     }
 }

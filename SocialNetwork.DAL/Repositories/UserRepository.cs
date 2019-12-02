@@ -67,6 +67,10 @@ namespace SocialNetwork.DAL.Repositories
             return DoesExist;
         }
 
-
+        public int GetUserCount()
+        {
+            int UserCount = _IUserContext.GetUserCount();
+            return UserCount;
+        }
     }
 }

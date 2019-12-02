@@ -15,5 +15,6 @@ namespace SocialNetwork.DAL.IRepositories
         bool DoesUsernameExist(User user);
         bool DoesUserCombinationMatch(User user);
         bool DoesProfileExist(int Id);
+        int GetUserCount();
     }
 }

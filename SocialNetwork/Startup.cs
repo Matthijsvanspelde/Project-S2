@@ -61,6 +61,7 @@ namespace SocialNetwork
             services.AddScoped<ICommentContext, CommentContext>();
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<ICommentLogic, CommentLogic>();
+            services.AddScoped<IStatisticLogic, StatisticLogic>();
             services.AddSignalR();
             services.AddHttpContextAccessor();
         }

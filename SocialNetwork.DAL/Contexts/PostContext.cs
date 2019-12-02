@@ -173,5 +173,23 @@ namespace SocialNetwork.DAL.Contexts
                 throw new Exception("Had trouble connecting with the server.");
             }          
         }
+
+        public int GetPostCount()
+        {
+            int PostCount = 0;
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("GetPostCount", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    PostCount = reader.GetInt32(0);
+                }
+            }
+            _connection.SqlConnection.Close();
+            return PostCount;
+        }
     }
 }

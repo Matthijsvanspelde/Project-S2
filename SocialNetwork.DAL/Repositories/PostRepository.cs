@@ -43,5 +43,11 @@ namespace SocialNetwork.DAL.Repositories
         {
             _IPostContext.DeletePost(post, user);
         }
+
+        public int GetPostCount()
+        {
+            int PostCount = _IPostContext.GetPostCount();
+            return PostCount;
+        }
     }
 }

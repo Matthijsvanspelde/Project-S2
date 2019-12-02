@@ -297,6 +297,24 @@ namespace SocialNetwork.DAL.Contexts
 
                 throw new Exception("Had trouble connecting with the server.");
             }            
-        }        
+        }
+
+        public int GetUserCount()
+        {
+            int UserCount = 0;
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("GetUserCount", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    UserCount = reader.GetInt32(0);                 
+                }
+            }
+            _connection.SqlConnection.Close();
+            return UserCount;
+        }
     }
 }

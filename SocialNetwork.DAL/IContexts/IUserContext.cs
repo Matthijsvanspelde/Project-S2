@@ -15,6 +15,6 @@ namespace SocialNetwork.DAL.IContexts
         bool DoesUsernameExist(User user);
         bool DoesUserCombinationMatch(User user);
         bool DoesProfileExist(int Id);
-
+        int GetUserCount();
     }
 }
