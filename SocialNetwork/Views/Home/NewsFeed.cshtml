@@ -8,27 +8,27 @@
             <div class="newpost-newsfeed">
                 @Html.ActionLink("Post something", "Post", "Profile")<br />
             </div>
-                @foreach (var item in Model.Posts)
+                @foreach (var post in Model.Posts)
                 {
                     <div class="home-post-container">
                         <div class="postheader">
-                            <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.UserId" class="username">
-                                @item.Firstname
-                                @item.Middlename
-                                @item.Lastname
+                            <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@post.UserId" class="username">
+                                @post.Firstname
+                                @post.Middlename
+                                @post.Lastname
                             </a><br />
-                            <a class="posttime">@item.Posted</a>
+                            <a class="posttime">@post.Posted</a>
                         </div>
                         <div class="postmessage">
-                            <a class="posttitle">@item.Title</a><br />
-                            <a>@item.Message</a>
+                            <a class="posttitle">@post.Title</a><br />
+                            <a>@post.Message</a>
                         </div>
                         <div class="postimage">
-                            <img src="data:image;base64,@Convert.ToBase64String(item.Image)">
+                            <img src="data:image;base64,@Convert.ToBase64String(post.Image)">
                         </div>
                         <div class="likecontainer">
-                            <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@item.PostId">Like</a>
-                            <a class="postlikes">@item.Likes Like(s)</a>
+                            <a class="likeBtn" asp-controller="Home" asp-action="LikePost" asp-route-PostId="@post.PostId">Like</a>
+                            <a class="postlikes">@post.Likes Like(s)</a>
                             <br />
                         </div>                        
                     </div>

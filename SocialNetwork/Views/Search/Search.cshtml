@@ -12,13 +12,13 @@
         </form>
 
         <div class="animate-bottom">
-            @foreach (var item in @Model.SearchResult)
+            @foreach (var post in @Model.SearchResult)
             {
                 <div class="userportret">
                     <div class="profile-picture-search">
-                        @if (item.ProfilePicture.Image != null)
+                        @if (post.ProfilePicture.Image != null)
                         {
-                            <img src="data:image;base64,@Convert.ToBase64String(item.ProfilePicture.Image)">
+                            <img src="data:image;base64,@Convert.ToBase64String(post.ProfilePicture.Image)">
                         }
                         else
                         {
@@ -27,10 +27,10 @@
                     </div>
 
                     <div class="profile-name-search">
-                        <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@item.Id" class="username">
-                            @item.Firstname
-                            @item.Middlename
-                            @item.Lastname
+                        <a asp-controller="Profile" asp-action="SearchedProfile" asp-route-id="@post.Id" class="username">
+                            @post.Firstname
+                            @post.Middlename
+                            @post.Lastname
                         </a>
                     </div>
                 </div>
