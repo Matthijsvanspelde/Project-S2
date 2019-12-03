@@ -17,7 +17,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection = connection;
         }
        
-        public void RegisterUser(User user)
+        public bool RegisterUser(User user)
         {
             try
             {
@@ -35,9 +35,11 @@ namespace SocialNetwork.DAL.Contexts
                 sqlCommand.Parameters.AddWithValue("@Biography", "Nothing yet");
                 sqlCommand.ExecuteNonQuery();
                 _connection.SqlConnection.Close();
+                return true;
             }
             catch (Exception)
             {
+                return false;
                 throw new Exception("Had trouble connecting with the server.");
             }            
         }
@@ -301,7 +303,7 @@ namespace SocialNetwork.DAL.Contexts
 
         public int GetUserCount()
         {
-            int UserCount = 0;
+            int userCount = 0;
             _connection.SqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("GetUserCount", _connection.SqlConnection);
             sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -310,11 +312,39 @@ namespace SocialNetwork.DAL.Contexts
             {
                 while (reader.Read())
                 {
-                    UserCount = reader.GetInt32(0);                 
+                    userCount = reader.GetInt32(0);                 
                 }
             }
             _connection.SqlConnection.Close();
-            return UserCount;
+            return userCount;
+        }
+
+        public int GetFollowerCount()
+        {
+            int followerCount = 0;
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("GetAllFollowers", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.ExecuteNonQuery();
+            using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    followerCount = reader.GetInt32(0);
+                }
+            }
+            _connection.SqlConnection.Close();
+            return followerCount;
+        }
+
+        /// <summary>
+        /// Delete functie voor unit tests.
+        /// User en zijn profielfoto moeten verwijderd worden.
+        /// </summary>
+        /// <returns></returns>
+        public bool DeleteUser()
+        {
+            throw new NotImplementedException();
         }
     }
 }

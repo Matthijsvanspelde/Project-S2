@@ -18,6 +18,7 @@ namespace SocialNetwork.Controllers
             StatisticsViewModel statisticsViewModel = new StatisticsViewModel
             {
                 AveragePostPerUser = _statisticLogic.AveragePostsPerUser(),
+                AverageFollowersPerUser = _statisticLogic.AverageFollowersPerUser(),
             };
             return View(statisticsViewModel);
         }

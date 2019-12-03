@@ -2,6 +2,7 @@
 {
     public interface IStatisticLogic
     {
-        float AveragePostsPerUser();
+        double AveragePostsPerUser();
+        double AverageFollowersPerUser();
     }
 }

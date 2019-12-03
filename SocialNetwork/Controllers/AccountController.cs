@@ -51,11 +51,7 @@ namespace SocialNetwork.Controllers
         }
       
         public IActionResult RegisterUser(User user)
-        {
-            if (user.Middlename == null)
-            {
-                user.Middlename = "";
-            }
+        {            
             _userLogic.RegisterUser(user);
             return RedirectToAction("Login", "Account");
         }

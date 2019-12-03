@@ -1,4 +1,5 @@
 ﻿using SocialNetwork.DAL.IRepositories;
+using System;
 
 namespace SocialNetwork.Logic.ILogic
 {
@@ -13,12 +14,20 @@ namespace SocialNetwork.Logic.ILogic
             _postRepository = postRepository;
         }
 
-        public float AveragePostsPerUser()
+        public double AveragePostsPerUser()
         {
-            float userCount = _userRepository.GetUserCount();
-            float postCount = _postRepository.GetPostCount();
-            float averagePostsPerUser = postCount / userCount;
-            return averagePostsPerUser;
+            double userCount = _userRepository.GetUserCount();
+            double postCount = _postRepository.GetPostCount();
+            double averagePostsPerUser = postCount / userCount;           
+            return Math.Round(averagePostsPerUser, 3);
+        }
+
+        public double AverageFollowersPerUser()
+        {
+            double userCount = _userRepository.GetUserCount();
+            double followerCount = _userRepository.GetFollowerCount();
+            double averageFollowersPerUser = followerCount / userCount;
+            return Math.Round(averageFollowersPerUser, 3);
         }
     }
 }

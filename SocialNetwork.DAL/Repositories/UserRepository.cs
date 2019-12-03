@@ -14,9 +14,9 @@ namespace SocialNetwork.DAL.Repositories
             _IUserContext = IUserContext;
         }
 
-        public void RegisterUser(User user)
+        public bool RegisterUser(User user)
         {
-            _IUserContext.RegisterUser(user);
+            return _IUserContext.RegisterUser(user);
         }
 
         public User GetSessionId(User user)
@@ -69,8 +69,14 @@ namespace SocialNetwork.DAL.Repositories
 
         public int GetUserCount()
         {
-            int UserCount = _IUserContext.GetUserCount();
-            return UserCount;
+            int userCount = _IUserContext.GetUserCount();
+            return userCount;
+        }
+
+        public int GetFollowerCount()
+        {
+            int followerCount = _IUserContext.GetFollowerCount();
+            return followerCount;
         }
     }
 }

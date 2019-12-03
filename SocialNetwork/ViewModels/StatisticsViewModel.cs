@@ -2,6 +2,7 @@
 {
     public class StatisticsViewModel
     {
-        public float AveragePostPerUser { get; set; }
+        public double AveragePostPerUser { get; set; }
+        public double AverageFollowersPerUser { get; set; }
     }
 }

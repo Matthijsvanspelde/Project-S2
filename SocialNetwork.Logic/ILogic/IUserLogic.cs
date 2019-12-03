@@ -5,7 +5,7 @@ namespace SocialNetwork.Logic.ILogic
 {
     public interface IUserLogic
     {
-        void RegisterUser(User user);
+        bool RegisterUser(User user);
         User GetSessionId(User user);
         User GetUserDetails(User user);
         void EditProfileDetails(User user);

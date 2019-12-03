@@ -2,6 +2,7 @@
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SocialNetwork.Logic
 {
@@ -14,9 +15,13 @@ namespace SocialNetwork.Logic
             _userRepository = userRepository;
         }
 
-        public void RegisterUser(User user)
+        public bool RegisterUser(User user)
         {
-            _userRepository.RegisterUser(user);
+            if (user.Middlename == null)
+            {
+                user.Middlename = "";
+            }
+            return _userRepository.RegisterUser(user);
         }
 
         public User GetSessionId(User user)

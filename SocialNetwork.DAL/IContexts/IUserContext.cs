@@ -5,7 +5,7 @@ namespace SocialNetwork.DAL.IContexts
 {
     public interface IUserContext
     {
-        void RegisterUser(User user);
+        bool RegisterUser(User user);
         User GetSessionId(User user);
         User GetUserDetails(User user);
         void EditProfileDetails(User user);
@@ -16,5 +16,6 @@ namespace SocialNetwork.DAL.IContexts
         bool DoesUserCombinationMatch(User user);
         bool DoesProfileExist(int Id);
         int GetUserCount();
+        int GetFollowerCount();
     }
 }
