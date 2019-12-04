@@ -14,9 +14,9 @@ namespace SocialNetwork.Logic
             _postRepository = postRepository;
         }
 
-        public void SetPost(Post post, User user)
+        public bool SetPost(Post post, User user)
         {            
-            _postRepository.SetPost(post, user);
+            return _postRepository.SetPost(post, user);
         }
 
         public void LikePost(Post post, User user)

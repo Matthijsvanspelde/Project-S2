@@ -145,7 +145,7 @@ namespace SocialNetwork.DAL.Contexts
             }            
         }
 
-        public void EditProfileDetails(User user)
+        public bool EditProfileDetails(User user)
         {
             try
             {
@@ -162,9 +162,11 @@ namespace SocialNetwork.DAL.Contexts
                 sqlCommand.Parameters.AddWithValue("@Biography", user.Biography);
                 sqlCommand.ExecuteNonQuery();
                 _connection.SqlConnection.Close();
+                return true;
             }
             catch (Exception)
             {
+                return false;
                 throw new Exception("Had trouble connecting with the server.");
             }           
         }
@@ -337,14 +339,33 @@ namespace SocialNetwork.DAL.Contexts
             return followerCount;
         }
 
-        /// <summary>
-        /// Delete functie voor unit tests.
-        /// User en zijn profielfoto moeten verwijderd worden.
-        /// </summary>
-        /// <returns></returns>
-        public bool DeleteUser()
+        public void DeleteUserAfterUnitTest(string username)
+        {            
+            DeleteProfilePicture(username);
+            DeleteUser(username);
+        }
+
+        private void DeleteUser(string username)
         {
-            throw new NotImplementedException();
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("DeleteUserAfterUnitTest", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@Username", username);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
+        }
+
+        private void DeleteProfilePicture(string username)
+        {
+            User user = new User();
+            user.Username = username;
+            user = GetSessionId(user);
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("DeletePictureAfterUnitTest", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@Id", user.Id);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
         }
     }
 }

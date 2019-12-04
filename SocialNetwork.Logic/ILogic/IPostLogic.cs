@@ -5,7 +5,7 @@ namespace SocialNetwork.Logic.ILogic
 {
     public interface IPostLogic
     {
-        void SetPost(Post post, User user);
+        bool SetPost(Post post, User user);
         void LikePost(Post post, User user);
         bool AlreadyLiked(Post post, User user);
         IEnumerable<Post> GetPost(User user);

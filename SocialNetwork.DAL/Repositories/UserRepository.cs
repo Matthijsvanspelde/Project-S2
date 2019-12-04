@@ -29,9 +29,9 @@ namespace SocialNetwork.DAL.Repositories
             return _IUserContext.GetUserDetails(user);
         }
 
-        public void EditProfileDetails(User user)
+        public bool EditProfileDetails(User user)
         {
-            _IUserContext.EditProfileDetails(user);
+            return _IUserContext.EditProfileDetails(user);
         }
 
         public IEnumerable<User> GetSearchResult(string Searchterm)
@@ -77,6 +77,11 @@ namespace SocialNetwork.DAL.Repositories
         {
             int followerCount = _IUserContext.GetFollowerCount();
             return followerCount;
+        }
+
+        public void DeleteUserAfterUnitTest(string username)
+        {
+            _IUserContext.DeleteUserAfterUnitTest(username);
         }
     }
 }

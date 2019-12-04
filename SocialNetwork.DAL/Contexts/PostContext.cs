@@ -17,10 +17,10 @@ namespace SocialNetwork.DAL.Contexts
             _connection = connection;
         }
 
-        public void SetPost(Post post, User user)
+        public bool SetPost(Post post, User user)
         {
-            try
-            {
+            //try
+            //{
                 _connection.SqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand("SetPost", _connection.SqlConnection);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -31,11 +31,13 @@ namespace SocialNetwork.DAL.Contexts
                 sqlCommand.Parameters.AddWithValue("@Image", post.Image);
                 sqlCommand.ExecuteNonQuery();
                 _connection.SqlConnection.Close();
-            }
-            catch (Exception)
-            {
-                throw new Exception("Had trouble connecting with the server.");
-            }            
+                return true;
+            //}
+            //catch (Exception)
+            //{
+            //    return false;
+            //    throw new Exception("Had trouble connecting with the server.");
+            //}            
         }
         
         public void LikePost(Post post, User user)

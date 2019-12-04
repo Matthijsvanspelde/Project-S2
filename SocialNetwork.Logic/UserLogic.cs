@@ -34,9 +34,9 @@ namespace SocialNetwork.Logic
             return _userRepository.GetUserDetails(user);
         }
 
-        public void EditProfileDetails(User user)
+        public bool EditProfileDetails(User user)
         {
-            _userRepository.EditProfileDetails(user);
+            return _userRepository.EditProfileDetails(user);
         }
 
         public IEnumerable<User> GetSearchResult(string Searchterm)
@@ -70,6 +70,11 @@ namespace SocialNetwork.Logic
         {
             bool DoesExist = _userRepository.DoesProfileExist(Id);
             return DoesExist;
+        }
+
+        public void DeleteUserAfterUnitTest(string username)
+        {
+            _userRepository.DeleteUserAfterUnitTest(username);
         }
     }
 }

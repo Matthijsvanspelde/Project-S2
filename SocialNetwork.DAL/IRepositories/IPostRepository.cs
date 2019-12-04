@@ -5,7 +5,7 @@ namespace SocialNetwork.DAL.IRepositories
 {
     public interface IPostRepository
     {
-        void SetPost(Post post, User user);
+        bool SetPost(Post post, User user);
         void LikePost(Post post, User user);
         bool AlreadyLiked(Post post, User user);
         IEnumerable<Post> GetPost(User user);

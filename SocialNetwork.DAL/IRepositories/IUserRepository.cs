@@ -8,7 +8,7 @@ namespace SocialNetwork.DAL.IRepositories
         bool RegisterUser(User user);
         User GetSessionId(User user);
         User GetUserDetails(User user);
-        void EditProfileDetails(User user);
+        bool EditProfileDetails(User user);
         IEnumerable<User> GetSearchResult(string Searchterm);
         IEnumerable<User> GetFollowers(User user);
         IEnumerable<User> GetFollowing(User user);
@@ -17,5 +17,6 @@ namespace SocialNetwork.DAL.IRepositories
         bool DoesProfileExist(int Id);
         int GetUserCount();
         int GetFollowerCount();
+        void DeleteUserAfterUnitTest(string username);
     }
 }
