@@ -169,21 +169,18 @@ namespace SocialNetwork.Controllers
             ProfilePicture profilePicture = new ProfilePicture();
             User user = new User();
             user.Id = (int)HttpContext.Session.GetInt32("Id");
-            if (image != null)
+            if (image != null && image.Length > 0)
             {
                 if (image.ContentType == "image/png" || image.ContentType == "image/jpeg" || image.ContentType == "image/gif")
                 {
-                    if (image.Length > 0)
+                    using (var stream = new MemoryStream())
                     {
-                        using (var stream = new MemoryStream())
-                        {
-                            await image.CopyToAsync(stream);
-                            profilePicture.Image = stream.ToArray();
-                        }
-                        profilePicture.FileType = image.ContentType;
-                        _profilePictureLogic.UploadPicture(profilePicture, user);
-                        return RedirectToAction("Overview", "Profile");
+                        await image.CopyToAsync(stream);
+                        profilePicture.Image = stream.ToArray();
                     }
+                    profilePicture.FileType = image.ContentType;
+                    _profilePictureLogic.UploadPicture(profilePicture, user);
+                    return RedirectToAction("Overview", "Profile");
                 }                
             }            
             return RedirectToAction("Edit", "Profile");            
@@ -193,20 +190,17 @@ namespace SocialNetwork.Controllers
         {
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             post.Posted = DateTime.Now;            
-            if (image != null)
+            if (image != null && image.Length > 0)
             {
                 if (image.ContentType == "image/png" || image.ContentType == "image/jpeg")
                 {
-                    if (image.Length > 0)
+                    using (var stream = new MemoryStream())
                     {
-                        using (var stream = new MemoryStream())
-                        {
-                            await image.CopyToAsync(stream);
-                            post.Image = stream.ToArray();
-                        }
-                        _postLogic.SetPost(post, user);
-                        return RedirectToAction("Overview", "Profile");
+                        await image.CopyToAsync(stream);
+                        post.Image = stream.ToArray();
                     }
+                    _postLogic.SetPost(post, user);
+                    return RedirectToAction("Overview", "Profile");
                 }
             }
             return RedirectToAction("Post", "Profile");

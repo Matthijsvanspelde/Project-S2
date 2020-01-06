@@ -19,8 +19,8 @@ namespace SocialNetwork.DAL.Contexts
 
         public bool SetPost(Post post, User user)
         {
-            //try
-            //{
+            try
+            {
                 _connection.SqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand("SetPost", _connection.SqlConnection);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
@@ -32,12 +32,12 @@ namespace SocialNetwork.DAL.Contexts
                 sqlCommand.ExecuteNonQuery();
                 _connection.SqlConnection.Close();
                 return true;
-            //}
-            //catch (Exception)
-            //{
-            //    return false;
-            //    throw new Exception("Had trouble connecting with the server.");
-            //}            
+            }
+            catch (Exception)
+            {
+                return false;
+                throw new Exception("Had trouble connecting with the server.");
+            }            
         }
         
         public void LikePost(Post post, User user)

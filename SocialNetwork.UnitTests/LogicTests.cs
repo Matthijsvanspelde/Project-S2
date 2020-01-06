@@ -5,6 +5,7 @@ using SocialNetwork.Logic;
 using SocialNetwork.Logic.ILogic;
 using SocialNetwork.Models;
 using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace SocialNetwork.UnitTests
@@ -23,7 +24,7 @@ namespace SocialNetwork.UnitTests
         private readonly User user = new User()
         {
             Username = "UnitTest",
-            Firstname = "Jan",
+            Firstname = "JanUnitTest",
             Middlename = null,
             Lastname = "Jansen",
             Password = "123",
@@ -48,7 +49,7 @@ namespace SocialNetwork.UnitTests
 
         [Fact]
         public void AddUser_Succes()
-        {   
+        {
             //Act
             bool succesfull = userLogic.RegisterUser(user);
             string username = user.Username;
@@ -75,6 +76,36 @@ namespace SocialNetwork.UnitTests
         }
 
         [Fact]
+        public void DoesUsernameExist_True()
+        {
+            //Arange
+            userLogic.RegisterUser(user);
+            bool DoesExist;
+
+            //Act
+            DoesExist = userLogic.DoesUsernameExist(user);
+
+            //Delete
+            userLogic.DeleteUserAfterUnitTest(user.Username);
+
+            //Assert 
+            Assert.True(DoesExist);
+        }
+
+        [Fact]
+        public void DoesUsernameExist_False()
+        {
+            //Arange
+            bool DoesExist;
+
+            //Act
+            DoesExist = userLogic.DoesUsernameExist(user);
+
+            //Assert 
+            Assert.False(DoesExist);
+        }
+
+        [Fact]
         public void EditProfileDetails_Succes()
         {
             //Arrange
@@ -83,10 +114,9 @@ namespace SocialNetwork.UnitTests
 
             //Act
             bool succesfull = userLogic.EditProfileDetails(user);
-            string username = user.Username;
 
             //Delete
-            userLogic.DeleteUserAfterUnitTest(username);
+            userLogic.DeleteUserAfterUnitTest(user.Username);
 
             //Assert
             Assert.True(succesfull);
@@ -100,10 +130,74 @@ namespace SocialNetwork.UnitTests
 
             //Act
             bool succesfull = userLogic.EditProfileDetails(userDetails);
-            string username = user.Username;
 
             //Assert
             Assert.False(succesfull);
-        }        
+        }
+
+        [Fact]
+        public void UsernamePasswordCombo_True()
+        {
+            //Arange
+            bool DoesMatch;
+            userLogic.RegisterUser(user);
+
+            //Act
+            DoesMatch = userLogic.DoesUserCombinationMatch(user);
+
+            //Delete
+            userLogic.DeleteUserAfterUnitTest(user.Username);
+
+            //Assert
+            Assert.True(DoesMatch);
+        }
+
+        [Fact]
+        public void UsernamePasswordCombo_False()
+        {
+            //Arange
+            bool DoesMatch;
+            userLogic.RegisterUser(user);
+            user.Password = "1234";
+
+            //Act
+            DoesMatch = userLogic.DoesUserCombinationMatch(user);
+
+            //Delete
+            userLogic.DeleteUserAfterUnitTest(user.Username);
+
+            //Assert
+            Assert.False(DoesMatch);
+        }
+
+        [Fact]
+        public void SearchUser_Succes()
+        {
+            //Arange
+            userLogic.RegisterUser(user);
+            List<User> list = new List<User>();
+
+            //Act
+            list.AddRange(userLogic.GetSearchResult(user.Firstname));
+
+            //Delete
+            userLogic.DeleteUserAfterUnitTest(user.Username);
+
+            //Assert
+            Assert.Single(list);
+        }
+
+        [Fact]
+        public void SearchUser_Empty()
+        {
+            //Arange
+            List<User> list = new List<User>();
+
+            //Act
+            list.AddRange(userLogic.GetSearchResult(user.Firstname));
+
+            //Assert
+            Assert.Empty(list);
+        }
     }
 }
