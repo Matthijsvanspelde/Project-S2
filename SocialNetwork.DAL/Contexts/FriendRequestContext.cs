@@ -17,7 +17,7 @@ namespace SocialNetwork.DAL.Contexts
             _connection = connection;
         }
 
-        public void SendFriendRequest(FriendRequest friendRequest)
+        public bool SendFriendRequest(FriendRequest friendRequest)
         {
             try
             {
@@ -29,9 +29,11 @@ namespace SocialNetwork.DAL.Contexts
                 sqlCommand.Parameters.AddWithValue("@TimeSend", friendRequest.Recieved);
                 sqlCommand.ExecuteNonQuery();
                 _connection.SqlConnection.Close();
+                return true;
             }
             catch (Exception)
             {
+                return false;
                 throw new Exception("Had trouble connecting with the server.");
             }            
         }

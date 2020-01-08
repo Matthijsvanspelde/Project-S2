@@ -5,7 +5,7 @@ namespace SocialNetwork.DAL.IContexts
 {
     public interface IFriendRequestContext
     {
-        void SendFriendRequest(FriendRequest friendRequest);
+        bool SendFriendRequest(FriendRequest friendRequest);
         void DeleteFriendRequest(FriendRequest friendRequest);
         void AcceptFriendRequest(FriendRequest friendRequest);
         IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest);

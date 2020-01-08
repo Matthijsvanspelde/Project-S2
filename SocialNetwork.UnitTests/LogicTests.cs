@@ -14,16 +14,31 @@ namespace SocialNetwork.UnitTests
     {
         private readonly IUserLogic userLogic;
         private readonly IPostLogic postLogic;
+        private readonly IFriendRequestLogic friendRequestLogic;
 
         public LogicTests()
         {
             postLogic = new PostLogic(new PostRepository(new PostContext(new Connection(@"Data Source=mssql.fhict.local;Initial Catalog=dbi404906_ocial;User ID=dbi404906_ocial;Password=123"))));
             userLogic = new UserLogic(new UserRepository(new UserContext(new Connection(@"Data Source=mssql.fhict.local;Initial Catalog=dbi404906_ocial;User ID=dbi404906_ocial;Password=123"))));
+            friendRequestLogic = new FriendRequestLogic(new FriendRequestRepository(new FriendRequestContext(new Connection(@"Data Source=mssql.fhict.local;Initial Catalog=dbi404906_ocial;User ID=dbi404906_ocial;Password=123"))));
         }
 
-        private readonly User user = new User()
+        private readonly User user1 = new User()
         {
-            Username = "UnitTest",
+            Username = "UnitTest1",
+            Firstname = "JanUnitTest",
+            Middlename = null,
+            Lastname = "Jansen",
+            Password = "123",
+            Biography = "Test test test test test",
+            City = "Test",
+            Country = "Test",
+            Birthdate = new DateTime(1941, 11, 29),
+        };
+
+        private readonly User user2 = new User()
+        {
+            Username = "UnitTest2",
             Firstname = "JanUnitTest",
             Middlename = null,
             Lastname = "Jansen",
@@ -50,13 +65,17 @@ namespace SocialNetwork.UnitTests
         [Fact]
         public void AddUser_Succes()
         {
-            //Act
-            bool succesfull = userLogic.RegisterUser(user);
-            string username = user.Username;
-
-            //Delete
-            userLogic.DeleteUserAfterUnitTest(username);
-
+            bool succesfull;
+            try
+            {
+                //Act
+                succesfull = userLogic.RegisterUser(user1);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+            }            
             //Assert
             Assert.True(succesfull);
         }
@@ -65,29 +84,32 @@ namespace SocialNetwork.UnitTests
         public void GetUserDetails_Succes()
         {
             //Arrange
-            user.Id = userLogic.GetSessionId(user).Id;
+            user1.Id = userLogic.GetSessionId(user1).Id;
             User userDetails = new User();
 
             //Act
-            userDetails = userLogic.GetUserDetails(user);
+            userDetails = userLogic.GetUserDetails(user1);
 
             //Assert
-            Assert.Equal("UnitTest", user.Username);
+            Assert.Equal("UnitTest1", user1.Username);
         }
 
         [Fact]
         public void DoesUsernameExist_True()
         {
             //Arange
-            userLogic.RegisterUser(user);
-            bool DoesExist;
-
-            //Act
-            DoesExist = userLogic.DoesUsernameExist(user);
-
-            //Delete
-            userLogic.DeleteUserAfterUnitTest(user.Username);
-
+            userLogic.RegisterUser(user1);
+            bool DoesExist;            
+            try
+            {
+                //Act
+                DoesExist = userLogic.DoesUsernameExist(user1);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+            }           
             //Assert 
             Assert.True(DoesExist);
         }
@@ -99,7 +121,7 @@ namespace SocialNetwork.UnitTests
             bool DoesExist;
 
             //Act
-            DoesExist = userLogic.DoesUsernameExist(user);
+            DoesExist = userLogic.DoesUsernameExist(user1);
 
             //Assert 
             Assert.False(DoesExist);
@@ -109,15 +131,19 @@ namespace SocialNetwork.UnitTests
         public void EditProfileDetails_Succes()
         {
             //Arrange
-            userLogic.RegisterUser(user);
-            user.Id = userLogic.GetSessionId(user).Id;
-
-            //Act
-            bool succesfull = userLogic.EditProfileDetails(user);
-
-            //Delete
-            userLogic.DeleteUserAfterUnitTest(user.Username);
-
+            userLogic.RegisterUser(user1);
+            user1.Id = userLogic.GetSessionId(user1).Id;
+            bool succesfull;
+            try
+            {
+                //Act
+                succesfull = userLogic.EditProfileDetails(user1);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+            }
             //Assert
             Assert.True(succesfull);
         }
@@ -140,14 +166,17 @@ namespace SocialNetwork.UnitTests
         {
             //Arange
             bool DoesMatch;
-            userLogic.RegisterUser(user);
-
-            //Act
-            DoesMatch = userLogic.DoesUserCombinationMatch(user);
-
-            //Delete
-            userLogic.DeleteUserAfterUnitTest(user.Username);
-
+            userLogic.RegisterUser(user1);
+            try
+            {
+                //Act
+                DoesMatch = userLogic.DoesUserCombinationMatch(user1);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+            }
             //Assert
             Assert.True(DoesMatch);
         }
@@ -157,15 +186,18 @@ namespace SocialNetwork.UnitTests
         {
             //Arange
             bool DoesMatch;
-            userLogic.RegisterUser(user);
-            user.Password = "1234";
-
-            //Act
-            DoesMatch = userLogic.DoesUserCombinationMatch(user);
-
-            //Delete
-            userLogic.DeleteUserAfterUnitTest(user.Username);
-
+            userLogic.RegisterUser(user1);
+            user1.Password = "1234";
+            try
+            {
+                //Act
+                DoesMatch = userLogic.DoesUserCombinationMatch(user1);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+            }
             //Assert
             Assert.False(DoesMatch);
         }
@@ -174,15 +206,18 @@ namespace SocialNetwork.UnitTests
         public void SearchUser_Succes()
         {
             //Arange
-            userLogic.RegisterUser(user);
+            userLogic.RegisterUser(user1);
             List<User> list = new List<User>();
-
-            //Act
-            list.AddRange(userLogic.GetSearchResult(user.Firstname));
-
-            //Delete
-            userLogic.DeleteUserAfterUnitTest(user.Username);
-
+            try
+            {
+                //Act
+                list.AddRange(userLogic.GetSearchResult(user1.Firstname));
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+            }
             //Assert
             Assert.Single(list);
         }
@@ -194,10 +229,103 @@ namespace SocialNetwork.UnitTests
             List<User> list = new List<User>();
 
             //Act
-            list.AddRange(userLogic.GetSearchResult(user.Firstname));
+            list.AddRange(userLogic.GetSearchResult(user1.Firstname));
 
             //Assert
             Assert.Empty(list);
+        }
+
+        [Fact]
+        public void SendFriendRequest_Succes()
+        {
+            //Arange
+            bool succesfull;
+            userLogic.RegisterUser(user1);
+            userLogic.RegisterUser(user2);
+            user1.Id = userLogic.GetSessionId(user1).Id;
+            user2.Id = userLogic.GetSessionId(user2).Id;
+            FriendRequest friendRequest = new FriendRequest()
+            {
+                SenderId = user1.Id,
+                RecieverId = user2.Id,
+                Recieved = DateTime.Now,
+            };
+            try
+            {
+                //Act
+                succesfull = friendRequestLogic.SendFriendRequest(friendRequest);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+                userLogic.DeleteUserAfterUnitTest(user2.Username);
+            }
+
+            //Assert
+            Assert.True(succesfull);
+        }
+
+        [Fact]
+        public void SendFriendRequestToYourself()
+        {
+            //Arange
+            bool succesfull;
+            userLogic.RegisterUser(user1);
+            user1.Id = userLogic.GetSessionId(user1).Id;
+            FriendRequest friendRequest = new FriendRequest()
+            {
+                //Both userId's are the same
+                SenderId = user1.Id,
+                RecieverId = user1.Id, 
+                Recieved = DateTime.Now,
+            };
+            try
+            {
+                //Act
+                succesfull = friendRequestLogic.SendFriendRequest(friendRequest);
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+                userLogic.DeleteUserAfterUnitTest(user2.Username);
+            }
+
+            //Assert
+            Assert.False(succesfull);
+        }
+
+        [Fact]
+        public void SendDublicateFriendRequest()
+        {
+            //Arange
+            bool succesfull;
+            userLogic.RegisterUser(user1);
+            userLogic.RegisterUser(user2);
+            user1.Id = userLogic.GetSessionId(user1).Id;
+            user2.Id = userLogic.GetSessionId(user2).Id;
+            FriendRequest friendRequest = new FriendRequest()
+            {
+                SenderId = user1.Id,
+                RecieverId = user2.Id,
+                Recieved = DateTime.Now,
+            };
+            try
+            {
+                //Act
+                friendRequestLogic.SendFriendRequest(friendRequest);
+                succesfull = friendRequestLogic.SendFriendRequest(friendRequest); //Dublicate Request
+            }
+            finally
+            {
+                //Delete
+                userLogic.DeleteUserAfterUnitTest(user1.Username);
+                userLogic.DeleteUserAfterUnitTest(user2.Username);
+            }
+
+            //Assert
+            Assert.False(succesfull);
         }
     }
 }

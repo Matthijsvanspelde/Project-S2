@@ -342,7 +342,21 @@ namespace SocialNetwork.DAL.Contexts
         public void DeleteUserAfterUnitTest(string username)
         {            
             DeleteProfilePicture(username);
+            DeleteFriendRequests(username);
             DeleteUser(username);
+        }
+
+        private void DeleteFriendRequests(string username)
+        {
+            User user = new User();
+            user.Username = username;
+            user = GetSessionId(user);
+            _connection.SqlConnection.Open();
+            SqlCommand sqlCommand = new SqlCommand("DeleteFriendRequestAfterUnitTest", _connection.SqlConnection);
+            sqlCommand.CommandType = CommandType.StoredProcedure;
+            sqlCommand.Parameters.AddWithValue("@Id", user.Id);
+            sqlCommand.ExecuteNonQuery();
+            _connection.SqlConnection.Close();
         }
 
         private void DeleteUser(string username)

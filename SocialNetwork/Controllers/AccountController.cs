@@ -37,7 +37,7 @@ namespace SocialNetwork.Controllers
             {
                 ErrorMessage = "",
             };
-            if (_userLogic.DoesUserCombinationMatch(user) == true)
+            if (_userLogic.DoesUserCombinationMatch(user))
             {
                 user = _userLogic.GetSessionId(user);
                 HttpContext.Session.SetInt32("Id", user.Id);
@@ -59,7 +59,7 @@ namespace SocialNetwork.Controllers
         [HttpPost]
         public JsonResult DoesUserNameExist(User user)
         {
-            if (_userLogic.DoesUsernameExist(user) == true)
+            if (_userLogic.DoesUsernameExist(user))
             {
                 return Json(user == null);
             }

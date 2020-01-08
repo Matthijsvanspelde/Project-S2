@@ -5,7 +5,7 @@ namespace SocialNetwork.DAL.IRepositories
 {
     public interface IFriendRequestRepository
     {
-        void SendFriendRequest(FriendRequest friendRequest);
+        bool SendFriendRequest(FriendRequest friendRequest);
         void DeleteFriendRequest(FriendRequest friendRequest);
         void AcceptFriendRequest(FriendRequest friendRequest);
         IEnumerable<FriendRequest> GetFriendRequests(FriendRequest friendRequest);

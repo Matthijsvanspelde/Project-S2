@@ -21,7 +21,10 @@ namespace SocialNetwork.Logic
 
         public void LikePost(Post post, User user)
         {
-            _postRepository.LikePost(post, user);
+            if (!AlreadyLiked(post, user))
+            {
+                _postRepository.LikePost(post, user);
+            }
         }
 
         public bool AlreadyLiked(Post post, User user)

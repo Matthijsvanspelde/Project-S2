@@ -218,16 +218,7 @@ namespace SocialNetwork.Controllers
         {
             friendRequest.SenderId = (int)HttpContext.Session.GetInt32("Id");
             friendRequest.Recieved = DateTime.Now;
-            if (friendRequest.SenderId != friendRequest.RecieverId)
-            {
-                if (_friendRequestLogic.DoesFriendRequestExist(friendRequest) == false)
-                {
-                    if (_friendRequestLogic.IsFollowing(friendRequest) == false)
-                    {
-                        _friendRequestLogic.SendFriendRequest(friendRequest);
-                    }
-                }
-            }            
+            _friendRequestLogic.SendFriendRequest(friendRequest);      
             return RedirectToAction("SearchedProfile/" + friendRequest.RecieverId, "Profile");
         }
 
@@ -237,10 +228,7 @@ namespace SocialNetwork.Controllers
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             Post post = new Post();
             post.PostId = PostId;
-            if (_postLogic.AlreadyLiked(post, user) == false)
-            {
-                _postLogic.LikePost(post, user);
-            }
+            _postLogic.LikePost(post, user);
             return RedirectToAction("SearchedProfile/" + RecieverId, "Profile");
         }
     }

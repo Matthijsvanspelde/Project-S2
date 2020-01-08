@@ -67,10 +67,7 @@ namespace SocialNetwork.Controllers
             user.Id = (int)HttpContext.Session.GetInt32("Id");
             Post post = new Post();
             post.PostId = PostId;
-            if (_postLogic.AlreadyLiked(post, user) == false)
-            {
-                _postLogic.LikePost(post, user);
-            }            
+            _postLogic.LikePost(post, user);           
             return RedirectToAction("NewsFeed", "Home");
         }
 

@@ -14,9 +14,16 @@ namespace SocialNetwork.Logic
             _FriendRequestRepository = FriendRequestRepository;
         }
 
-        public void SendFriendRequest(FriendRequest friendRequest)
+        public bool SendFriendRequest(FriendRequest friendRequest)
         {
-            _FriendRequestRepository.SendFriendRequest(friendRequest);
+            if (friendRequest.SenderId != friendRequest.RecieverId && !DoesFriendRequestExist(friendRequest) && !IsFollowing(friendRequest))
+            {
+                return _FriendRequestRepository.SendFriendRequest(friendRequest);
+            }
+            else
+            {
+                return false;
+            }         
         }
 
         public void DeleteFriendRequest(FriendRequest friendRequest)
